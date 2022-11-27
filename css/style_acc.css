@@ -1,0 +1,237 @@
+/* #---------------------# */
+/* |                     | */
+/* | CSS TRANG ĐĂNG NHẬP | */
+/* |                     | */
+/* #---------------------# */
+
+/* ------------------ Main ---------------------- */
+#mainContent-theme {
+    width: 100%;
+    height: 550px;
+    padding: 20px 0;
+}
+
+#login-title-container {
+    width: 50%;
+    float: left;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+#login-title-container .login-theme {
+    height: 100%;
+}
+
+#login-title-container .login-theme img {
+    width: 100%;
+    height: 100%;
+}
+
+#content-account-container {
+    width: 50%;
+    height: auto;
+}
+
+#login-account-container {
+    width: 50%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#logo-account {
+    width: 100%;
+    height:  100%;
+    text-align: center;
+}
+
+#logo-account img {
+    width: 95px;
+    height: 95px;
+}
+
+#userbox {
+    width: 100%;
+    height: auto;
+    padding: 35px 40px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+#userbox .userbox-inner {
+    margin: 20px 0;
+}
+
+#userbox .userbox-inner input {
+    padding: 17px 20px;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: #DDDDDD;
+    font-size: 15px;
+}
+
+#userbox .userbox-inner input:focus {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+#loginerror {
+    width: 100%;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+    font-weight: bold;
+    margin: 5px auto 0;
+    padding: 5px;
+    display: none;
+    cursor: default;
+}
+
+#signup-btn-container {
+    padding: 20px 0 30px;
+    text-align: center;
+}
+
+#signup-btn {    
+    border: 2px solid black;
+    width: 50%;
+    padding: 15px 30px;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}  
+
+#signup-btn:hover {
+    background-color: white;
+    color: black;
+    transition: .2s;
+}
+
+#btnlg {
+    background-color: #000;
+    color: white;
+    list-style-type: none;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 auto;
+    animation: bottomup 0.5s;
+    z-index: 100;
+    border: none;
+}
+
+#btnlogout {
+    background-color: #fff;
+    color: #000;
+    list-style-type: none;
+    text-align: center;
+    height: 25px;
+    width: 100px;
+    line-height: 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: none;
+    cursor: pointer;
+    margin: 0 auto;
+    animation: bottomup 0.5s;
+    z-index: 100;
+    border: none;
+}
+
+.userbtn li:hover>#btnlogout {
+    display: block;
+}
+
+#Username input:focus,
+.Password input:focus {
+    background-color: white;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+#login-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+#login-inner #login-btn {
+    text-align: center;
+    padding: 10px;
+    width: 60%;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#login-inner #login-btn:hover {
+    background-color: white;
+    color: black;
+    transition: .2s;
+}
+
+#sign-up-link {
+    font-size: 17px;
+    text-align: center;
+}
+
+#sign-up-link a {
+    color: black;
+    font-weight: bold;
+}
+
+#sign-up-link a:hover {
+    color: red;
+}
+
+#linkDangKy {
+    position: absolute;
+    top: 370px;
+    left: 165px;
+}
+
+/* ----------------------- Responsive --------------------- */
+@media only screen and (max-width: 768px) {
+
+    /* Main */
+
+    #login-title-container {
+        display: none;
+    }
+
+    #login-account-container {
+        width: 100%;
+        padding: 50px 20px 30px;
+    }
+
+    .login-inner #login-btn {
+        width: 50%;
+    }
+}
+
+/* Điện thoại di động ở chế độ dọc */
+@media only screen and (max-width: 576px) {}
+
+/* Điện thoại di động ở chế độ ngang */
+@media only screen and ((min-width: 577px) and (max-width: 768px)) {}
+
+/* Máy tính bảng */
+@media only screen and ((min-width: 769px) and (max-width: 992px)) {}
+
+/* Máy tính để bàn */
+@media only screen and (min-width: 993px) {}

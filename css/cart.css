@@ -1,0 +1,250 @@
+body {
+    background-color: whitesmoke;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#content {
+    height: auto;
+    padding: 20px;
+}
+
+.element {
+    background-color: white;
+    width: 72%;
+    height: 6%;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 20px;
+    margin: 20px 0px;
+}
+
+.progress {
+    background-color: white;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#cart {
+    background-color: white;
+    margin-left: 0;
+}
+
+#pcart {
+    width: 72%;
+    height: 100%;
+    float: left;
+}
+
+#sym {
+    padding: 19px 19px 19px 0px;
+    background-color: white;
+    width: 100%;
+    height: 14px;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 14px;
+    margin: 20px 0px;
+}
+
+.profile_product {
+    width: 50%;
+    height: 100%;
+}
+
+.price_product {
+    text-align: center;
+    width: 10%;
+    height: 100%;
+}
+
+.quantity_product {
+    text-align: center;
+    width: 20%;
+    height: 100%;
+}
+
+.total_product {
+    text-align: center;
+    width: 15%;
+    height: 100%;
+}
+
+.trash_icon {
+    text-align: right;
+    width: 5%;
+    height: 100%;
+}
+
+#info0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: white;
+    padding: 19px 19px 19px 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+.in4-pro {
+    padding-top: 10px;
+}
+
+.area {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 13px;
+}
+
+.gimage {
+    width: 80px;
+    height: 80px;
+    margin-left: 20px;
+}
+
+.gimage img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.info {
+    position: relative;
+}
+
+.g_size {
+    padding: 5px 0;
+}
+
+#checkbox {
+    cursor: pointer;
+    margin-right: 5px;
+    accent-color: black;
+    width: 15px;
+    height: 15px;
+}
+
+.chon {
+    cursor: pointer;
+    accent-color: black;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.mua {
+    position: absolute;
+    top: 50%;
+}
+
+.price {
+    text-align: center;
+    width: 10%;
+    height: 100%;
+}
+
+.quantity_class {
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    position: relative;
+}
+
+.buttonchoose {
+    padding: 20px 0 0 20px;
+}
+
+.total {
+    text-align: center;
+    width: 15%;
+    height: 100%;
+}
+
+.trash {
+    width: 10%;
+    height: 100%;
+    text-align: right;
+    cursor: pointer;
+}
+
+#money {
+    width: 25%;
+    margin-left: 3%;
+    margin-top: 20px;
+    float: left;
+    margin-bottom: 30px;
+}
+
+.who {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: black;
+    justify-content: center;
+}
+
+.icon img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+}
+
+.sum {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: white;
+    line-height: 50px;
+}
+
+.impo {
+    padding-left: 5px;
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+#cost {
+    padding-right: 5px;
+    float: left;
+    width: 60%;
+    height: 100%;
+    text-align: right;
+}
+
+.buynow {
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+
+.button {
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+    height: 40%;
+    background-color: red;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #DD0000;
+}
+
+.sanpham {
+    margin-left: 20px;
+}

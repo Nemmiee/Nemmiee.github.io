@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Giỏ Hàng- FAION</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../img/Logo/Faion_icon.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+	<link rel="stylesheet" href="../css/style_product.css">
+	<link rel="stylesheet" href="../css/style_acc.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/cart.css">
+	<script src="../js/script.js" defer></script>
+	<script src="../js/cart.js" defer></script>
+	<script src="../js/account.js" defer></script>
+</head>
+<!--  -->
+<body onload="showHeaderProductCategory(); checklogin(); showFooterMenuItems(); checkcart(); setbill();">
+	<header>
+		<div id="header">
+			<div id="res-header-cart">
+				<a href="../index.html">
+					<i class="fa-solid fa-cart-shopping fa-lg active"></i>
+				</a>
+			</div>
+			<div id="logo-container">
+				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png" alt="Logo"></a>
+			</div>
+			<div id="flex_header-title">
+				<div class="header-title"><a href="../index.html">TRANG CHỦ</a></div>
+				<div id="header-product-title" class="header-title">
+					<a href="../File/products.html">SẢN PHẨM <i class="fa-sharp fa-solid fa-angle-down fa-xs"></i></a>
+					<div class="header-dropdown">
+					</div>
+				</div>
+				<div class="header-title"><a href="../File/sizecheck.html">SIZE GUIDE</a></div>
+				<div class="header-title"><a href="../File/contact.html">LIÊN HỆ</a></div>
+				<!-- <div class="header-title"><a href="/admin/products.html">Admin</a></div> -->
+				<div id="manage">
+				</div>
+				<!-- Loggin -->
+				<div class="user">
+					<a href="/Account/signin.html">
+						<i class="fa-solid fa-user fa-lg header-icon"></i>
+					</a>
+				</div>
+				<!-- Search -->
+				<div class=" search">
+					<div id="header-search">
+						<button id="header-search-btn" onclick="search_dropdown()">
+							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
+						</button>
+						<div class="header-dropdown">
+							<input type="search" id="header-search-input" placeholder="Tìm kiếm...">
+							<button id="header-inner-search-btn">
+								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- Cart -->
+				<div class="cart" id="header-cart">
+					<a href="../File/cart.html">
+						<i class="fa-solid fa-cart-shopping fa-lg header-icon active"></i>
+					</a>
+				</div>
+			</div>
+			<div id="hamburger-container">
+				<div id="hamburger">
+					<i class="fa-solid fa-bars fa-lg" id="hamburger-icon"></i>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Sidebar -->
+	<div id="sidebar-container">
+		<div id="sidebar">
+			<div id="turnoff-container">
+				<button id="turnoff-btn">
+					<i class="fa-solid fa-xmark fa-2x"></i>
+				</button>
+			</div>
+			<div class="sidebar-search-container">
+				<input type="search" id="sidebar-search" placeholder="Tìm kiếm...">
+				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+			</div>
+			<ul id="sidebar-list">
+				<a href="/index.html">
+					<li>
+						<span class="sidebar-item">Trang chủ</span>
+					</li>
+				</a>
+				<a href="/File/products.html">
+					<li>
+						<span class="sidebar-item">Sản phẩm</span>
+					</li>
+				</a>
+				<a href="/File/sizecheck.html">
+					<li>
+						<span class="sidebar-item">Size guide</span>
+					</li>
+				</a>
+				<a href="/File/contact.html">
+					<li>
+						<span class="sidebar-item">Liên hệ</span>
+					</li>
+				</a>
+				<a href="/Account/signin.html">
+					<li>
+						<span class="sidebar-item">Đăng nhập</span>
+					</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+	
+
+	<main id="content">
+		<div class="element">
+			<div id="cart" class="progress" onClick="checkcart();"><span>Giỏ hàng<span></div>
+			<div id="wait" class="progress" onClick="checkwait();"><span>Chờ xử lí</span></div>
+		</div>
+		<div id="pcart">
+			<div id="sym">
+				<div class="profile_product symbol" id="check">
+					<input type="checkbox"  id="checkbox" value="" onclick="chooseall();" />
+					<span>Tất cả</span>
+				</div>
+				<div class="price_product symbol">Giá</div>
+				<div class="quantity_product symbol">Số lượng sản phẩm</div>
+				<div class="total_product symbol">Thành tiền</div>
+				<div class="trash_icon symbol" id="thungrac"><i class="fa-solid fa-trash"></i></div>
+			</div>
+			<div id="product_cart"></div>
+		</div>
+
+		<div id="money">
+			<div class="who">
+				<div class="icon"><img id="logo-image" src="/img/Logo/Faion_remove_background.png" alt="Logo"></div>
+			</div>
+			<div class="sum">
+				<p class="impo">Tổng tiền: </p>
+				<div id="cost">0đ</div>
+			</div>
+			<div class="buynow">
+				<button onclick="Buy(); checkwait();" class="button">MUA NGAY</button>
+			</div>
+
+		<!--waitting-->
+		</div>
+	</main>
+
+	<footer>
+		<div id="footer">
+			<div id="top-footer">
+				<div class="top-footer-menu">
+					<img id="top-footer-menu-img" src="/img/Logo/Faion_remove_background.png" alt="Faion">
+					<p><i class="fa-solid fa-location-dot fa-fw top-footer-icon"></i>Địa chỉ: 273 An Dương Vương, P3,
+						Quận 5, TP.HCM</p>
+					<p><i class="fa-regular fa-envelope fa-fw top-footer-icon"></i>Email: <a
+							href="mailto:nthnam.a1.c3tqcap@gmail.com">nthnam.a1.c3tqcap@gmail.com</a></p>
+					<p><i class="fa-solid fa-phone fa-fw top-footer-icon"></i>Điện thoại: 038 2358 823</p>
+				</div>
+				<div class="top-footer-menu">
+					<h3>Danh mục</h3>
+					<a href="#">Tìm kiếm</a>
+					<a href="/File/sizecheck.html">Kiểm tra size áo</a>
+					<a href="/File/contact.html">Liên hệ</a>
+				</div>
+				<div class="top-footer-menu" id="top-footer-menu-category"></div>
+				<div class="top-footer-menu">
+					<h3>Đăng ký nhận tin</h3>
+					<form action="">
+						<div id="top-footer-menu-input">
+							<input type="email" value="" id="top-footer-email" placeholder="Nhập email của bạn...">
+							<button id="top-footer-email-btn" type="submit">Gửi</button>
+						</div>
+					</form>
+					<p>Đăng ký với chúng tôi để nhận email về sản phẩm mới,
+						khuyến mại đặc biệt và các sự kiện độc đáo.</p>
+				</div>
+			</div>
+			<div id="bottom-footer">
+				<a href="https://www.facebook.com/">
+					<div class="bottom-footer-icon"><i class="fa-brands fa-facebook"></i></div>
+				</a>
+				<a href="https://www.instagram.com/">
+					<div class="bottom-footer-icon"><i class="fa-brands fa-instagram"></i></div>
+				</a>
+				<a href="https://twitter.com/">
+					<div class="bottom-footer-icon"><i class="fa-brands fa-twitter"></i></div>
+				</a>
+				<p>Copyright &#169; 2022 FAION.</p>
+			</div>
+		</div>
+	</footer>
+	<div id="backtotop">
+		<a href="#header">
+			<i class="fa-solid fa-angle-up fa-lg"></i>
+		</a>
+	</div>
+</body>
+
+</html>

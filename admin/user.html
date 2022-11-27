@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Quản lí sản phẩm</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../img/Logo/Faion_icon.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+	<link rel="stylesheet" href="../css/admin.css">
+	<script src="../js/admin.js" defer></script>
+</head>
+
+<body class="active" onLoad="showUserList();">
+	<header>
+		<div id="header">
+			<div id="logo-container">
+				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_logo.png" alt="Logo"></a>
+			</div>
+			<div id="flex_header-title">
+				<div class="header-title"><a href="../index.html">TRANG CHỦ</a></div>
+				<div class="header-title"><a href="../admin/products.html">SẢN PHẨM</a></div>
+				<div class="header-title"><a href="../admin/bill.html">ĐƠN HÀNG</a></div>
+				<div class="header-title active"><a href="../admin/user.html">NGƯỜI DÙNG</a></div>
+				<!-- Loggin -->
+				<div class="user-icon">
+					<a href="../index.html" onclick="logout()">
+						<i class="fa-solid fa-right-from-bracket"></i>
+					</a>
+				</div>
+			</div>
+			<div id="hamburger-container">
+				<div id="hamburger">
+					<i class="fa-solid fa-bars fa-lg" id="hamburger-icon"></i>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<div class ="sidebar">
+		<div id="turnoff-container">
+			<button id="turnoff-btn">
+				<i class="fa-solid fa-xmark fa-2x"></i>
+			</button>
+		</div>
+		<ul>
+			<a href="../index.html" class="active">
+				<li>
+					<span class="sidebar-item">Trang chủ</span>
+				</li>
+			</a>
+			<a href="../admin/products.html">
+				<li>
+					<span class="sidebar-item">Sản phẩm</span>
+				</li>
+			</a>
+			<a href="../admin/bill.html">
+				<li>
+					<span class="sidebar-item">Đơn hàng</span>
+				</li>
+			</a>
+			<a href="../admin/user.html">
+				<li class="active">
+					<span class="sidebar-item">Người dùng</span>
+				</li>
+			</a>
+			<a href="../index.html" onclick="logout()">
+				<li>
+					<span class="sidebar-item">Đăng xuất</span>
+				</li>
+			</a>
+		</ul>
+	</div>
+	<div id="maincontent">
+		<div id="content">
+			<div id="topsection">
+				<div class="subsection search user">
+					<h1>TÌM KIẾM KHÁCH HÀNG</h1>
+					<form onkeyup="searchUser()" onchange="searchUser()">
+					<label for="username">Tên đăng nhập: </label>
+					<input type="text" id="username">
+					<label for="fullname">Tên khách hàng: </label>
+					<input type="text" id="fullname">
+					</form>
+				</div>
+			</div>
+			<div id="botsection">
+				<div id="maintable">
+					<h1>DANH SÁCH KHÁCH HÀNG</h1>
+					<table id="userlist">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

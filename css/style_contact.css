@@ -1,0 +1,257 @@
+/* #-------------------# */
+/* |                   | */
+/* | CSS TRANG LIÊN HỆ | */
+/* |                   | */
+/* #-------------------# */
+
+/* ------------------- Shop Page Breadcrumb -------------------- */
+.shop-page-title-container {
+    display: block;
+    width: 100%;
+    background: #EEEEEE;
+    clear: both;
+    height: 100px;
+    z-index: 1;
+}
+
+.shop-page-title-inner {
+    padding: 15px 30px;
+}
+
+.page-title {
+    width: 100%;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.breadcrumb {
+    font-size: large;
+    color: #666666;
+    font-weight: 600;
+}
+
+.breadcrumb a {
+    color: black;
+    font-size: large;
+}
+
+.divider {
+    font-size: 18px;
+    padding: 5px;
+}
+
+/* ---------------------- Left Menu ----------------------- */
+/* .left-menu-container {
+    position: relative;
+    float: left;
+    width: 35%;
+    height: 100%;
+    padding: 0 30px 30px 35px;
+}
+
+#shop-sidebar {
+    margin-top: 30px;
+    padding: 20px 30px 25px;
+    border: 1px solid lightgray;
+    width: 250px;
+}
+
+.shop-sidebar-title {
+    padding-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: orangered;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    border-bottom: solid black;
+}
+#menu-items {
+    padding-top: 10px;
+    display: block;
+}
+
+#menu-items.hide {
+    display: none;
+}
+
+#menu-items a {
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+}
+
+#menu-items a:hover {
+    color: red;
+}
+
+.menu-value {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    background-color: transparent;
+    font-size: 17px;
+    text-align: left;
+} */
+
+/* ------------------------- Main ------------------------- */
+#main {
+    width: 100%;
+    height: auto;
+    font-family: sans-serif;
+}
+
+#main a {
+    font-weight: normal;
+}
+
+#left-content-container {
+    width: 40%;
+    height: 100%;
+    padding: 40px 20px;
+    float: left;
+}
+
+#left-content-container h3 {
+    padding-bottom: 20px;
+    font-size: 23px; 
+}
+
+#left-content-container li {
+    padding: 0 15px 15px;
+    line-height: 25px;
+}
+
+#creators li {
+    padding: 0px 20px;
+}
+
+#left-content-container .left-content-icon {
+    padding-right: 10px;
+}
+
+#left-content-container a {
+    color: black;
+}
+
+#left-content-container a:hover {
+    color: red;
+}
+
+#left-content-container p {
+    padding-top: 10px;
+    line-height: 25px;
+}
+
+#right-content-container {
+    width: 60%;
+    height: 100%;
+    padding: 40px 20px 40px 30px;
+    float: left;
+}
+
+#contact-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#contact-form .form-inner {
+    width: 100%;
+    height: auto;
+}
+
+#contact-form .form-inner label {
+    display: block;
+    padding-bottom: 4px;
+}
+
+#contact-form .form-inner input {
+    display: block;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #888888;    
+    background-color: #EEEEEE;
+}
+
+#contact-form .form-inner input:focus {
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#contact-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #EEEEEE;
+}
+
+#contact-content:focus {
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#contact-submit {
+    padding: 10px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: larger;
+}
+
+#contact-submit:hover {
+    background-color: #EE0000;
+}
+
+/* ----------------------- Responsive --------------------- */
+@media only screen and (max-width: 768px) {
+    /* Left menu */
+    .left-menu-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #shop-sidebar {
+        width: 90%;
+    }
+
+    /* Content */
+    #left-content-container {
+        width: 100%;
+        display: block;
+        padding: 40px 20px 0;
+    }
+
+    #right-content-container {
+        width: 100%;
+        display: block;
+    }
+}
+
+/* Điện thoại di động ở chế độ dọc */
+@media only screen and (max-width: 576px) {
+    
+}
+
+/* Điện thoại di động ở chế độ ngang */
+@media only screen and ((min-width: 577px) and (max-width: 768px)) {
+    
+}
+
+/* Máy tính bảng */
+@media only screen and ((min-width: 769px) and (max-width: 992px)) {
+    
+}
+
+/* Máy tính để bàn */
+@media only screen and (min-width: 993px) {
+    
+}

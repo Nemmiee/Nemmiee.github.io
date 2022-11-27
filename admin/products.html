@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Quản lí sản phẩm</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../img/Logo/Faion_icon.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+	<link rel="stylesheet" href="../css/admin.css">
+	<script src="../js/admin.js" defer></script>
+</head>
+
+<body class="active" onLoad="showProductList(0)">
+	<header>
+		<div id="header">
+			<div id="logo-container">
+				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_logo.png" alt="Logo"></a>
+			</div>
+			<div id="flex_header-title">
+				<div class="header-title"><a href="../index.html">TRANG CHỦ</a></div>
+				<div class="header-title active"><a href="../admin/products.html">SẢN PHẨM</a></div>
+				<div class="header-title"><a href="../admin/bill.html">ĐƠN HÀNG</a></div>
+				<div class="header-title"><a href="../admin/user.html">NGƯỜI DÙNG</a></div>
+				<!-- Loggin -->
+				<div class="user-icon">
+					<a href="../index.html" onclick="logout()">
+						<i class="fa-solid fa-right-from-bracket"></i>
+					</a>
+				</div>
+			</div>
+			<div id="hamburger-container">
+				<div id="hamburger">
+					<i class="fa-solid fa-bars fa-lg" id="hamburger-icon"></i>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<div id="turnoff-container">
+			<button id="turnoff-btn">
+				<i class="fa-solid fa-xmark fa-2x"></i>
+			</button>
+		</div>
+		<ul>
+			<a href="../index.html" class="active">
+				<li>
+					<span class="sidebar-item">Trang chủ</span>
+				</li>
+			</a>
+			<a href="../admin/products.html">
+				<li class="active">
+					<span class="sidebar-item">Sản phẩm</span>
+				</li>
+			</a>
+			<a href="../admin/bill.html">
+				<li>
+					<span class="sidebar-item">Đơn hàng</span>
+				</li>
+			</a>
+			<a href="../admin/user.html">
+				<li>
+					<span class="sidebar-item">Người dùng</span>
+				</li>
+			</a>
+			<a href="../index.html" onclick="logout()">
+				<li>
+					<span class="sidebar-item">Đăng xuất</span>
+				</li>
+			</a>
+		</ul>
+	</div>
+	<!-- Content -->
+	<div id="maincontent">
+		<div id="content">
+			<div id="topsection">
+				<div class="subsection search">
+					<h1>TÌM KIẾM SẢN PHẨM</h1>
+					<form onkeyup="searchproduct()" onchange="searchproduct()">
+						<label for="searchproductname">Tên sản phẩm:</label>
+						<input type="text" id="searchproductname">
+						<label for="searchproductbrand">Loại áo: </label>
+						<select id="searchproductbrand">
+							<option value="all" selected>Tất cả</option>
+							<option value="jacket">Jacket</option>
+							<option value="sweater">Sweater</option>
+							<option value="hoodie">Hoodie</option>
+							<option value="shirt">Shirt</option>
+						</select>
+					</form>
+				</div>
+			</div>
+			<div id="botsection">
+				<div id="maintable">
+					<div class="title">
+						<div>
+							<h1>DANH SÁCH SẢN PHẨM</h1>
+						</div>
+						<div id="addproducts" onclick="showaddbox()" class="btn-addproduct">
+							<img src="../img/products/add.png" alt="addproduct">
+						</div>
+					</div>
+					<table id="productlist">
+					</table>
+					<div class="pagination">
+						<div id="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modal1" class="modal">
+		<div id="changeproduct">
+			<button class="close" onclick="closebox()">&times;</button>
+			<div class="image">
+				<img id="imgbefore" src="">
+			</div>
+			<div class="info">
+				<label for="name">Tên sản phẩm:</label>
+				<input type="text" id="name" value=""><br>
+				<label for="name">Giá:</label>
+				<input type="text" id="price" value=""><br>
+				<input type="file" id="fileimg" onchange="changeimg(this)" accept="image/*">
+			</div>
+			<button id="save">Lưu chỉnh sửa</button>
+		</div>
+	</div>
+	<div id="modal2" class="modal_1">
+		<div id="addproduct">
+			<button class="close" onclick="closebox()">&times;</button>
+			<h1>THÊM SẢN PHẨM</h1>
+			<form>
+				<label for="productname">Tên sản phẩm: </label>
+				<input type="text" id="productname" placeholder="Nhập tên sản phẩm">
+				<label for="brand">Loại áo: </label>
+				<select id="brand">
+					<option value="jacket">Jacket</option>
+					<option value="sweater">Sweater</option>
+					<option value="hoodie">Hoodie</option>
+					<option value="shirt">Shirt</option>
+				</select><br>
+				<label for="productprice">Giá: </label>
+				<input type="text" id="productprice" placeholder="Nhập giá tiền">
+				<img id="imgadd" src="../img/products/addimg.png">
+				<input id="btn-addimg" type="file" onchange="changeimgadd(event)" accept="image/*"><br>
+				<div id="btn">
+					<button type="reset">Xóa</button>
+					<button type="button" onClick="addProduct()">Thêm</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="footer"></div>
+
+	<div id="backtotop">
+		<a href="#header">
+			<i class="fa-solid fa-angle-up fa-lg"></i>
+		</a>
+	</div>
+
+</body>
+
+
+</html>

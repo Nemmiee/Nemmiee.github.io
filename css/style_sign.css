@@ -1,0 +1,149 @@
+/* #-------------------# */
+/* |                   | */
+/* | CSS TRANG ĐĂNG KÝ | */
+/* |                   | */
+/* #-------------------# */
+
+/* Đăng ký */
+#mainContent-theme {
+    width: 100%;
+    height: 560px;
+    float: left;
+}
+
+.heading-account {
+    padding-left: 1px;
+    float: left;
+    display: flex;
+    width: 49.5%;
+    height: 560px;
+    padding-bottom: 100px;
+    justify-content: center;
+    border-right: 1px solid gainsboro;
+    align-items: center;
+}
+
+.header-page {
+    font-size: 50px;
+    font-weight: 900;
+    text-decoration: underline orangered;
+    text-underline-offset: 40px;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); */
+}
+
+.content-account {
+    float: left;
+    width: 50.5%;
+    height: auto;
+    padding: 50px 60px;
+}
+
+#create-customer input[type="text"]:focus,
+#create-customer input[type="number"]:focus,
+#create-customer input[type="email"]:focus,
+#create-customer input[type="password"]:focus {
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+#name input,
+#address input,
+#email input,
+#password input,
+#phonenum input{
+    font-size: 15px;
+    padding: 0 20px;
+    height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: gainsboro;
+    opacity: .8;
+    margin-bottom: 30px;
+}
+
+#signup-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+#signup-btn {
+    height: 45px;
+    width: 230px;
+    border-radius: 30px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    font-size: large;
+    font-weight: 600;
+    border: solid black;
+}
+
+#signup-btn:hover {
+    color: black;
+    background-color: white;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+    transition: .2s;
+}
+
+.sign-in-link a {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.sign-in-link a:hover {
+    color: red;
+}
+
+.sign-in-link i {
+    padding-right: 5px;
+}
+
+/* ----------------------- Responsive --------------------- */
+@media only screen and (max-width: 768px) {
+    /* Main */
+    #mainContent-theme {
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .heading-account {
+        width: 100%;
+        height: 200px;
+        padding: 0;
+        border-bottom: 1px solid gainsboro;
+    }
+
+    .content-account {
+        width: 100%;
+        padding: 60px;
+    }
+}
+
+/* Điện thoại di động ở chế độ dọc */
+@media only screen and (max-width: 576px) {
+    
+}
+
+/* Điện thoại di động ở chế độ ngang */
+@media only screen and ((min-width: 577px) and (max-width: 768px)) {
+    
+}
+
+/* Máy tính bảng */
+@media only screen and ((min-width: 769px) and (max-width: 992px)) {
+    
+}
+
+/* Máy tính để bàn */
+@media only screen and (min-width: 993px) {
+    
+}
