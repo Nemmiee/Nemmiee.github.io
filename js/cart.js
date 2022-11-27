@@ -72,7 +72,6 @@ function quantityUpCART(i, price) {
 function addToCart(productId) {
     if (size === '') {
         alert("Vui lòng chọn size");
-        focus.size();
     }if (localStorage.getItem('userlogin')){
          if (size === 'L' || size === 'XL' || size ==='M'){
             alert("Đã thêm vào giỏ hàng");
@@ -130,7 +129,7 @@ function checkcart() {
         document.getElementById("product_cart").innerHTML = info;
         for(var i=0;i<goods.length;i++){
             let quantity='quantity'+i;
-            document.getElementById(quantity).classList.add("quantity")
+            document.getElementById('quantity').classList.add("quantity")
         }
     }
     else {
@@ -187,7 +186,7 @@ function Buy() {
         }
     }
     for (var i = 0; i < goods.length; i++) {
-        code = i;
+        code =  waitting.length;
         if (bill[i] === 1) {
             items += goods[i].g_productName + ' ' + goods[i].g_category + ' ' + goods[i].g_quantity + ' ' + goods[i].g_size + ' ' + goods[i].g_price + '; ';
             var day = date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();

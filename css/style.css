@@ -210,9 +210,11 @@ html {
 #header-search {
     position: relative;
 }
-#header-product-title .header-dropdown{
+
+#header-product-title .header-dropdown {
     height: 130px;
 }
+
 #header-search .header-dropdown {
     position: absolute;
     display: none;
@@ -510,7 +512,7 @@ html {
 #product_cart .plusQuantity {
     width: 28px;
     height: 27px;
-}       
+}
 
 .minusQuantity:hover,
 .plusQuantity:hover {
@@ -518,6 +520,7 @@ html {
     transition: .2s;
     color: black;
 }
+
 .quantity,
 #quantity {
     float: left;
@@ -994,6 +997,7 @@ html {
 
 /* Điện thoại di động ở chế độ dọc */
 @media only screen and (max-width: 576px) {
+
     /* Product info */
     #product-info {
         width: 100%;
@@ -1006,7 +1010,7 @@ html {
     }
 
     #close-product-info-btn {
-        align-self: flex-start;        
+        align-self: flex-start;
     }
 
     .product-info-left {
@@ -1115,4 +1119,3 @@ html {
         transform: translateX(500px);
     }
 }
-
