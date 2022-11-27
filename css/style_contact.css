@@ -10,7 +10,7 @@
     width: 100%;
     background: #EEEEEE;
     clear: both;
-    height: 100px;
+    height: auto;
     z-index: 1;
 }
 
@@ -39,60 +39,6 @@
     font-size: 18px;
     padding: 5px;
 }
-
-/* ---------------------- Left Menu ----------------------- */
-/* .left-menu-container {
-    position: relative;
-    float: left;
-    width: 35%;
-    height: 100%;
-    padding: 0 30px 30px 35px;
-}
-
-#shop-sidebar {
-    margin-top: 30px;
-    padding: 20px 30px 25px;
-    border: 1px solid lightgray;
-    width: 250px;
-}
-
-.shop-sidebar-title {
-    padding-bottom: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    color: orangered;
-    cursor: pointer;
-    text-align: center;
-    display: block;
-    border-bottom: solid black;
-}
-#menu-items {
-    padding-top: 10px;
-    display: block;
-}
-
-#menu-items.hide {
-    display: none;
-}
-
-#menu-items a {
-    font-weight: 600;
-    font-size: 15px;
-    color: black;
-}
-
-#menu-items a:hover {
-    color: red;
-}
-
-.menu-value {
-    display: block;
-    width: 100%;
-    padding: 8px 0;
-    background-color: transparent;
-    font-size: 17px;
-    text-align: left;
-} */
 
 /* ------------------------- Main ------------------------- */
 #main {
@@ -123,7 +69,7 @@
 }
 
 #creators li {
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 #left-content-container .left-content-icon {
@@ -211,6 +157,49 @@
 }
 
 /* ----------------------- Responsive --------------------- */
+@media only screen and (max-width: 400px) {
+    .shop-page-title-inner {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        padding-bottom: 8px;
+    }
+
+    .breadcrumb {
+        font-size: 14px;
+    }
+
+    .breadcrumb a {
+        font-size: 14px;
+    }
+
+    .divider {
+        font-size: 14px;
+    }
+
+    #left-content-container h3 {
+        padding-bottom: 15px;
+        font-size: 20px;
+    }
+
+    #left-content-container p {
+        font-size: 14px;
+    }
+
+    #left-content-container li {
+        padding: 0 12px 10px;
+        font-size: 14px;
+    }
+
+    #creators li {
+        padding: 0 15px;
+    }
+
+
+}
+
 @media only screen and (max-width: 768px) {
     /* Left menu */
     .left-menu-container {
@@ -233,6 +222,28 @@
     #right-content-container {
         width: 100%;
         display: block;
+        padding: 20px 20px 30px;
+    }
+
+    #contact-form .form-inner label {
+        font-size: 15px;
+    }
+
+    #contact-form .form-inner input {
+        padding: 12px;
+        margin-bottom: 17px;
+    }
+
+    #contact-content {
+        max-width: 100%;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 17px;
+    }
+
+    #contact-submit {
+        padding: 8px;
+        font-size: 15px;
     }
 }
 

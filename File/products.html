@@ -14,11 +14,12 @@
 	<script src="../js/account.js" defer></script>
 	<script src="../js/script.js" defer></script>
 	<script src="../js/cart.js" defer></script>
+	<script src="../js/find.js" defer></script>
 </head>
 
-<body onload="createProduct(); showHeaderProductCategory(); checklogin(); showMenu(); showProduct(); showFooterMenuItems();">
-	<header>
-		<div id="header">
+<body onload="createProduct(); showHeaderProductCategory(); checklogin(); showMenu(); showProduct(); showFooterMenuItems();" id="body">
+	<header >
+		<div id="header" >
 			<div id="res-header-cart">
 				<a href="../index.html">
 					<i class="fa-solid fa-cart-shopping fa-lg"></i>
@@ -31,7 +32,7 @@
 				<div class="header-title"><a href="../index.html">TRANG CHỦ</a></div>
 				<div id="header-product-title" class="header-title active">
 					<a href="../File/products.html">SẢN PHẨM <i class="fa-sharp fa-solid fa-angle-down fa-xs"></i></a>
-					<div class="header-dropdown">
+					<div id="header-product-dropdown">
 					</div>
 				</div>
 				<div class="header-title"><a href="../File/sizecheck.html">SIZE GUIDE</a></div>
@@ -52,11 +53,13 @@
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
 						<div class="header-dropdown">
-							<input type="search" id="header-search-input" placeholder="Tìm kiếm...">
+							<input type="search" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
 							<button id="header-inner-search-btn">
 								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 							</button>
+							<div id="result"></div>
 						</div>
+						
 					</div>
 				</div>
 				<!-- Cart -->
@@ -75,12 +78,15 @@
 	</header>
 
 	<!-- Side bar -->
-	<div id="sidebar-container">
+	<div id="sidebar-container" >
 		<div id="sidebar">
 			<div id="turnoff-container">
 				<button id="turnoff-btn">
 					<i class="fa-solid fa-xmark fa-2x"></i>
 				</button>
+			</div>
+			<div id="sidebar-logo">
+				<img src="/img/Logo/Faion_icon.png" alt="">
 			</div>
 			<div class="sidebar-search-container">
 				<input type="search" id="sidebar-search" placeholder="Tìm kiếm...">
@@ -89,26 +95,31 @@
 			<ul id="sidebar-list">
 				<a href="../index.html">
 					<li>
+						<i class="fa-solid fa-house fa-fw"></i>
 						<span class="sidebar-item">Trang chủ</span>
 					</li>
 				</a>
 				<a href="../File/products.html">
 					<li class="active">
+						<i class="fa-solid fa-shirt fa-fw"></i>
 						<span class="sidebar-item">Sản phẩm</span>
 					</li>
 				</a>
 				<a href="../File/sizecheck.html">
 					<li>
+						<i class="fa-solid fa-ruler fa-fw"></i>
 						<span class="sidebar-item">Size guide</span>
 					</li>
 				</a>
 				<a href="../File/contact.html">
 					<li>
+						<i class="fa-solid fa-envelope fa-fw"></i>
 						<span class="sidebar-item">Liên hệ</span>
 					</li>
 				</a>
 				<a href="../Account/signin.html" >
 					<li>
+						<i class="fa-solid fa-right-to-bracket fa-fw"></i>
 						<span class="sidebar-item">Đăng nhập</span>
 					</li>
 				</a>
@@ -193,7 +204,7 @@
 		</div>
 	</main>
 
-	<footer>
+	<footer >
 		<div id="footer">
 			<div id="top-footer">
 				<div class="top-footer-menu">

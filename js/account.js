@@ -40,22 +40,22 @@ function createUser(e) {
 		document.getElementById('Address').placeholder = "Vui lòng nhập địa chỉ của bạn";
 		flag = false;
 	}
-	if (!phonenum.value){
+	if (!phonenum.value) {
 		document.getElementById('Phonenum').style.border = "2px solid red";
 		document.getElementById('Phonenum').placeholder = "Vui lòng nhập SĐT của bạn";
 		flag = false;
-	}else{
+	} else {
 		if (isNaN(Number(phonenum.value))) {
-		document.getElementById('phonenum').style.display = "2px solid red";
-		alert("Số điện thoại không hợp lệ") ;
-		flag = false;
-	}else {
-		if (Number(phonenum.value)<100000000 || Number(phonenum.value)>999999999) {
-			document.getElementById('Phonenum').style.border = "2px solid red";
-			alert("Số điện thoại không đúng");
+			document.getElementById('phonenum').style.display = "2px solid red";
+			alert("Số điện thoại không hợp lệ");
 			flag = false;
+		} else {
+			if (Number(phonenum.value) < 100000000 || Number(phonenum.value) > 999999999) {
+				document.getElementById('Phonenum').style.border = "2px solid red";
+				alert("Số điện thoại không đúng");
+				flag = false;
 			}
-		document.getElementById('phonenum').style.border = "none";
+			document.getElementById('phonenum').style.border = "none";
 		}
 	}
 	if (!password.value) {
@@ -67,7 +67,7 @@ function createUser(e) {
 			document.getElementById('password').style.border = "2px solid red";
 			document.getElementById('Password').placeholder = "Mật khẩu của bạn phải dài hơn 8 ký tự";
 			flag = false;
-		}else{
+		} else {
 			document.getElementById('password').style.border = "none";
 		}
 	}
@@ -80,10 +80,10 @@ function createUser(e) {
 	for (var i = 0; i < userArray.length; i++) {
 		if (user.email == userArray[i].email) {
 			document.getElementById('Email').style.border = "2px solid red";
-			alert("Email này đã có người sử dụng") ;
+			alert("Email này đã có người sử dụng");
 			email.focus();
 			return false;
-		}else{
+		} else {
 			document.getElementById('email').style.border = "none";
 		}
 	}
@@ -122,7 +122,7 @@ function login(e) {
 		if (email.value == userArray[i].email) {
 			if (password.value == userArray[i].password) {
 				localStorage.setItem('userlogin', JSON.stringify(userArray[i]));
-				window.location.href ="../index.html";
+				window.location.href = "../index.html";
 				return true;
 			}
 		}
@@ -140,39 +140,124 @@ function checklogin() {
 	if (localStorage.getItem('userlogin')) {
 		var user = JSON.parse(localStorage.getItem('userlogin'));
 		var s = '';
-		var d ='';
+		var d = '';
 		var t = '';
 		if (user.email == 'admin@gmail.com') {
-			d = '<div class="icon"><a href="../admin/products.html"><i class="fa-solid fa-lg fa-cog header-icon"></i></a></div>';
-			s =	'<li>'+
-						'<button id="btnlg">' + user.fullname +'</button>'+
-						'<a href="../index.html" onclick="logout()" class="user-icon">'+
-							'<i class="fa-solid fa-lg fa-right-from-bracket"></i>'+
-						'</a>'
-				'</li>' ;
-				
-			t = '<a href="../index.html"><li><span class="sidebar-item">Trang chủ</span></li></a>'+
-				'<a href="../File/products.html""><li><span class="sidebar-item">Sản Phẩm</span></li></a>'+
-				'<a href="../File/sizecheck.html"><li><span class="sidebar-item">Size guide</span></li></a>'+
-				'<a href="../File/contact.html"><li><span class="sidebar-item">Liên hệ</span></li></a>'+
-				'<a href="../admin/products.html"><li><span class="sidebar-item">Quản lý</span></li></a>'+
-				'<a href="#"><li><span class="sidebar-item" onClick="logout()">Đăng xuất</span></li></a>';
-			} else {
-			s = '<li>'+
-						'<button id="btnlg">' + user.fullname +'</button>'+
-						'<a href="../index.html" onclick="logout()" class="user-icon">'+
-							'<i class="fa-solid fa-right-from-bracket"></i>'+
-						'</a>'
-				'</li>' ;
-			
-			t = '<a href="../index.html"><li><span class="sidebar-item">Trang chủ</span></li></a>'+
-				'<a href="../File/products.html""><li><span class="sidebar-item">Sản Phẩm</span></li></a>'+
-				'<a href="../File/sizecheck.html"><li><span class="sidebar-item">Size guide</span></li></a>'+
-				'<a href="../File/contact.html"><li><span class="sidebar-item">Liên hệ</span></li></a>'+
-				'<a href="#" onClick="logout()"><li><span class="sidebar-item">Đăng xuất</span></li></a>';
+			d = '<div class="icon"><a href="../admin/products.html"><i class="fa-solid fa-user-gear fa-lg header-icon"></i></a></div>';
+			s = '<li>' +
+				'<button id="btnlg">' + cutName(user.fullname) + '</button>' +
+				'<a href="../index.html" onclick="logout()" class="user-icon">' +
+				'<i class="fa-solid fa-lg fa-right-from-bracket"></i>' +
+				'</a>'
+			'</li>';
+
+			var pos = window.location.pathname.lastIndexOf('/');
+			var path = window.location.pathname.substring(pos + 1);
+			path = path.split(".")[0];
+			if (path === "index") {
+				t = '<a href="../index.html"><li class="active"><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html""><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="../admin/products.html"><li><i class="fa-solid fa-user-gear fa-fw"></i><span class="sidebar-item">Quản lý</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else if (path === "products") {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html""><li class="active"><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="../admin/products.html"><li><i class="fa-solid fa-user-gear fa-fw"></i><span class="sidebar-item">Quản lý</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else if (path === "sizecheck") {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html""><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li class="active"><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="../admin/products.html"><li><i class="fa-solid fa-user-gear fa-fw"></i><span class="sidebar-item">Quản lý</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else if (path === "contact") {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html""><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li class="active"><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="../admin/products.html"><li><i class="fa-solid fa-user-gear fa-fw"></i><span class="sidebar-item">Quản lý</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html""><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="../admin/products.html"><li><i class="fa-solid fa-user-gear fa-fw"></i><span class="sidebar-item">Quản lý</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+
+		} else {
+			s = '<li>' +
+				'<button id="btnlg">' + cutName(user.fullname) + '</button>' +
+				'<a href="../index.html" onclick="logout()" class="user-icon">' +
+				'<i class="fa-solid fa-right-from-bracket"></i>' +
+				'</a>'
+			'</li>';
+
+			var pos = window.location.pathname.lastIndexOf('/');
+			var path = window.location.pathname.substring(pos + 1);
+			path = path.split(".")[0];
+			if (path === "index") {
+				t = '<a href="../index.html"><li class="active"><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html""><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else if (path === "products") {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html"><li class="active"><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else if (path === "sizecheck") {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html"><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li class="active"><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else if (path === "contact") {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html"><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li class="active"><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
+			else {
+				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
+					'<a href="../File/products.html"><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
+					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
+					'<a href="../File/contact.html"><li><<i class="fa-solid fa-envelope fa-fw"></i>span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
+			}
 		}
 		document.querySelector('.user').innerHTML = s;
 		document.querySelector('#manage').innerHTML = d;
 		document.querySelector('#sidebar-list').innerHTML = t;
 	}
+}
+
+function cutName(fullName) {
+    // Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
+    fullName = fullName.trim();
+    var x = fullName.lastIndexOf(' ');
+    var name = [];
+    // In hoa chữ cái đầu
+    name = fullName.substring(x + 1, x + 2).toUpperCase();
+    // In thường các chữ cái còn lại
+    for (var i = x + 2; i < fullName.length; ++i) {
+        name += fullName[i].toLowerCase();
+    }
+    return name;
 }

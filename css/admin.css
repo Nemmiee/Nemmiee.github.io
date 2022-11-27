@@ -1009,13 +1009,21 @@ td {
 		border-bottom: 1px solid red;
 	}
 
+	.sidebar ul li i {
+        padding-right: 30px;
+        color: white;
+    }
+
 	.sidebar li .sidebar-item {
 		font-size: 20px;
 		color: white;
 	}
 
 	.sidebar li:hover,
-	.sidebar li.active {
+	.sidebar li:hover i,
+	.sidebar li.active,
+	.sidebar li.active i {
+		color: #FF3366;
         background-color: white;
 	}
 

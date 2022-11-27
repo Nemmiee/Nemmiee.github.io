@@ -54,7 +54,7 @@
 #address input,
 #email input,
 #password input,
-#phonenum input{
+#phonenum input {
     font-size: 15px;
     padding: 0 20px;
     height: 45px;
@@ -108,7 +108,32 @@
 }
 
 /* ----------------------- Responsive --------------------- */
+@media only screen and (max-width: 400px) {
+    #mainContent-theme .heading-account {
+        height: 150px;
+    }
+
+    #mainContent-theme .header-page {
+        font-size: 30px;
+    }
+
+    #mainContent-theme .content-account {
+        padding: 50px 20px 30px;
+    }
+
+    #signup-btn {
+        font-size: 15px;
+        height: 35px;
+        width: 70%;
+    }
+
+    #mainContent-theme .sign-in-link a {
+        font-size: 16px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
+
     /* Main */
     #mainContent-theme {
         height: auto;
@@ -129,21 +154,13 @@
 }
 
 /* Điện thoại di động ở chế độ dọc */
-@media only screen and (max-width: 576px) {
-    
-}
+@media only screen and (max-width: 576px) {}
 
 /* Điện thoại di động ở chế độ ngang */
-@media only screen and ((min-width: 577px) and (max-width: 768px)) {
-    
-}
+@media only screen and ((min-width: 577px) and (max-width: 768px)) {}
 
 /* Máy tính bảng */
-@media only screen and ((min-width: 769px) and (max-width: 992px)) {
-    
-}
+@media only screen and ((min-width: 769px) and (max-width: 992px)) {}
 
 /* Máy tính để bàn */
-@media only screen and (min-width: 993px) {
-    
-}
+@media only screen and (min-width: 993px) {}

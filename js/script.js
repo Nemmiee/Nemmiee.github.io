@@ -5,8 +5,15 @@
 /* #----------------# */
 
 /* Hiển thị nội dung của nút tìm kiếm ở phàn Header */
-function search_dropdown() {
-    document.querySelector(".header-dropdown").classList.toggle("hienThi");
+let kiemdich=1;
+function search_dropdown(){
+    if(kiemdich===1){
+        document.querySelector("#header-search .header-dropdown").style.display="block";
+        kiemdich=0;
+    }else{
+        document.querySelector("#header-search .header-dropdown").style.display="none";
+        kiemdich=1;
+    }
 }
 
 /* Hiển thị Menu 3 gạch khi responsive */
@@ -39,14 +46,13 @@ function toggleShopSidebarMenu() {
 let menuList = ['Shirt', 'Jacket', 'Sweater', 'Hoodie'];
 /* Tạo dropdown khi hover vào mục Sản Phẩm ở thanh header */
 function showHeaderProductCategory() {
-    var headerProductTitle = document.getElementById("header-product-title");
-        var headerProductTitleDropdown = headerProductTitle.getElementsByClassName("header-dropdown")[0];
+    var headerProductDropdown = document.getElementById("header-product-dropdown");
     var link = '<ul>';
     for (var i = 0; i < menuList.length; ++i) {
         link += '<a href="/File/products.html?' + menuList[i].toLowerCase() + '&0">' +
             '<li>' + menuList[i] + '</li>';
     }
-    headerProductTitleDropdown.innerHTML = link + '</ul>';
+    headerProductDropdown.innerHTML = link + '</ul>';
 }
 
 /* Tạo danh mục Sản phẩm ở phần Footer */

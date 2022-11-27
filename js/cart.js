@@ -55,7 +55,7 @@ function choose(a) {
 }
 
 function quantityDownCART(i, price) {
-    let quantity='quantity'+i;
+    let quantity = 'quantity' + i;
     if (document.getElementById(quantity).value > 1) {
         --document.getElementById(quantity).value;
         var total = 'total' + i;
@@ -73,7 +73,7 @@ function quantityDownCART(i, price) {
 }
 
 function quantityUpCART(i, price) {
-    let quantity='quantity'+i;
+    let quantity = 'quantity' + i;
     ++document.getElementById(quantity).value;
     var total = 'total' + i;
     document.getElementById(total).innerHTML = '<span>' + new Intl.NumberFormat().format(document.getElementById(quantity).value * price) + 'đ</span>';
@@ -112,9 +112,6 @@ function addToCart(productId) {
     }
 }
 
-function changeNumToText(num) {
-    return
-}
 
 function checkcart() {
     var pcart = JSON.parse(localStorage.getItem('cart'));
@@ -134,7 +131,7 @@ function checkcart() {
                 + '<div class="price"><p>' + new Intl.NumberFormat().format(Number(pcart[i].g_price)) + 'đ</p></div>'
                 + '<div class="quantity_class">'
                 + '<div class="buttonchoose">'
-                + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">-</button>'
+                + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">−</button>'
                 + '<input type="text" id="quantity" value="' + pcart[i].g_quantity + '">'
                 + '<button class="plusQuantity" onclick="quantityUpCART(' + i + ',' + pcart[i].g_price + ')">+</button>'
                 + '</div>'
@@ -144,8 +141,8 @@ function checkcart() {
                 + '</div>';
         }
         document.getElementById("product_cart").innerHTML = info;
-        for(var i=0;i<goods.length;i++){
-            let quantity='quantity'+i;
+        for (var i = 0; i < goods.length; i++) {
+            let quantity = 'quantity' + i;
             document.getElementById(quantity).classList.add("quantity")
         }
     }
@@ -196,7 +193,7 @@ function Buy() {
         if (bill[i] === 1) {
             code += goods[i].g_ID;
             items += goods[i].g_productName + ' ' + goods[i].g_category + ' ' + goods[i].g_quantity + ' ' + goods[i].g_size + ' ' + goods[i].g_price + '; ';
-            total += goods[i].g_price*goods[i].g_quantity;
+            total += goods[i].g_price * goods[i].g_quantity;
         }
     }
     let w_product = {
@@ -287,3 +284,4 @@ function chooseall() {
         TOF = 1;
     }
 }
+

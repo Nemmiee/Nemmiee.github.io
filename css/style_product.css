@@ -478,6 +478,44 @@ body {
 }
 
 /* ------------------------ Responsive -------------------- */
+@media only screen and (max-width: 400px) {
+    .shop-page-title-inner {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        padding-bottom: 8px;
+    }
+
+    .breadcrumb {
+        font-size: 14px;
+    }
+
+    .breadcrumb a {
+        font-size: 14px;
+    }
+
+    .divider {
+        font-size: 14px;
+    }
+
+    .container h4 {
+        font-size: 16px;
+        line-height: 18px;
+        height: 38px;
+    }                   
+    
+    .container h5 {
+        font-size: 14px;
+    }
+
+    .page-number {
+        width: 32px;
+        height: 32px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     #menu-container {
         padding: 10px 0 25px;
@@ -550,11 +588,6 @@ body {
     #check-size-container {
         margin: 0 0 15px;
     }
-}
-
-/* Điện thoại di động ở chế độ ngang */
-@media only screen and ((min-width: 650px) and (max-width: 768px)) {
-    
 }
 
 /* Máy tính bảng */
