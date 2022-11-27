@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="../css/style_acc.css">
 	<script src="../js/script.js" defer></script>
 	<script src="../js/account.js" defer></script>
+	<script src="../js/find.js" defer></script>
+	<script src="/js/product_js.js"></script>
+	<script src="../js/cart.js" defer></script>
 </head>
 
 <body onload="showHeaderProductCategory(); checklogin(); showFooterMenuItems()">
@@ -35,7 +38,6 @@
 				</div>
 				<div class="header-title"><a href="../File/sizecheck.html">SIZE GUIDE</a></div>
 				<div class="header-title active"><a href="../File/contact.html">LIÊN HỆ</a></div>
-				<!-- <div class="header-title"><a href="/admin/products.html">Admin</a></div> -->
 				<div id="manage">
 				</div>
 				<!-- Loggin -->
@@ -45,16 +47,17 @@
 					</a>
 				</div>
 				<!-- Search -->
-				<div class="search">
+				<div class=" search">
 					<div id="header-search">
 						<button id="header-search-btn" onclick="search_dropdown()">
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
 						<div class="header-dropdown">
-							<input type="search" id="header-search-input" placeholder="Tìm kiếm...">
-							<button id="header-inner-search-btn">
+							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
+							<button id="header-inner-search-btn" onclick="search();">
 								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 							</button>
+							<div id="result"></div>
 						</div>
 					</div>
 				</div>
@@ -72,7 +75,8 @@
 			</div>
 		</div>
 	</header>
-
+	
+	<!-- Shop breadcrumb -->
 	<div class="shop-page-title-container">
 		<div class="shop-page-title-inner">
 			<h1 class="page-title">Liên hệ</h1>
@@ -98,8 +102,9 @@
 				</button>
 			</div>
 			<div class="sidebar-search-container">
-				<input type="search" id="sidebar-search" placeholder="Tìm kiếm...">
-				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." onkeyup="Find2();" onclick="OK();">
+				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg" onclick="search();"></i></button>
+				<div id="result2"></div>
 			</div>
 			<ul id="sidebar-list">
 				<a href="../index.html">
@@ -196,6 +201,45 @@
 					</div>
 					<button type="submit" id="contact-submit">Gửi liên hệ</button>
 				</form>
+			</div>
+		</div>
+
+		<!-- Product info -->
+		<div class="" id="product-info-container">
+			<div id="product-info">
+				<button type="button" id="close-product-info-btn" onclick="closeProductInfo()">
+					<i class="fa-solid fa-xmark fa-2x"></i>
+				</button>
+				<div class="product-info-left">
+					<img id="product-info-img" alt="Image">
+				</div>
+				<div class="product-info-right">
+					<h2 id="product-name"></h2>
+					<h3 id="product-price"></h3>
+					<h4>SIZE</h4>
+					<div id="check-size-container">
+						<div class="check-size-wrapper">
+							<label class="radio-check" id="sizeM"><input type="radio" name="size-option"
+									class="size-option" value="M" onclick="choose('M')" />M</label>
+						</div>
+						<div class="check-size-wrapper">
+							<label class="radio-check" id="sizeL"><input type="radio" name="size-option"
+									class="size-option" value="L" onclick="choose('L')" />L</label>
+						</div>
+						<div class="check-size-wrapper">
+							<label class="radio-check" id="sizeXL"><input type="radio" name="size-option"
+									class="size-option" value="XL" onclick="choose('XL')" />XL</label>
+						</div>
+					</div>
+					<h4>Số lượng</h4>
+					<button class="minusQuantity" onclick="quantityDown()">−</button>
+					<input type="text" id="quantity" value="">
+					<button class="plusQuantity" onclick="quantityUp()">+</button>
+					<button class="addToCart-btn">
+						<i class="fa fa-cart-shopping fa-lg"></i>
+						Thêm vào giỏ hàng
+					</button>
+				</div>
 			</div>
 		</div>
 	</main>

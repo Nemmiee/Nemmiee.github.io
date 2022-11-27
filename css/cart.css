@@ -11,11 +11,11 @@ body {
 .element {
     background-color: white;
     width: 72%;
-    height: 6%;
     display: flex;
     flex-wrap: nowrap;
     font-size: 20px;
     margin: 20px 0px;
+    padding: 7px;
 }
 
 .progress {
@@ -36,10 +36,9 @@ body {
 }
 
 #sym {
-    padding: 19px 19px 19px 0px;
+    padding: 19px 19px 19px 10px;
     background-color: white;
     width: 100%;
-    height: 14px;
     display: flex;
     flex-wrap: nowrap;
     font-size: 14px;
@@ -56,7 +55,6 @@ body {
     width: 10%;
     height: 100%;
 }
-
 .quantity_product {
     text-align: center;
     width: 20%;
@@ -74,20 +72,13 @@ body {
     width: 5%;
     height: 100%;
 }
-
-#info0 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
 .info {
+    position: relative;
     margin: 10px 0;
     display: flex;
     flex-wrap: nowrap;
     background-color: white;
-    padding: 19px 19px 19px 0px;
+    padding: 19px 19px 19px 10px;
     justify-content: center;
     align-items: center;
 }
@@ -114,10 +105,6 @@ body {
     width: 80px;
     height: 80px;
     object-fit: contain;
-}
-
-.info {
-    position: relative;
 }
 
 .g_size {
@@ -152,14 +139,17 @@ body {
 }
 
 .quantity_class {
-    text-align: center;
     width: 20%;
     height: 100%;
     position: relative;
 }
 
 .buttonchoose {
-    padding: 20px 0 0 20px;
+    margin: 10px 50px ; 
+}
+
+.buttonchoose input{
+    margin-top: 8px;
 }
 
 .total {
@@ -169,7 +159,7 @@ body {
 }
 
 .trash {
-    width: 10%;
+    width: 5%;
     height: 100%;
     text-align: right;
     cursor: pointer;
@@ -247,4 +237,41 @@ body {
 
 .sanpham {
     margin-left: 20px;
+}
+@media only screen and (max-width: 1505px) {
+    .profile_product,
+    .area{
+        width: 40%;
+    }
+
+    .quantity_product,
+    .quantity_class{
+        width: 30%;
+    }
+}
+@media only screen and (max-width: 1050px){
+    .element{
+        width: 100%;
+    }
+    #pcart {
+        width: 100%;
+    }
+    #money{
+        width: 90%;
+        margin-left:50px ;
+    }
+}
+@media only screen and (max-width: 760px){
+    .profile_product,
+    .area{
+        width: 35%;
+    }
+    .quantity_product,
+    .quantity_class{
+        width: 35%;
+    }
+    #money{
+        width: 90%;
+        margin-left: 30px ;
+    }
 }

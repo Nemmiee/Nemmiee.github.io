@@ -2,10 +2,8 @@
 let goods = (localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
 let waitting = (localStorage.getItem('wait')) ? JSON.parse(localStorage.getItem('wait')) : [];
 let dele = (localStorage.getItem('remove')) ? JSON.parse(localStorage.getItem('remove')) : [];
+
 let bill = [];
-
-
-
 
 function setbill() {
     if (goods.length > 0) {
@@ -14,42 +12,27 @@ function setbill() {
         }
     };
 }
+function refrest() {
+    kt = 0;
+    setbill();
+}
 
 function choose(a) {
-    if (size === a) {
-        document.getElementById("sizeM").style.backgroundColor = "white";
-        document.getElementById("sizeM").style.color = "black";
-        document.getElementById("sizeXL").style.backgroundColor = "white";
-        document.getElementById("sizeXL").style.color = "black";
-        document.getElementById("sizeL").style.backgroundColor = "white";
-        document.getElementById("sizeL").style.color = "black";
-        size = '';
-        exit();
-    }
     size = a;
     if (a === 'L') {
         document.getElementById("sizeM").style.backgroundColor = "white";
-        document.getElementById("sizeM").style.color = "black";
         document.getElementById("sizeXL").style.backgroundColor = "white";
-        document.getElementById("sizeXL").style.color = "black";
-        document.getElementById("sizeL").style.backgroundColor = "black";
-        document.getElementById("sizeL").style.color = "white";
+        document.getElementById("sizeL").style.backgroundColor = "orange";
     }
     if (a === 'XL') {
         document.getElementById("sizeM").style.backgroundColor = "white";
-        document.getElementById("sizeM").style.color = "black";
-        document.getElementById("sizeXL").style.backgroundColor = "black";
-        document.getElementById("sizeXL").style.color = "white";
         document.getElementById("sizeL").style.backgroundColor = "white";
-        document.getElementById("sizeL").style.color = "black";
+        document.getElementById("sizeXL").style.backgroundColor = "orange";
     }
     if (a === 'M') {
-        document.getElementById("sizeM").style.backgroundColor = "black";
-        document.getElementById("sizeM").style.color = "white";
-        document.getElementById("sizeXL").style.backgroundColor = "white";
-        document.getElementById("sizeXL").style.color = "black";
+        document.getElementById("sizeM").style.backgroundColor = "orange";
         document.getElementById("sizeL").style.backgroundColor = "white";
-        document.getElementById("sizeL").style.color = "black";
+        document.getElementById("sizeXL").style.backgroundColor = "white";
     }
 
 }
@@ -67,9 +50,8 @@ function quantityDownCART(i, price) {
             cost = cost - price;
             document.getElementById("cost").innerHTML = '<p>' + new Intl.NumberFormat().format(cost) + 'đ</p>';
         }
-        document.getElementById("check").innerHTML = '<input type="checkbox"  id="checkbox" onclick="chooseall();" value="" /><span id="all">Tất cả (' + soods.length + ')</span>';
+        document.getElementById("check").innerHTML = '<input type="checkbox"  id="checkbox" onclick="chooseall();" value="" /><span id="all">Tất cả (' + goods.length + ')</span>';
     }
-
 }
 
 function quantityUpCART(i, price) {
@@ -91,6 +73,10 @@ function addToCart(productId) {
     if (size === '') {
         alert("Vui lòng chọn size");
         focus.size();
+    }if (localStorage.getItem('userlogin')){
+         if (size === 'L' || size === 'XL' || size ==='M'){
+            alert("Đã thêm vào giỏ hàng");
+        }
     }
     var productList = JSON.parse(localStorage.getItem('product'));
     for (var i = 0; i < productList.length; i++) {
@@ -107,6 +93,7 @@ function addToCart(productId) {
             };
             goods.push(g_product);
             localStorage.setItem('cart', JSON.stringify(goods));
+            document.getElementById("product-info-container").classList.toggle("hienThi");
             break;
         }
     }
@@ -131,8 +118,8 @@ function checkcart() {
                 + '<div class="price"><p>' + new Intl.NumberFormat().format(Number(pcart[i].g_price)) + 'đ</p></div>'
                 + '<div class="quantity_class">'
                 + '<div class="buttonchoose">'
-                + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">−</button>'
-                + '<input type="text" id="quantity" value="' + pcart[i].g_quantity + '">'
+                + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">-</button>'
+                + '<input type="text" class = "quantity" id="quantity'+i+'" value="' + pcart[i].g_quantity + '">'
                 + '<button class="plusQuantity" onclick="quantityUpCART(' + i + ',' + pcart[i].g_price + ')">+</button>'
                 + '</div>'
                 + '</div>'
@@ -141,8 +128,8 @@ function checkcart() {
                 + '</div>';
         }
         document.getElementById("product_cart").innerHTML = info;
-        for (var i = 0; i < goods.length; i++) {
-            let quantity = 'quantity' + i;
+        for(var i=0;i<goods.length;i++){
+            let quantity='quantity'+i;
             document.getElementById(quantity).classList.add("quantity")
         }
     }
@@ -187,13 +174,24 @@ function buyit(productNum) {
 
 function Buy() {
     let items = ' ';
-    let code = '';
-    let total = 0;
+    let code = 0;
+    let total = 0 ;
+    let date = new Date();
+    if (localStorage.getItem('userlogin') === null) {
+        if (confirm("vui lòng đăng nhập khi mua hàng.", 'warning') == true) {
+            location.replace("../Account/signin.html");
+            return;
+        } else {
+            location.replace("../File/products.html");
+            return;
+        }
+    }
     for (var i = 0; i < goods.length; i++) {
+        code = i;
         if (bill[i] === 1) {
-            code += goods[i].g_ID;
             items += goods[i].g_productName + ' ' + goods[i].g_category + ' ' + goods[i].g_quantity + ' ' + goods[i].g_size + ' ' + goods[i].g_price + '; ';
-            total += goods[i].g_price * goods[i].g_quantity;
+            var day = date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();
+            total += goods[i].g_price*goods[i].g_quantity;
         }
     }
     let w_product = {
@@ -201,7 +199,8 @@ function Buy() {
         codeID: code,
         product: items,
         totalprice: total,
-        time: new Date(),
+        time: day,
+        status: 'Chưa xử lý',
     };
     waitting.push(w_product);
     localStorage.setItem('wait', JSON.stringify(waitting));
@@ -219,7 +218,6 @@ function Remove2() {
         }
     }
     localStorage.setItem('cart', JSON.stringify(item));
-    localStorage.setItem('remove', JSON.stringify(dele));
     refresh();
 }
 
@@ -254,7 +252,7 @@ function Remove(productNum, co) {
         item = goods.splice(productNum, 1);
         localStorage.setItem('cart', JSON.stringify(goods));
         localStorage.setItem('remove', JSON.stringify(dele));
-        refresh();
+        refrest();
         checkcart();
     }
     if (co === 2) {
@@ -262,7 +260,7 @@ function Remove(productNum, co) {
         item = waitting.splice(productNum, 1);
         localStorage.setItem('wait', JSON.stringify(waitting));
         localStorage.setItem('remove', JSON.stringify(dele));
-        refresh();
+        refrest();
         checkwait();
     }
 }
@@ -284,4 +282,3 @@ function chooseall() {
         TOF = 1;
     }
 }
-

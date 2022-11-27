@@ -11,7 +11,7 @@
 	<script src="../js/admin.js" defer></script>
 </head>
 
-<body class="active" onLoad="">
+<body class="active" onload="showbilllist()">
 	<header>
 		<div id="header">
 			<div id="logo-container">
@@ -82,7 +82,7 @@
 		<div id="content">
 			<div id="topsection">
 				<div class="subsection search user">
-					<h1>TÌM KIẾM KHÁCH HÀNG</h1>
+					<h1>TÌM KIẾM ĐƠN HÀNG</h1>
 					<form onkeyup="searchBill()" onchange="searchBill()">
 					<label for="name">Tên khác hàng: </label>
 					<input type="text" id="fullName">
@@ -98,19 +98,23 @@
 			</div>
 			<div id="botsection">
 				<div id="maintable">
-					<h1>DANH SÁCH ĐƠN HÀNG</h1>
+					<div class="title">
+						<h1>DANH SÁCH ĐƠN HÀNG</h1>
+					</div>
 					<table id="billlist">
 					</table>
 				</div>
 			</div>
 		</div>
-
 	<div id="backtotop">
 		<a href="#header">
 			<i class="fa-solid fa-angle-up fa-lg"></i>
 		</a>
 	</div>
-
+	<div id="modal1" class="modal">
+		<div id="info">
+		</div>
+	</div>
 </body>
 
 

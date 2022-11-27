@@ -137,7 +137,7 @@ function logout() {
 	location.href = "../index.html";
 }
 function checklogin() {
-	if (localStorage.getItem('userlogin')) {
+	if (localStorage.getItem('userlogin')) { 
 		var user = JSON.parse(localStorage.getItem('userlogin'));
 		var s = '';
 		var d = '';
@@ -238,7 +238,7 @@ function checklogin() {
 				t = '<a href="../index.html"><li><i class="fa-solid fa-house fa-fw"></i><span class="sidebar-item">Trang chủ</span></li></a>' +
 					'<a href="../File/products.html"><li><i class="fa-solid fa-shirt fa-fw"></i><span class="sidebar-item">Sản Phẩm</span></li></a>' +
 					'<a href="../File/sizecheck.html"><li><i class="fa-solid fa-ruler fa-fw"></i><span class="sidebar-item">Size guide</span></li></a>' +
-					'<a href="../File/contact.html"><li><<i class="fa-solid fa-envelope fa-fw"></i>span class="sidebar-item">Liên hệ</span></li></a>' +
+					'<a href="../File/contact.html"><li><i class="fa-solid fa-envelope fa-fw"></i><span class="sidebar-item">Liên hệ</span></li></a>' +
 					'<a href="#" onClick="logout()"><li><i class="fa-solid fa-right-to-bracket fa-fw"></i><span class="sidebar-item">Đăng xuất</span></li></a>';
 			}
 		}

@@ -17,16 +17,19 @@
 	<script src="../js/find.js" defer></script>
 </head>
 
-<body onload="createProduct(); showHeaderProductCategory(); checklogin(); showMenu(); showProduct(); showFooterMenuItems();" id="body">
-	<header >
-		<div id="header" >
+<body
+	onload="createProduct(); showHeaderProductCategory(); checklogin(); showMenu(); showProduct(); showFooterMenuItems()"
+	id="body">
+	<header>
+		<div id="header">
 			<div id="res-header-cart">
-				<a href="../index.html">
+				<a href="../File/cart.html">
 					<i class="fa-solid fa-cart-shopping fa-lg"></i>
 				</a>
 			</div>
 			<div id="logo-container">
-				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png" alt="Logo"></a>
+				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png"
+						alt="Logo"></a>
 			</div>
 			<div id="flex_header-title">
 				<div class="header-title"><a href="../index.html">TRANG CHỦ</a></div>
@@ -37,7 +40,6 @@
 				</div>
 				<div class="header-title"><a href="../File/sizecheck.html">SIZE GUIDE</a></div>
 				<div class="header-title"><a href="../File/contact.html">LIÊN HỆ</a></div>
-				<!-- <div class="header-title"><a href="/admin/products.html">Admin</a></div> -->
 				<div id="manage">
 				</div>
 				<!-- Loggin -->
@@ -53,13 +55,13 @@
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
 						<div class="header-dropdown">
-							<input type="search" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
-							<button id="header-inner-search-btn">
+							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();"
+								onclick="OK();">
+							<button id="header-inner-search-btn" onclick="search();">
 								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 							</button>
 							<div id="result"></div>
 						</div>
-						
 					</div>
 				</div>
 				<!-- Cart -->
@@ -78,7 +80,7 @@
 	</header>
 
 	<!-- Side bar -->
-	<div id="sidebar-container" >
+	<div id="sidebar-container">
 		<div id="sidebar">
 			<div id="turnoff-container">
 				<button id="turnoff-btn">
@@ -89,8 +91,10 @@
 				<img src="/img/Logo/Faion_icon.png" alt="">
 			</div>
 			<div class="sidebar-search-container">
-				<input type="search" id="sidebar-search" placeholder="Tìm kiếm...">
-				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." onkeyup="Find2();" onclick="OK();">
+				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg"
+						onclick="search();"></i></button>
+				<div id="result2"></div>
 			</div>
 			<ul id="sidebar-list">
 				<a href="../index.html">
@@ -117,7 +121,7 @@
 						<span class="sidebar-item">Liên hệ</span>
 					</li>
 				</a>
-				<a href="../Account/signin.html" >
+				<a href="../Account/signin.html">
 					<li>
 						<i class="fa-solid fa-right-to-bracket fa-fw"></i>
 						<span class="sidebar-item">Đăng nhập</span>
@@ -127,6 +131,7 @@
 		</div>
 	</div>
 
+	<!-- Shop breadcrumb -->
 	<div class="shop-page-title-container">
 		<div class="shop-page-title-inner">
 			<h1 class="page-title">Cửa hàng</h1>
@@ -161,7 +166,7 @@
 				<!-- Products -->
 			</div>
 			<!-- Product Detail Information -->
-			<div class="" id="product-info-container">
+			<div id="product-info-container">
 				<div id="product-info">
 					<button type="button" id="close-product-info-btn" onclick="closeProductInfo()">
 						<i class="fa-solid fa-xmark fa-2x"></i>
@@ -175,16 +180,16 @@
 						<h4>SIZE</h4>
 						<div id="check-size-container">
 							<div class="check-size-wrapper">
-								<label class="radio-check" id="sizeM"><input type="radio" name="size-option" class="size-option"
-										value="M" onclick="choose('M')" />M</label>
+								<label class="radio-check" id="sizeM"><input type="radio" name="size-option"
+										class="size-option" value="M" onclick="choose('M')" />M</label>
 							</div>
 							<div class="check-size-wrapper">
-								<label class="radio-check" id="sizeL"><input type="radio" name="size-option" class="size-option"
-										value="L" onclick="choose('L')" />L</label>
+								<label class="radio-check" id="sizeL"><input type="radio" name="size-option"
+										class="size-option" value="L" onclick="choose('L')" />L</label>
 							</div>
 							<div class="check-size-wrapper">
-								<label class="radio-check" id="sizeXL"><input type="radio" name="size-option" class="size-option"
-										value="XL" onclick="choose('XL')" />XL</label>
+								<label class="radio-check" id="sizeXL"><input type="radio" name="size-option"
+										class="size-option" value="XL" onclick="choose('XL')" />XL</label>
 							</div>
 						</div>
 						<h4>Số lượng</h4>
@@ -197,14 +202,12 @@
 						</button>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<div id="page"></div>
-		</div>
 	</main>
 
-	<footer >
+	<footer>
 		<div id="footer">
 			<div id="top-footer">
 				<div class="top-footer-menu">

@@ -44,6 +44,10 @@ body {
     padding: 5px;
 }
 
+element.style {
+    background-color: white;
+    color: white;
+}
 /* ----------------------- Content ------------------------ */
 #main {
     font-family: sans-serif;
@@ -256,197 +260,6 @@ body {
     width: 100%;
 }
 
-/* ---------------- Product Detail Information --------------------*/
-#product-info-container {
-    width: 100%;
-    height: 100%;
-    z-index: 11;
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.6);
-}
-
-#product-info-container.hienThi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#product-info {
-    width: 80%;
-    height: 500px;
-    background-color: white;
-    z-index: 12;
-    animation-name: upper;
-    animation-duration: 1s;
-    overflow-y: scroll;
-}
-
-#close-product-info-btn {
-    display: block;
-    float: right;
-    margin: 15px 20px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: transparent;
-}
-
-#close-product-info-btn:hover i {
-    color: red;
-}
-
-.product-info-left {
-    clear: both;
-    float: left;
-    width: 50%;
-    height: auto;
-    text-align: center;
-}
-
-#product-info-img {
-    width: 80%;
-    height: 350px;
-    object-fit: contain;
-}
-
-.product-info-right {
-    float: left;
-    width: 50%;
-    height: auto;
-    padding-left: 20px;
-}
-
-#product-name {
-    padding-bottom: 25px;
-    position: relative;
-    color: black;
-}
-
-#product-name:after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 3px;
-    background-color: lightgray;
-    bottom: 0;
-    left: 0;
-}
-
-#product-price {
-    margin: 25px 0;
-    color: black;
-}
-
-#product-info h4 {
-    color: black;
-    margin-bottom: 10px;
-}
-
-#check-size-container {
-    margin: 0 0 25px;
-}
-
-.check-size-wrapper {
-    display: inline-block;
-}
-
-#check-size-container .check-size-wrapper .radio-check {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    border: 1px solid #DDDDDD;
-    background-color: white;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-    width: 40px;
-    height: 40px;
-}
-
-#check-size-container .check-size-wrapper .radio-check:hover {
-    background-color: black !important;
-    color: white !important;
-    transition: .2s;
-}
-
-.radio-check input {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-}
-
-.minusQuantity,
-.plusQuantity {
-    border: none;
-    border-radius: 50%;
-    font-size: medium;
-    font-weight: bold;
-    cursor: pointer;
-    float: left;
-    background-color: #DDDDDD;
-    color: #888888;
-}
-
-#product-info .minusQuantity,
-#product-info .plusQuantity {
-    padding: 10px 15px;
-}
-
-#product_cart .minusQuantity,
-#product_cart .plusQuantity {
-    padding: 5px 10px;
-}
-
-.minusQuantity:hover,
-.plusQuantity:hover {
-    background-color: #888888;
-    transition: .2s;
-    color: black;
-}
-
-#quantity {
-    float: left;
-    border: none;
-    width: 45px;
-    outline: none;
-    text-align: center;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
-#product-info #quantity {
-    padding: 10px;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-#product_cart #quantity {
-    padding: 5px;
-    font-size: 17px;
-}
-
-#product-info .addToCart-btn {
-    clear: both;
-    display: block;
-    padding: 15px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background: #FF3366;
-    color: white;
-}
-
-#product-info .addToCart-btn:hover {
-    background: #FF0066;
-    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
-}
-
 /* ----------------------- Page Number --------------------------- */
 #page {
     display: flex;
@@ -546,48 +359,6 @@ body {
         height: 30px;
         font-size: 12px;
     }
-
-    #product-info {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #close-product-info-btn {
-        align-self: flex-start;
-        
-    }
-
-    .product-info-left {
-        width: 100%;
-        height: 35%;
-    }
-
-    #product-info-img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .product-info-right {
-        min-width: 80%;
-        height: 65%;
-    }
-
-    #product-name {
-        padding-bottom: 15px;
-    }
-
-    #product-price {
-        margin: 15px 0;
-    }
-
-    #check-size-container {
-        margin: 0 0 15px;
-    }
 }
 
 /* Máy tính bảng */
@@ -608,13 +379,3 @@ body {
     }
 }
 
-/* ----------------------- Animation ---------------------- */
-@keyframes upper {
-    0% {
-        transform: translateY(1000px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}

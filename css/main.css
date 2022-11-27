@@ -108,7 +108,7 @@ a {
     height: 100%;
     top: 0;
     opacity: 0;
-    z-index: 5;
+    z-index: 2;
     background: rgba(0, 0, 0, 0.2);
     font-size: 60px;
     color: white;
@@ -159,7 +159,8 @@ a {
     }
 
     #main-content .content-inner-category {
-        display: none;
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.1);
     }
 
     .responsive-category {
@@ -168,8 +169,10 @@ a {
 }
 
 /* Điện thoại di động ở chế độ dọc */
-@media only screen and (max-width: 576px) {
-    
+@media only screen and (max-width: 576px) {    
+    #main-content .main-content-inner .content-img-container {
+        padding: 25px 15px;
+    }
 }
 
 /* Điện thoại di động ở chế độ ngang */

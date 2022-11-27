@@ -9,12 +9,12 @@ for (var i = 0; i < addToCartBtn.length; ++i) {
     addToCartBtn[i].addEventListener("click", checkcart);
 }
 
-function checkcart (){
-    if(localStorage.getItem('userlogin')===null){
-            alert("vui lòng đăng nhập khi mua hàng.");
-            location.replace("../Account/signin.html");
+function checkcart() {
+    if (localStorage.getItem('userlogin') === null) {
+        alert("vui lòng đăng nhập khi mua hàng.");
+        location.replace("../Account/signin.html");
     }
-} 
+}
 
 function showMenu() {
     var menuItems = document.getElementById("menu-items");
@@ -210,18 +210,23 @@ function quantityUp() {
 }
 /* Thêm sản phẩm vào giỏ hàng */
 
-const fixedMenuItems = document.getElementById("menu-items");
-window.addEventListener("scroll", function() {
-    if (this.window.pageYOffset > 251 && this.document.body.offsetWidth > 768) {
-        fixedMenuItems.classList.add("fixed1");
-    }
-    else {
-        fixedMenuItems.classList.remove("fixed1");
-    }
-    if (this.window.pageYOffset > 250 && this.document.body.offsetWidth < 768) {
-        fixedMenuItems.classList.add("fixed");
-    }
-    else {
-        fixedMenuItems.classList.remove("fixed");
-    }
-});
+var pos = window.location.pathname.lastIndexOf('/');
+var path = window.location.pathname.substring(pos + 1);
+path = path.split(".")[0];
+if (path === "products") {
+    const fixedMenuItems = document.getElementById("menu-items");
+    window.addEventListener("scroll", function () {
+        if (this.window.pageYOffset > 251 && this.document.body.offsetWidth > 768) {
+            fixedMenuItems.classList.add("fixed1");
+        }
+        else {
+            fixedMenuItems.classList.remove("fixed1");
+        }
+        if (this.window.pageYOffset > 250 && this.document.body.offsetWidth < 768) {
+            fixedMenuItems.classList.add("fixed");
+        }
+        else {
+            fixedMenuItems.classList.remove("fixed");
+        }
+    });
+}

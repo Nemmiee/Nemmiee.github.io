@@ -262,19 +262,12 @@ td {
 	border-collapse: collapse;
 }
 
-#content #botsection #maintable table#billlist tr:not(:first-child) {
-	cursor: pointer;
-}
-
-#content #botsection #maintable table#billlist tr:not(:first-child):hover {
-	background-color: #ced6e0;
-}
-
 #content #botsection #maintable th {
 	background-color: red;
-	color: white;
-	height: 35px;
-	padding: 0 5px;
+    color: white;
+    height: 35px;
+    padding: 5px;
+    font-size: 16px;
 }
 
 #content #botsection #maintable td {
@@ -294,15 +287,19 @@ td {
 	text-align: center;
 }
 
-#content #botsection #maintable td:first-child,
+#content #botsection #maintable td:first-child{
+	width: 5%;
+}
+#content #botsection #maintable td:nth-child(4){
+	width: 30%;
+}
 #content #botsection #maintable td:nth-child(2),
-#content #botsection #maintable td:nth-child(4),
 #content #botsection #maintable td:nth-child(5) {
-	width: 15%;
+	width: 10%;
 }
 
 #content #botsection #maintable td:nth-child(3) {
-	width: 30%;
+	width: 20%;
 }
 
 #content #botsection #maintable td .delete {
@@ -667,6 +664,7 @@ td {
 }
 
 #modal1 #info {
+	border-radius: 10px;
 	width: 500px;
 	height: 600px;
 	background-color: #fff;
@@ -676,6 +674,7 @@ td {
 }
 
 #modal1 #info .close {
+	border: none;
 	position: absolute;
 	right: 15px;
 	top: 0px;
@@ -687,15 +686,18 @@ td {
 
 #modal1 #info h4 {
 	font-size: 14pt;
-	margin-top: 20px;
+	margin-top: 25px;
+	padding-left: 20px;
 }
 
 #modal1 #info p {
 	font-size: 14pt;
 	margin-top: 5px;
+	padding: 0px 20px;
 }
 
 #modal1 #info #status {
+	padding: 0 20px;
 	display: inline-block;
 	font-size: 14pt;
 	height: 34px;
@@ -721,8 +723,6 @@ td {
 	background-color: #ccc;
 	width: 100%;
 	height: 100%;
-	bottom: 0;
-	left: 0;
 	cursor: pointer;
 	position: absolute;
 	transition: 0.4s;
@@ -781,6 +781,39 @@ td {
 
 #content #topsection .user label {
 	margin: 0 30px
+}
+
+/* Bill */
+select#statusbill {
+    width: 90%;
+    margin: 10px auto;
+    /* text-align: center; */
+}
+
+#content #botsection #maintable #billlist td:first-child{
+	width: 15%;
+}
+
+#content #botsection #maintable #billlist td:nth-child(2),
+#content #botsection #maintable #billlist td:nth-child(3){
+	width: 20%;
+}
+
+#content #botsection #maintable #billlist td:nth-child(4){
+	width: 10%;
+}
+
+#content #botsection #maintable #billlist td:nth-child(5){
+	width: 10%;
+}
+
+#billlist td a{
+	color: black;
+	font-weight: 650;
+}
+#billlist td a:hover{
+	color: red;
+	cursor: pointer;
 }
 
 /*ANIMATION*/
