@@ -64,7 +64,7 @@ function createUser(e) {
 		flag = false;
 	} else {
 		if (password.value.length < 8) {
-			document.getElementById('password').style.border = "2px solid red";
+			document.getElementById('Password').style.border = "2px solid red";
 			document.getElementById('Password').placeholder = "Mật khẩu của bạn phải dài hơn 8 ký tự";
 			flag = false;
 		} else {

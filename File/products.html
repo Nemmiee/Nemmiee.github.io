@@ -17,9 +17,7 @@
 	<script src="../js/find.js" defer></script>
 </head>
 
-<body
-	onload="createProduct(); showHeaderProductCategory(); checklogin(); showMenu(); showProduct(); showFooterMenuItems()"
-	id="body">
+<body onload="createProduct(); showHeaderProductCategory();showFooterMenuItems(); checklogin(); showMenu(); showProduct()" id="body">
 	<header>
 		<div id="header">
 			<div id="res-header-cart">
@@ -55,8 +53,7 @@
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
 						<div class="header-dropdown">
-							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();"
-								onclick="OK();">
+							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
 							<button id="header-inner-search-btn" onclick="search();">
 								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 							</button>
