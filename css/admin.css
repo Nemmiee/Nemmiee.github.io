@@ -666,7 +666,7 @@ td {
 #modal1 #info {
 	border-radius: 10px;
 	width: 500px;
-	height: 600px;
+	height: auto;
 	background-color: #fff;
 	margin: 20px auto;
 	position: relative;

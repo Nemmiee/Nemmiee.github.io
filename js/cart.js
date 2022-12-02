@@ -69,28 +69,30 @@ function quantityUpCART(i, price) {
 function addToCart(productId) {
     if (size === '') {
         alert("Vui lòng chọn size");
-    } if (localStorage.getItem('userlogin')) {
-        if (size === 'L' || size === 'XL' || size === 'M') {
-            alert("Đã thêm vào giỏ hàng");
+    } else {
+        if (localStorage.getItem('userlogin')) {
+            if (size === 'L' || size === 'XL' || size === 'M') {
+                alert("Đã thêm vào giỏ hàng");
+            }
         }
-    }
-    var productList = JSON.parse(localStorage.getItem('product'));
-    for (var i = 0; i < productList.length; i++) {
-        if (productList[i].productId === productId) {
-            var g_product = {
-                g_price: productList[i].price,
-                g_ID: productId,
-                g_productName: productList[i].productName,
-                g_category: productList[i].category,
-                g_image: productList[i].image,
-                g_quantity: document.getElementById("quantity").value,
-                g_size: size,
-                g_time: new Date(),
-            };
-            goods.push(g_product);
-            localStorage.setItem('cart', JSON.stringify(goods));
-            document.getElementById("product-info-container").classList.toggle("hienThi");
-            break;
+        var productList = JSON.parse(localStorage.getItem('product'));
+        for (var i = 0; i < productList.length; i++) {
+            if (productList[i].productId === productId) {
+                var g_product = {
+                    g_price: productList[i].price,
+                    g_ID: productId,
+                    g_productName: productList[i].productName,
+                    g_category: productList[i].category,
+                    g_image: productList[i].image,
+                    g_quantity: document.getElementById("quantity").value,
+                    g_size: size,
+                    g_time: new Date(),
+                };
+                goods.push(g_product);
+                localStorage.setItem('cart', JSON.stringify(goods));
+                document.getElementById("product-info-container").classList.toggle("hienThi");
+                break;
+            }
         }
     }
 }
@@ -115,7 +117,7 @@ function checkcart() {
                 + '<div class="quantity_class">'
                 + '<div class="buttonchoose">'
                 + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">-</button>'
-                + '<input type="text" class="quantity" id="quantity' + i + '" value="' + pcart[i].g_quantity + '">'
+                + '<input type="text" class="quantity" id="quantity' + i + '" value="' + pcart[i].g_quantity + '" readonly>'
                 + '<button class="plusQuantity" onclick="quantityUpCART(' + i + ',' + pcart[i].g_price + ')">+</button>'
                 + '</div>'
                 + '</div>'
@@ -124,13 +126,9 @@ function checkcart() {
                 + '</div>';
         }
         document.getElementById("product_cart").innerHTML = info;
-        for (var i = 0; i < goods.length; i++) {
-            let quantity = 'quantity' + i;
-            document.getElementById(quantity).classList.add("quantity")
-        }
     }
     else {
-        document.getElementById("product_cart").innerHTML = "<p>Chưa có sản phẩm vui lòng mua sản phẩm</p>";
+        document.getElementById("product_cart").innerHTML = '<span id="notification">Chưa có sản phẩm vui lòng mua sản phẩm</span>';
     }
     document.getElementById("product_cart").style.display = "block"
     document.getElementById("cart").style.backgroundColor = "orange";
@@ -140,8 +138,10 @@ function checkcart() {
     document.getElementById("product_show").style.display = "none";
     document.getElementById("pcart").style.display = "block";
     document.getElementById("sym").style.display = "flex";
+    document.getElementById("show_product").style.display = "none";
 }
 let kt = 0;
+
 function refresh() {
     kt = 0;
     setbill();
@@ -169,6 +169,7 @@ function buyit(productNum) {
         document.getElementById("checkbox").checked = true;
         TOF = 0;
     }
+    console.log(kt,TOF);
 }
 
 function Buy() {
@@ -189,7 +190,7 @@ function Buy() {
         code = waitting.length;
         if (bill[i] === 1) {
             items += goods[i].g_productName + ' ' + goods[i].g_category + ' ' + goods[i].g_quantity + ' ' + goods[i].g_size + ' ' + goods[i].g_price + '; ';
-            var day = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+            var day = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
             total += goods[i].g_price * goods[i].g_quantity;
         }
     }
@@ -213,17 +214,17 @@ function checkwait() {
     var productList = JSON.parse(localStorage.getItem('product'));
     var info = '';
     let id_product;
-    let d, c;
-    if (pwait.length > 0) {
+    let c;
+    if (pwait.length != 0) {
+        let d = new Date();
         for (var i = 0; i < pwait.length; ++i) {
-            d = new Date(pwait[i].time);
             j = 0;
             c = '';
             var dem = 0;
             info += '<div class="info2">'
                 + '<div class="introduct">'
-                + '<span class="time">Thời gian: ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '-' + d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + '</span>'
-                + '<span class="id" onclick="Show(' + 0 + ',' + id_product + ',' + 0 + ',' + 0 + ',' + i + ',' + 0 + ',' + 1 + ');">ID: ' + pwait[i].codeID + '</span>'
+                + '<span class="id">ID: ' + pwait[i].codeID + '. <span class="chitiet" onclick="Show(' + 0 + ',' + 0 + ',' + 0 + ',' + 0 + ',' + i + ',' + 0 + ',' + 1 + ');">Nhấn để xem chi tiết.</span></span>'
+                + '<span class="time">Thời gian: ' + d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + '</span>'
                 + '</div>'
                 + '<div class="product_w">'
                 + '<ul class="pro5">';
@@ -237,20 +238,21 @@ function checkwait() {
                         if (Number(NQS[s + 1])) { break; }
                         Name += NQS[s] + ' ';
                     }
-                    console.log(Name);
                     Name = Name.slice(0, -1);
                     for (var k = 0; k < productList.length; k++) {
                         if (productList[k].productName === Name) {
                             id_product = productList[k].productId;
-                            console.log(id_product);
-                            console.log("tìm thấy");
                         }
                     };
                     info += '<li class="Table" onclick="Show(' + pwait[i].codeID + ',' + id_product + ',' + NQS[s + 1] + ',' + NQS[s + 3] + ',' + i + ',' + (dem + 1) + ',' + 0 + ');">' + (dem + 1) + '. ' + Name + ', ' + NQS[s] + ', ' + NQS[s + 1] + ', ' + NQS[s + 2] + '</li>';
                     c = '';
                     dem++;
-                    let w_id = i + 'id' + dem;
-                    info += '<input type="hidden" value=' + NQS[s + 2] + ' id=' + w_id + '>';
+                    let w_id = i + 'id' + dem + 'size';
+                    info += '<input type="hidden" value="' + NQS[s + 2] + '" id="' + w_id + '">';
+                    w_id = i + 'id' + dem + 'id';
+                    info += '<input type="hidden" value="' + id_product + '" id="' + w_id + '">';
+                    w_id = i + 'id' + dem + 'quantity';
+                    info += '<input type="hidden" value="' + NQS[s + 1] + '" id="' + w_id + '">';
                 }
                 j++;
             };
@@ -261,7 +263,8 @@ function checkwait() {
         }
     }
     else {
-        document.getElementById("product_show").innerHTML = "<p>Chưa có sản phẩm vui lòng mua sản phẩm</p>";
+        info = '<span id="notification">Chưa có sản phẩm vui lòng mua sản phẩm</span>';
+        document.getElementById("show_product").style.display = "none";
     }
     document.getElementById("product_cart").style.display = "none";
     document.getElementById("wait").style.backgroundColor = "orange";
@@ -275,27 +278,67 @@ function checkwait() {
 
 // ,category,quantity,size,price,doiso
 function Show(ID, idchild, quantity, price, vitri, thu, doiso) {
+    let info = '';
+    var productList = JSON.parse(localStorage.getItem('product'));
+    var pwait = JSON.parse(localStorage.getItem('wait'));
     if (doiso === 0) {
-        var productList = JSON.parse(localStorage.getItem('product'));
         for (var i = 0; i < productList.length; i++) {
             if (idchild == productList[i].productId) {
-                let w_id = vitri + 'id' + thu;
-                let info = '<span class="show_id">MÃ ĐƠN HÀNG: ' + ID + '</span>'
-                    + '<div class="show_image">'
+                let w_id = vitri + 'id' + thu + 'size';
+                info = '<div class="show_image">'
                     + '<img src="' + productList[i].image + '" alt="Hình ảnh :)))">'
                     + '</div>'
                     + '<ul class="show_introduction">'
-                    + '<li class="li_show">-Tên: ' + productList[i].productName + '</li>'
-                    + '<li class="li_show">-Số lượng: ' + quantity + '</li>'
-                    + '<li class="li_show">-Size: ' + document.getElementById(w_id).value + '</li>'
-                    + '<li class="li_show">-Giá: ' + new Intl.NumberFormat().format(productList[i].price) + 'đ (1 cái)</li>'
-                    + '<li class="li_show">-Tổng giá: ' + new Intl.NumberFormat().format(Number(quantity) * Number(productList[i].price)) + 'đ</li>'
-                    + '</ul>';
+                    + '<li class="li_show ten">- Tên: ' + productList[i].productName + '</li>'
+                    + '<li class="li_show soluong">- Số lượng: ' + quantity + '</li>'
+                    + '<li class="li_show kichco">- Size: ' + document.getElementById(w_id).value + '</li>'
+                    + '<li class="li_show gia">- Giá: ' + new Intl.NumberFormat().format(productList[i].price) + 'đ (1 cái)</li>'
+                    + '<li class="li_show tong">- Tổng giá: ' + new Intl.NumberFormat().format(Number(quantity) * Number(productList[i].price)) + 'đ</li>'
+                    + '</ul>'
+                    +'<span class="show_idspan"> MÃ ĐƠN HÀNG: ' + vitri + '.</span>';
                 document.getElementById("show_product").innerHTML = info;
+                document.getElementById("show_product").style.display = "block";
+                document.getElementById("show_product").style.overflowY = "hidden";
+                document.getElementById("show_product").style.overflowX = "hidden";
+                document.getElementById("show_product").style.paddingBottom = "23px";
             }
         }
-    }else{
-        
+    } else {
+        var j = 1;
+        let w_id = vitri + 'id' + j + 'id';
+        let w_quantity = vitri + 'id' + j + 'quantity';
+        let w_size = vitri + 'id' + j + 'size';
+        while (document.getElementById(w_id)) {
+            for (var i = 0; i < productList.length; i++) {
+                if (document.getElementById(w_id).value == productList[i].productId) {
+                    let w_id = vitri + 'id' + thu + 'size';
+                    info += '<div class="sanpham_show">'
+                        + '<div class="show_image">'
+                        + '<img src="' + productList[i].image + '" alt="Hình ảnh :)))">'
+                        + '</div>'
+                        + '<ul class="show_introduction">'
+                        + '<li class="li_show ten">-Tên: ' + productList[i].productName + '.</li>'
+                        + '<li class="li_show soluong">-Số lượng: ' + quantity + '</li>'
+                        + '<li class="li_show kichco">-Size: ' + document.getElementById(w_size).value + '.</li>'
+                        + '<li class="li_show gia">-Giá: ' + new Intl.NumberFormat().format(productList[i].price) + 'đ(1 cái).</li>'
+                        + '<li class="li_show tong">-Tổng giá: ' + new Intl.NumberFormat().format(Number(document.getElementById(w_quantity).value) * Number(productList[i].price)) + 'đ.</li>'
+                        + '</ul>'
+                        + '</div>';
+                }
+            }
+            j++;
+            w_id = vitri + 'id' + j + 'id';
+            w_quantity = vitri + 'id' + j + 'quantity';
+            w_size = vitri + 'id' + j + 'size';
+        }
+        info += '<p class="show_id">MÃ ĐƠN HÀNG: ' + vitri + '.</p>'
+            + '<p class="show_total">Tổng tiền: ' + new Intl.NumberFormat().format(pwait[vitri].totalprice) + 'đ.</p>';
+        document.getElementById("show_product").innerHTML = info;
+        document.getElementById("show_product").style.display = "block";
+        document.getElementById("show_product").style.overflowY = "scroll";
+        document.getElementById("show_product").style.overflowX = "hidden";
+        document.getElementById("show_product").style.maxHeight = "300px";
+        document.getElementById("show_product").style.paddingBottom = "10px";
     }
 }
 
@@ -303,12 +346,14 @@ function Remove2() {
     let item = [];
     for (var i = 0; i < goods.length; i++) {
         if (bill[i] === 1) {
+            console.log(i);
             dele.push(goods[i]);
         } else {
             item.push(goods[i]);
         }
     }
     localStorage.setItem('cart', JSON.stringify(item));
+    goods = JSON.parse(localStorage.getItem('cart'));
     localStorage.setItem('remove', JSON.stringify(dele));
     refresh();
 }
@@ -321,7 +366,7 @@ function Remove(productNum, co) {
             item = goods.splice(productNum, 1);
             localStorage.setItem('cart', JSON.stringify(goods));
             localStorage.setItem('remove', JSON.stringify(dele));
-            refrest();
+            refresh()
             checkcart();
         }
         if (co === 2) {
@@ -329,12 +374,11 @@ function Remove(productNum, co) {
             item = waitting.splice(productNum, 1);
             localStorage.setItem('wait', JSON.stringify(waitting));
             localStorage.setItem('remove', JSON.stringify(dele));
-            refresh();
+            refresh()
             checkwait();
         }
     } else return;
 }
-
 function chooseall() {
     if (TOF === 1) {
         for (var i = 0; i < goods.length; i++) {

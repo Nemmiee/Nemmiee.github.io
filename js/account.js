@@ -46,7 +46,7 @@ function createUser(e) {
 		flag = false;
 	} else {
 		if (isNaN(Number(phonenum.value))) {
-			document.getElementById('phonenum').style.display = "2px solid red";
+			document.getElementById('Phonenum').style.display = "2px solid red";
 			alert("Số điện thoại không hợp lệ");
 			flag = false;
 		} else {
@@ -54,8 +54,9 @@ function createUser(e) {
 				document.getElementById('Phonenum').style.border = "2px solid red";
 				alert("Số điện thoại không đúng");
 				flag = false;
+			} else {
+				document.getElementById('phonenum').style.border = "none";
 			}
-			document.getElementById('phonenum').style.border = "none";
 		}
 	}
 	if (!password.value) {
@@ -92,6 +93,7 @@ function createUser(e) {
 	alert('Bạn đã đăng ký thành công!', 'success');
 	showLogin();
 }
+
 function login(e) {
 	e.preventDefault();
 	document.getElementById('loginerror').style.display = 'none';
@@ -133,11 +135,11 @@ function login(e) {
 }
 function logout() {
 	localStorage.removeItem('userlogin');
-	// localStorage.removeItem('cart');
+	localStorage.removeItem('cart');
 	location.href = "../index.html";
 }
 function checklogin() {
-	if (localStorage.getItem('userlogin')) { 
+	if (localStorage.getItem('userlogin')) {
 		var user = JSON.parse(localStorage.getItem('userlogin'));
 		var s = '';
 		var d = '';
@@ -249,15 +251,29 @@ function checklogin() {
 }
 
 function cutName(fullName) {
-    // Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
-    fullName = fullName.trim();
-    var x = fullName.lastIndexOf(' ');
-    var name = [];
-    // In hoa chữ cái đầu
-    name = fullName.substring(x + 1, x + 2).toUpperCase();
-    // In thường các chữ cái còn lại
-    for (var i = x + 2; i < fullName.length; ++i) {
-        name += fullName[i].toLowerCase();
-    }
-    return name;
+	// Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
+	fullName = fullName.trim();
+	var x = fullName.lastIndexOf(' ');
+	var name = [];
+	// In hoa chữ cái đầu
+	name = fullName.substring(x + 1, x + 2).toUpperCase();
+	// In thường các chữ cái còn lại
+	for (var i = x + 2; i < fullName.length; ++i) {
+		name += fullName[i].toLowerCase();
+	}
+	return name;
 }
+
+const viewPass = document.getElementById("viewPass");
+viewPass.addEventListener('click', function (e) {
+	e.preventDefault();
+	var password = document.getElementById("Passwordlogin");
+	if (password.type == 'password') {
+		password.type = 'text';
+		viewPass.innerHTML = '<i class="fa-solid fa-eye"></i>';
+	}
+	else {
+		password.type = 'password';
+		viewPass.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+	}
+});

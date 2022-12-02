@@ -363,3 +363,39 @@ function changeStatus(checkbox, id) {
 	localStorage.setItem('wait', JSON.stringify(billList));
 	showbilllist();
 }
+
+function searchBill(){
+	var billList = JSON.parse(localStorage.getItem('wait'));
+	var status =document.getElementById('statusbill').value;
+	var name =document.getElementById('fullName').value.toLowerCase();
+	var dateControl = document.querySelector('input[type="date"]').value;
+	console.log(dateControl);
+	var billListTemp = [];
+	for (var i = 0; i < billList.length; i++) {
+		if(status==billList[i].status && billList[i].costumer.fullname.toLowerCase().search(name) >= 0 && billList[i].time == dateControl) {
+			billListTemp.push(billList[i]);
+		}
+	}
+	var s = '<tr><th>Ngày</th><th>Khách hàng</th><th>Giá (VNĐ)</th><th>Thông tin</th><th>Trạng thái</th></tr>';
+	for(var i=0;i<billListTemp.length;i++){
+		if(billListTemp[i].status=='Chưa xử lý'){
+			s+='<tr onClick="showinfobill('+billListTemp[i].codeID+')">'+
+						'<td>'+billListTemp[i].time+'</td>'+
+						'<td>'+billListTemp[i].costumer.fullname+'</td>'+
+						'<td>'+billListTemp[i].totalprice+'</td>'+
+						'<td><a onClick="infobill(' + billList[i].codeID + ')">Xem thông tin</a></td>' +
+						'<td style="color: red">'+billListTemp[i].status+'</td>'+
+					'</tr>';
+		}
+		else {
+			s+='<tr onClick="showinfobill('+billListTemp[i].id+')">'+
+						'<td>'+billListTemp[i].time+'</td>'+
+						'<td>'+billListTemp[i].costumer.fullname+'</td>'+
+						'<td>'+billListTemp[i].totalprice+'</td>'+
+						'<td><a onClick="infobill(' + billList[i].codeID + ')">Xem thông tin</a></td>' +
+						'<td style="color: blue">'+billListTemp[i].status+'</td>'+
+					'</tr>';
+		}
+	}
+	document.getElementById('billlist').innerHTML=s;
+}

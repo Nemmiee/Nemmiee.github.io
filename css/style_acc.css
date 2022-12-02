@@ -78,7 +78,37 @@
     font-size: 15px;
 }
 
-#userbox .userbox-inner input:focus {
+#userbox .userbox-inner:first-child input:focus {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+#passwordlogin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+}
+
+#passwordlogin #Passwordlogin {
+    border-radius: 0;
+    padding: 11px 18px;
+    background-color: transparent;
+}
+
+#viewPass {
+    padding: 5px;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#passwordlogin:focus-within {
     background-color: white;
     border: 1px solid #DDDDDD;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
