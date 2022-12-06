@@ -22,6 +22,28 @@ html {
 }
 
 /* ----------------------------- Header -------------------------- */
+#darkmode {
+    float: right;
+    padding: 5px;
+    position: absolute;
+    top: 5px;
+    right: 16px;
+    background-color: transparent;
+    z-index: 15;
+}
+
+#darkmode #darkmode-btn {
+    background-color: transparent;
+    border: none;
+    width: auto;
+    height: auto;
+}
+
+#darkmode i {
+    color: white;
+    cursor: pointer;
+}
+
 #header {
     width: 100%;
     height: 100px;
@@ -49,7 +71,7 @@ html {
 }
 
 #logo-container {
-    padding: 5px 0px 0px 50px;
+    padding: 5px 0px 0px 20px;
     float: left;
     width: 25%;
 }
@@ -70,10 +92,14 @@ html {
 }
 
 #flex_header-title .header-title {
-    padding: 30px 10px;
+    padding: 40px 10px 20px;
     text-align: center;
     font-size: 13px;
     position: relative;
+}
+
+#flex_header-title .header-title.darkmode a {
+    color: black;
 }
 
 #flex_header-title .header-title.active a,
@@ -88,7 +114,7 @@ html {
 #flex_header-title .header-title::before {
     position: absolute;
     content: "";
-    top: 55px;
+    top: 65px;
     left: auto;
     right: 2px;
     height: 2.5px;
@@ -128,7 +154,7 @@ html {
 #flex_header-title .cart,
 #flex_header-title .icon,
 #flex_header-title .userbtn {
-    padding: 10px;
+    padding: 30px 10px 20px;
     display: inline-block;
 }
 
@@ -157,6 +183,14 @@ html {
 }
 
 #flex_header-title .user i.active {
+    color: red;
+}
+
+.header-icon.darkmode {
+    color: black;
+}
+
+.header-icon.darkmode:hover {
     color: red;
 }
 
@@ -341,7 +375,7 @@ html {
 }
 
 #header-cart {
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 #header-cart i.active {
@@ -576,6 +610,13 @@ html {
     color: #CCCCCC;
 }
 
+#footer.darkmode a,
+#footer.darkmode p,
+#footer.darkmode h3,
+#footer.darkmode i {
+    color: black;
+}
+
 #top-footer {
     display: flex;
     flex-direction: row;
@@ -649,8 +690,16 @@ html {
     background-color: #DDDDDD;
 }
 
+#footer.darkmode #top-footer-email {
+    background-color: #DDDDDD;
+}
+
 #top-footer-email:focus {
     background-color: white;
+}
+
+#footer.darkmode #top-footer-email:focus {
+    background-color: #EEEEEE;
 }
 
 #top-footer-email-btn {
@@ -683,6 +732,10 @@ html {
     padding: 8px 10px;
     border-radius: 50%;
     border: solid white;
+}
+
+#footer.darkmode #bottom-footer .bottom-footer-icon {
+    border: solid black;
 }
 
 #bottom-footer .bottom-footer-icon:hover {

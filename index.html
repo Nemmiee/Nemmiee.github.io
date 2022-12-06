@@ -21,6 +21,11 @@
 
 <body onload="showHeaderProductCategory(); checklogin(); showFooterMenuItems()">
 	<header>
+		<div id="darkmode">
+			<button id="darkmode-btn">
+				<i id="darkmode-i" class="fa-solid fa-circle-half-stroke fa-lg"></i>
+			</button>
+		</div>
 		<div id="header">
 			<div id="res-header-cart">
 				<a href="../File/cart.html">
@@ -28,7 +33,8 @@
 				</a>
 			</div>
 			<div id="logo-container">
-				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png" alt="Logo"></a>
+				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png"
+						alt="Logo"></a>
 			</div>
 			<div id="flex_header-title">
 				<div class="header-title active"><a href="/index.html">TRANG CHỦ</a></div>
@@ -54,7 +60,8 @@
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
 						<div class="header-dropdown">
-							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
+							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();"
+								onclick="OK();">
 							<button id="header-inner-search-btn" onclick="search();">
 								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 							</button>
@@ -90,7 +97,8 @@
 			</div>
 			<div class="sidebar-search-container">
 				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." onkeyup="Find2();" onclick="OK();">
-				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg" onclick="search();"></i></button>
+				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg"
+						onclick="search();"></i></button>
 				<div id="result2"></div>
 			</div>
 			<ul id="sidebar-list">
@@ -217,16 +225,16 @@
 					<h4>SIZE</h4>
 					<div id="check-size-container">
 						<div class="check-size-wrapper">
-							<label class="radio-check" id="sizeM"><input type="radio" name="size-option" class="size-option" value="M"
-									onclick="choose('M')" />M</label>
+							<label class="radio-check" id="sizeM"><input type="radio" name="size-option"
+									class="size-option" value="M" onclick="choose('M')" />M</label>
 						</div>
 						<div class="check-size-wrapper">
-							<label class="radio-check" id="sizeL"><input type="radio" name="size-option" class="size-option" value="L"
-									onclick="choose('L')" />L</label>
+							<label class="radio-check" id="sizeL"><input type="radio" name="size-option"
+									class="size-option" value="L" onclick="choose('L')" />L</label>
 						</div>
 						<div class="check-size-wrapper">
-							<label class="radio-check" id="sizeXL"><input type="radio" name="size-option" class="size-option"
-									value="XL" onclick="choose('XL')" />XL</label>
+							<label class="radio-check" id="sizeXL"><input type="radio" name="size-option"
+									class="size-option" value="XL" onclick="choose('XL')" />XL</label>
 						</div>
 					</div>
 					<h4>Số lượng</h4>
