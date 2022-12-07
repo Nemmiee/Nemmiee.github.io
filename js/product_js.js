@@ -6,10 +6,10 @@
 /* Check tai khoan trước khi mua hàng */
 let addToCartBtn = document.getElementsByClassName('addToCart-btn');
 for (var i = 0; i < addToCartBtn.length; ++i) {
-    addToCartBtn[i].addEventListener("click", checkcart);
+    addToCartBtn[i].addEventListener("click", checkuser);
 }
 
-function checkcart() {
+function checkuser() {
     if (localStorage.getItem('userlogin') === null) {
         alert("vui lòng đăng nhập khi mua hàng.");
         location.replace("../Account/signin.html");

@@ -11,6 +11,10 @@
     float: left;
 }
 
+#mainContent-theme.darkmode {
+    background-color: #1C2128;
+}
+
 .heading-account {
     padding-left: 1px;
     float: left;
@@ -32,6 +36,13 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     /* text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); */
+}
+
+#mainContent-theme.darkmode .heading-account .header-page {
+    text-decoration: underline #BB86FC;
+    background: linear-gradient(to right, #BB86FC, #BB86FC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .content-account {
@@ -86,6 +97,16 @@
     border: solid black;
 }
 
+#mainContent-theme #signup-btn {
+    background-color: #FF3366;
+}
+
+#mainContent-theme.darkmode #signup-btn:hover {
+    background-color: white;
+    color: #FF3366;
+    transition: .2s;
+}
+
 #signup-btn:hover {
     color: black;
     background-color: white;
@@ -97,6 +118,14 @@
     font-size: 18px;
     font-weight: bold;
     color: black;
+}
+
+#mainContent-theme .sign-in-link a {
+    color: white;
+}
+
+#mainContent-theme .sign-in-link a:hover {
+    color: red;
 }
 
 .sign-in-link a:hover {

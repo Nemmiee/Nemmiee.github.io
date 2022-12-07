@@ -2,16 +2,18 @@
 let goods = (localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
 let waitting = (localStorage.getItem('wait')) ? JSON.parse(localStorage.getItem('wait')) : [];
 let dele = (localStorage.getItem('remove')) ? JSON.parse(localStorage.getItem('remove')) : [];
-
 let bill = [];
-let checkbox = document.getElementsByName("[]");
+let soluong;
+
 let TOF = 1;
+
 function setbill() {
+    console.log("setbill");
     if (goods.length > 0) {
         for (let i = 0; i < goods.length; i++) {
-            bill[i] = 0;
+            bill[i] = 2;
         }
-    };
+    }
 }
 
 function choose(a) {
@@ -79,6 +81,7 @@ function addToCart(productId) {
         for (var i = 0; i < productList.length; i++) {
             if (productList[i].productId === productId) {
                 var g_product = {
+                    g_cos: JSON.parse(localStorage.getItem('userlogin')),
                     g_price: productList[i].price,
                     g_ID: productId,
                     g_productName: productList[i].productName,
@@ -97,43 +100,67 @@ function addToCart(productId) {
     }
 }
 
-
 function checkcart() {
-    var pcart = JSON.parse(localStorage.getItem('cart'));
-    var info = '';
-    if (pcart.length > 0) {
+    console.log("checkcart");
+    setbill();
+    if (!JSON.parse(localStorage.getItem('userlogin'))) {
+        if (confirm("Vui lòng đăng nhập để xem giỏ hàng", 'warning'))
+            location.href = "../Account/signin.html";
+        else
+            location.href = "../File/products.html";
+    } else {
+        var pcart = JSON.parse(localStorage.getItem('cart'));
+        var user = JSON.parse(localStorage.getItem('userlogin'));
+        var l = 0;
+        var info = '';
+        var dem = 0;
+        //if (pcart.length > 0) {
         for (var i = 0; i < pcart.length; ++i) {
-            info += '<div class="info" id="info' + i + '">'
-                + '<div class="area">'
-                + '<div class="mua"><input type="checkbox" onclick="buyit(' + i + ');" class="chon" name="[]" value="' + i + '" /></div>'
-                + '<div class="gimage"><img src="' + pcart[i].g_image + '" alt="Image"></div>'
-                + '<ul class="in4-pro">'
-                + '<li class="productName"><p>' + pcart[i].g_productName + '</p>'
-                + '<li class="g_size"><p>' + pcart[i].g_size + '</p></li>'
-                + '<li class="category"><p>' + pcart[i].g_category + '</p></li>'
-                + '</ul>'
-                + '</div>'
-                + '<div class="price"><p>' + new Intl.NumberFormat().format(Number(pcart[i].g_price)) + 'đ</p></div>'
-                + '<div class="quantity_class">'
-                + '<div class="buttonchoose">'
-                + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">-</button>'
-                + '<input type="text" class="quantity" id="quantity' + i + '" value="' + pcart[i].g_quantity + '" readonly>'
-                + '<button class="plusQuantity" onclick="quantityUpCART(' + i + ',' + pcart[i].g_price + ')">+</button>'
-                + '</div>'
-                + '</div>'
-                + '<div class="total" id="total' + i + '"><p>' + new Intl.NumberFormat().format(Number(pcart[i].g_price) * Number(pcart[i].g_quantity)) + 'đ</p></div>'
-                + '<div class="trash" onClick="Remove(' + i + ',' + 1 + ')"><i class="fa-solid fa-trash"></i></div>'
-                + '</div>';
+            if (user.email === pcart[i].g_cos.email) {
+                dem++;
+                bill[i] = 0;
+                console.log(i, bill[i]);
+                info += '<div class="info" id="info' + i + '">'
+                    + '<div class="area">'
+                    + '<div class="mua"><input type="checkbox" onclick="buyit(' + i + ');" class="chon" name="[]" value="' + i + '" /></div>'
+                    + '<div class="gimage"><img src="' + pcart[i].g_image + '" alt="Image"></div>'
+                    + '<ul class="in4-pro">'
+                    + '<li class="productName"><p>' + pcart[i].g_productName + '</p>'
+                    + '<li class="g_size"><p>' + pcart[i].g_size + '</p></li>'
+                    + '<li class="category"><p>' + pcart[i].g_category + '</p></li>'
+                    + '</ul>'
+                    + '</div>'
+                    + '<div class="price"><p>' + new Intl.NumberFormat().format(Number(pcart[i].g_price)) + 'đ</p></div>'
+                    + '<div class="quantity_class">'
+                    + '<div class="buttonchoose">'
+                    + '<button class="minusQuantity" onclick="quantityDownCART(' + i + ',' + pcart[i].g_price + ')">-</button>'
+                    + '<input type="text" class="quantity" id="quantity' + i + '" value="' + pcart[i].g_quantity + '" readonly>'
+                    + '<button class="plusQuantity" onclick="quantityUpCART(' + i + ',' + pcart[i].g_price + ')">+</button>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="total" id="total' + i + '"><p>' + new Intl.NumberFormat().format(Number(pcart[i].g_price) * Number(pcart[i].g_quantity)) + 'đ</p></div>'
+                    + '<div class="trash" onClick="Remove(' + i + ',' + 1 + ')"><i class="fa-solid fa-trash"></i></div>'
+                    + '</div>';
+                l = 1;
+            }
         }
-        document.getElementById("product_cart").innerHTML = info;
+        if (l == 1) {
+            document.getElementById("product_cart").innerHTML = info;
+            document.getElementById("product_cart").style.overflowY = "scroll";
+        } else {
+            document.getElementById("product_cart").style.overflowY = "hidden";
+            document.getElementById("product_cart").innerHTML = '<span id="notification">Chưa có sản phẩm vui lòng mua sản phẩm</span>';
+        }
     }
-    else {
+    if (l === 0) {
+        document.getElementById("product_cart").style.overflowY = "hidden";
         document.getElementById("product_cart").innerHTML = '<span id="notification">Chưa có sản phẩm vui lòng mua sản phẩm</span>';
     }
+    document.getElementById("cost").innerHTML = '<p>' + new Intl.NumberFormat().format(cost) + 'đ</p>';
     document.getElementById("product_cart").style.display = "block"
     document.getElementById("cart").style.backgroundColor = "orange";
     document.getElementById("wait").style.backgroundColor = "white";
-    document.getElementById("check").innerHTML = '<input type="checkbox"  id="checkbox" onclick="chooseall();" value="" /><span id="all">Tất cả (' + pcart.length + ')</span>';
+    document.getElementById("check").innerHTML = '<input type="checkbox"  id="checkbox" onclick="chooseall();" value="" /><span id="all">Tất cả (' + dem + ')</span>';
     document.getElementById("money").style.display = "block";
     document.getElementById("product_show").style.display = "none";
     document.getElementById("pcart").style.display = "block";
@@ -141,38 +168,49 @@ function checkcart() {
     document.getElementById("show_product").style.display = "none";
 }
 let kt = 0;
-
-function refresh() {
-    kt = 0;
-    setbill();
-}
-
 let cost = 0;
 function buyit(productNum) {
+    console.log("buyit");
     if (bill[productNum] === 0) {
         bill[productNum] = 1;
         kt++;
         cost = cost + Number(goods[productNum].g_price) * Number(goods[productNum].g_quantity);
     }
-    else {
+    else if (bill[i] === 1) {
         bill[productNum] = 0;
         kt--;
         cost = cost - Number(goods[productNum].g_price) * Number(goods[productNum].g_quantity);
     }
     document.getElementById("cost").innerHTML = '<p>' + new Intl.NumberFormat().format(cost) + 'đ</p>';
-
-    if ((kt < goods.length) && (document.getElementById("checkbox").checked == true)) {
+    if ((kt < soluong) && (document.getElementById("checkbox").checked == true)) {
         document.getElementById("checkbox").checked = false;
         TOF = 1;
     }
-    if ((kt === goods.length) && (document.getElementById("checkbox").checked == false)) {
+    if ((kt === soluong) && (document.getElementById("checkbox").checked == false)) {
         document.getElementById("checkbox").checked = true;
         TOF = 0;
     }
-    console.log(kt,TOF);
+    console.log(bill[productNum], productNum);
+}
+function refresh() {
+    console.log("refresh");
+    kt = 0;
+    cost = 0;
+    setbill();
+}
+
+function randomID() {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 10; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 }
 
 function Buy() {
+    console.log("Buy");
     let items = ' ';
     let code = 0;
     let total = 0;
@@ -186,8 +224,8 @@ function Buy() {
             return;
         }
     }
+    code = waitting.length;
     for (var i = 0; i < goods.length; i++) {
-        code = waitting.length;
         if (bill[i] === 1) {
             items += goods[i].g_productName + ' ' + goods[i].g_category + ' ' + goods[i].g_quantity + ' ' + goods[i].g_size + ' ' + goods[i].g_price + '; ';
             var day = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
@@ -204,20 +242,27 @@ function Buy() {
     };
     waitting.push(w_product);
     localStorage.setItem('wait', JSON.stringify(waitting));
+    console.log(JSON.parse(localStorage.getItem('wait')))
     checkwait();
     Remove2();
 }
 
 
 function checkwait() {
+    console.log("checkwait");
     var pwait = JSON.parse(localStorage.getItem('wait'));
     var productList = JSON.parse(localStorage.getItem('product'));
     var info = '';
     let id_product;
     let c;
-    if (pwait.length != 0) {
-        let d = new Date();
-        for (var i = 0; i < pwait.length; ++i) {
+    var l = 0;
+    var user = JSON.parse(localStorage.getItem('userlogin'));
+    //if (pwait.length != 0) {
+    let d = new Date();
+    var i = 0;
+    while (i < pwait.length) {
+        if (user.email == pwait[i].costumer.email) {
+            l = 1;
             j = 0;
             c = '';
             var dem = 0;
@@ -244,7 +289,7 @@ function checkwait() {
                             id_product = productList[k].productId;
                         }
                     };
-                    info += '<li class="Table" onclick="Show(' + pwait[i].codeID + ',' + id_product + ',' + NQS[s + 1] + ',' + NQS[s + 3] + ',' + i + ',' + (dem + 1) + ',' + 0 + ');">' + (dem + 1) + '. ' + Name + ', ' + NQS[s] + ', ' + NQS[s + 1] + ', ' + NQS[s + 2] + '</li>';
+                    info += '<li class="Table" onclick="Show(' + pwait[i].codeID + ',' + id_product + ',' + NQS[s + 1] + ',' + NQS[s + 3] + ',' + i + ',' + (dem + 1) + ',' + 0 + ');">' + (dem + 1) + '. ' + Name + ', ' + NQS[s] + ', ' + NQS[s + 1] + ', ' + NQS[s + 2] + '.</li>';
                     c = '';
                     dem++;
                     let w_id = i + 'id' + dem + 'size';
@@ -261,10 +306,13 @@ function checkwait() {
                 + '</div>'
                 + '</div>';
         }
+        i++;
     }
-    else {
+    //}
+    if (l === 0) {
         info = '<span id="notification">Chưa có sản phẩm vui lòng mua sản phẩm</span>';
         document.getElementById("show_product").style.display = "none";
+        document.getElementById("product_show").style.overflowY = "hidden";
     }
     document.getElementById("product_cart").style.display = "none";
     document.getElementById("wait").style.backgroundColor = "orange";
@@ -274,6 +322,7 @@ function checkwait() {
     document.getElementById("product_show").style.display = "block";
     document.getElementById("product_show").innerHTML = info;
     document.getElementById("sym").style.display = "none";
+    document.getElementById("product_show").style.overflowY = "scroll";
 }
 
 // ,category,quantity,size,price,doiso
@@ -295,7 +344,7 @@ function Show(ID, idchild, quantity, price, vitri, thu, doiso) {
                     + '<li class="li_show gia">- Giá: ' + new Intl.NumberFormat().format(productList[i].price) + 'đ (1 cái)</li>'
                     + '<li class="li_show tong">- Tổng giá: ' + new Intl.NumberFormat().format(Number(quantity) * Number(productList[i].price)) + 'đ</li>'
                     + '</ul>'
-                    +'<span class="show_idspan"> MÃ ĐƠN HÀNG: ' + vitri + '.</span>';
+                    + '<span class="show_idspan">MÃ ĐƠN HÀNG: ' + vitri + '.</span>';
                 document.getElementById("show_product").innerHTML = info;
                 document.getElementById("show_product").style.display = "block";
                 document.getElementById("show_product").style.overflowY = "hidden";
@@ -331,7 +380,7 @@ function Show(ID, idchild, quantity, price, vitri, thu, doiso) {
             w_quantity = vitri + 'id' + j + 'quantity';
             w_size = vitri + 'id' + j + 'size';
         }
-        info += '<p class="show_id">MÃ ĐƠN HÀNG: ' + vitri + '.</p>'
+        info += '<p class="show_id">MÃ ĐƠN HÀNG: ' + ID + '.</p>'
             + '<p class="show_total">Tổng tiền: ' + new Intl.NumberFormat().format(pwait[vitri].totalprice) + 'đ.</p>';
         document.getElementById("show_product").innerHTML = info;
         document.getElementById("show_product").style.display = "block";
@@ -343,12 +392,14 @@ function Show(ID, idchild, quantity, price, vitri, thu, doiso) {
 }
 
 function Remove2() {
+    console.log("Remove2");
     let item = [];
+    var user = JSON.parse(localStorage.getItem('userlogin'));
     for (var i = 0; i < goods.length; i++) {
         if (bill[i] === 1) {
             console.log(i);
             dele.push(goods[i]);
-        } else {
+        } else if (bill[i] === 0 || bill[i] === 2) {
             item.push(goods[i]);
         }
     }
@@ -379,22 +430,25 @@ function Remove(productNum, co) {
         }
     } else return;
 }
+
 function chooseall() {
+    let checkbox = document.getElementsByName("[]");
     if (TOF === 1) {
-        for (var i = 0; i < goods.length; i++) {
-            if (checkbox[i].checked == false) {
-                checkbox[i].checked = true;
-                buyit(i);
-            }
-        }
+        for (var i = 0; i < goods.length; i++)
+            if (bill[i] != 2)
+                if (checkbox[i].checked == false) {
+                    checkbox[i].checked = true;
+                    buyit(i);
+                }
         TOF = 0;
     } else if (TOF === 0) {
-        for (var i = 0; i < goods.length; i++) {
-            if (checkbox[i].checked == true) {
-                checkbox[i].checked = false;
-                buyit(i);
-            }
-        }
+        for (var i = 0; i < goods.length; i++)
+            if (bill[i] != 2)
+                if (checkbox[i].checked == true) {
+                    checkbox[i].checked = false;
+                    buyit(i);
+                }
         TOF = 1;
     }
 }
+

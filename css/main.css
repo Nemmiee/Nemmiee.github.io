@@ -39,7 +39,7 @@ a {
 }
 
 #content.darkmode {
-    background-color: black;
+    background-color: #22272E;
 }
 
 #top-shopnow-container {
@@ -103,7 +103,7 @@ a {
 }
 
 #main-content.darkmode {
-    background-color: black;
+    background-color: #22272E;
 }
 
 #main-content .main-content-inner {
@@ -141,6 +141,10 @@ a {
     font-size: 60px;
     color: white;
     cursor: pointer;
+}
+
+#main-content.darkmode .content-inner-category {
+    background: rgba(250, 250, 250, 0.1);
 }
 
 .responsive-category {

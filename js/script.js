@@ -4,17 +4,6 @@
 /* |                | */
 /* #----------------# */
 
-/* Hiển thị nội dung của nút tìm kiếm ở phàn Header */
-let kiemdich = 1;
-function search_dropdown() {
-    if (kiemdich === 1) {
-        document.querySelector("#header-search .header-dropdown").style.display = "block";
-        kiemdich = 0;
-    } else {
-        document.querySelector("#header-search .header-dropdown").style.display = "none";
-        kiemdich = 1;
-    }
-}
 
 /* Hiển thị Menu 3 gạch khi responsive */
 let showSidebar = document.getElementById("hamburger-icon");
@@ -82,49 +71,41 @@ window.addEventListener("scroll", function () {
 });
 
 
-let isDarkMode = 1;
-let darkModeBtn = document.getElementById("darkmode-btn");
-darkModeBtn.addEventListener('click', function () {
-    if (isDarkMode == 1) {
-        isDarkMode = 0;
-        changeWhiteMode();
-    }
-    else {
-        isDarkMode = 1;
-        changeDarkMode();
-    }
-});
-
-function changeDarkMode() {
+let currentTheme = localStorage.getItem("theme");
+if (currentTheme == "dark") {
     let pos = window.location.pathname.lastIndexOf('/');
     let path = window.location.pathname.substring(pos + 1);
     path = path.split(".")[0];
-    //document.getElementById("darkmode-i").style.color = "white";
-    //document.getElementById("header").style.backgroundColor = "black";
-    // for (var i = 0; i < document.querySelectorAll('.header-title').length; i++) {
-    //     document.querySelectorAll('.header-title')[i].classList.remove("darkmode");
-    // }
-    // for (var i = 0; i < document.querySelectorAll('.header-icon').length; ++i) {
-    //     document.querySelectorAll('.header-icon')[i].classList.remove("darkmode");
-    // }
+    document.getElementById("darkmode-btn").classList.toggle("fa-flip-horizontal");
+    // Header
+    document.getElementById("header").classList.toggle("darkmode");
     // Footer
-    //document.getElementById("footer").style.backgroundColor = "#222222";
-    //document.getElementById("footer").classList.remove("darkmode");
+    document.getElementById("footer").classList.toggle("darkmode");
 
-    // Content
-    if (path === "index") {
-        document.getElementById("content").classList.remove("darkmode");
-        document.getElementById("top-shopnow-container").classList.remove("darkmode");
-        document.getElementById("bottom-shopnow-container").classList.remove("darkmode");
-        document.getElementById("main-content").classList.remove("darkmode");
+    if (path == "index") {
+        document.getElementById("content").classList.toggle("darkmode");
+        document.getElementById("top-shopnow-container").classList.toggle("darkmode");
+        document.getElementById("bottom-shopnow-container").classList.toggle("darkmode");
+        document.getElementById("main-content").classList.toggle("darkmode");
     }
-    else if (path === "products") {
-
+    else if (path == "products") {
+        document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+        document.getElementById("menu-container").classList.toggle("darkmode");
+        document.getElementById("maincontent").classList.toggle("darkmode");
     }
-    else if (path === "sizecheck") {
-
+    else if (path == "sizecheck") {
+        document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+        document.getElementById("main").classList.toggle("darkmode");
     }
-    else if (path === "contact") {
+    else if (path == "contact") {
+        document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+        document.getElementById("main").classList.toggle("darkmode");
+    }
+    else if (path == "signin") {
+        document.getElementById("mainContent-theme").classList.toggle("darkmode");
+    }
+    else if (path == "signup") {
+        document.getElementById("mainContent-theme").classList.toggle("darkmode");
 
     }
     else {
@@ -132,40 +113,87 @@ function changeDarkMode() {
     }
 }
 
-function changeWhiteMode() {
-    let pos = window.location.pathname.lastIndexOf('/');
-    let path = window.location.pathname.substring(pos + 1);
-    path = path.split(".")[0];
-    // Header
-    //document.getElementById("darkmode-i").style.color = "black";
-    //document.getElementById("header").style.backgroundColor = "white";
-    // for (var i = 0; i < document.querySelectorAll('.header-title').length; i++) {
-    //     document.querySelectorAll('.header-title')[i].classList.add("darkmode");
-    // }
-    // for (var i = 0; i < document.querySelectorAll('.header-icon').length; ++i) {
-    //     document.querySelectorAll('.header-icon')[i].classList.add("darkmode");
-    // }
-    // Footer
-    //document.getElementById("footer").style.backgroundColor = "white";
-    //document.getElementById("footer").classList.add("darkmode");
+function changeTheme() {
+    let theme;
+    if (!document.getElementById("header").classList.contains("darkmode")) {
+        theme = "dark";
+        document.getElementById("darkmode-btn").classList.toggle("fa-flip-horizontal");
+        document.getElementById("sidebar-darkmode-btn").classList.toggle("fa-flip-horizontal");
+        // Header
+        document.getElementById("header").classList.toggle("darkmode");
+        // Footer
+        document.getElementById("footer").classList.toggle("darkmode");
 
-    // Content
-    if (path === "index") {
-        document.getElementById("content").classList.add("darkmode");
-        document.getElementById("top-shopnow-container").classList.add("darkmode");
-        document.getElementById("bottom-shopnow-container").classList.add("darkmode");
-        document.getElementById("main-content").classList.add("darkmode");
-    }
-    else if (path === "products") {
+        if (path == "index") {
+            document.getElementById("content").classList.toggle("darkmode");
+            document.getElementById("top-shopnow-container").classList.toggle("darkmode");
+            document.getElementById("bottom-shopnow-container").classList.toggle("darkmode");
+            document.getElementById("main-content").classList.toggle("darkmode");
+        }
+        else if (path == "products") {
+            document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+            document.getElementById("menu-container").classList.toggle("darkmode");
+            document.getElementById("maincontent").classList.toggle("darkmode");
 
-    }
-    else if (path === "sizecheck") {
+        }
+        else if (path == "sizecheck") {
+            document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+            document.getElementById("main").classList.toggle("darkmode");
+        }
+        else if (path == "contact") {
+            document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+            document.getElementById("main").classList.toggle("darkmode");
+        }
+        else if (path == "signin") {
+            document.getElementById("mainContent-theme").classList.toggle("darkmode");
+        }
+        else if (path == "signup") {
+            document.getElementById("mainContent-theme").classList.toggle("darkmode");
 
-    }
-    else if (path === "contact") {
+        }
+        else {
 
+        }
     }
     else {
+        theme = "light";
+        document.getElementById("darkmode-btn").classList.toggle("fa-flip-horizontal");
+        document.getElementById("sidebar-darkmode-btn").classList.toggle("fa-flip-horizontal");
+        // Header
+        document.getElementById("header").classList.toggle("darkmode");
+        // Footer
+        document.getElementById("footer").classList.toggle("darkmode");
 
+        if (path == "index") {
+            document.getElementById("content").classList.toggle("darkmode");
+            document.getElementById("top-shopnow-container").classList.toggle("darkmode");
+            document.getElementById("bottom-shopnow-container").classList.toggle("darkmode");
+            document.getElementById("main-content").classList.toggle("darkmode");
+
+        }
+        else if (path == "products") {
+            document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+            document.getElementById("menu-container").classList.toggle("darkmode");
+            document.getElementById("maincontent").classList.toggle("darkmode");
+        }
+        else if (path == "sizecheck") {
+            document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+            document.getElementById("main").classList.toggle("darkmode");
+        }
+        else if (path == "contact") {
+            document.querySelector(".shop-page-title-container").classList.toggle("darkmode");
+            document.getElementById("main").classList.toggle("darkmode");
+        }
+        else if (path == "signin") {
+            document.getElementById("mainContent-theme").classList.toggle("darkmode");
+        }
+        else if (path == "signup") {
+            document.getElementById("mainContent-theme").classList.toggle("darkmode");
+
+        }
+        else {
+
+        }
     }
+    localStorage.setItem("theme", theme);
 }

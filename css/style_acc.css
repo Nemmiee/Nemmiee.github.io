@@ -11,6 +11,10 @@
     padding: 20px 0;
 }
 
+#mainContent-theme.darkmode {    
+    background-color: #1C2128;
+}
+
 #login-title-container {
     width: 50%;
     float: left;
@@ -144,6 +148,16 @@
     font-weight: bold;
 }  
 
+#mainContent-theme.darkmode #signup-btn {
+    background-color: #FF3366;
+}
+
+#mainContent-theme.darkmode #signup-btn:hover {
+    background-color: white;
+    color: #FF3366;
+    transition: .2s;
+}
+
 #signup-btn:hover {
     background-color: white;
     color: black;
@@ -219,6 +233,18 @@
 #sign-up-link {
     font-size: 17px;
     text-align: center;
+}
+
+#mainContent-theme.darkmode #sign-up-link {
+    color: #ADBAC7;
+}
+
+#mainContent-theme.darkmode #sign-up-link a {
+    color: white;
+}
+
+#mainContent-theme.darkmode #sign-up-link a:hover {
+    color: red;
 }
 
 #sign-up-link a {

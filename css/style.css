@@ -22,28 +22,6 @@ html {
 }
 
 /* ----------------------------- Header -------------------------- */
-#darkmode {
-    float: right;
-    padding: 5px;
-    position: absolute;
-    top: 5px;
-    right: 16px;
-    background-color: transparent;
-    z-index: 15;
-}
-
-#darkmode #darkmode-btn {
-    background-color: transparent;
-    border: none;
-    width: auto;
-    height: auto;
-}
-
-#darkmode i {
-    color: white;
-    cursor: pointer;
-}
-
 #header {
     width: 100%;
     height: 100px;
@@ -52,6 +30,10 @@ html {
     top: 0;
     z-index: 4;
     font-family: sans-serif;
+}
+
+#header.darkmode {
+    background-color: #22272E;
 }
 
 .header-dropdown:hover {
@@ -92,19 +74,25 @@ html {
 }
 
 #flex_header-title .header-title {
-    padding: 40px 10px 20px;
+    padding: 30px 7px 20px;
     text-align: center;
     font-size: 13px;
     position: relative;
 }
 
-#flex_header-title .header-title.darkmode a {
-    color: black;
+#header.darkmode #flex_header-title .header-title a {
+    color: #CDD9E5;
 }
 
 #flex_header-title .header-title.active a,
 #flex_header-title .header-title.active i {
     color: red;
+}
+
+#header.darkmode #flex_header-title .header-title:hover a,
+#header.darkmode #flex_header-title .header-title.active a,
+#header.darkmode #flex_header-title .header-title.active i {
+    color: #BB86FC;
 }
 
 .header-title a {
@@ -114,7 +102,7 @@ html {
 #flex_header-title .header-title::before {
     position: absolute;
     content: "";
-    top: 65px;
+    top: 55px;
     left: auto;
     right: 2px;
     height: 2.5px;
@@ -122,6 +110,10 @@ html {
     transition: .25s;
     background-color: red;
     border-radius: 5px;
+}
+
+#header.darkmode #flex_header-title .header-title::before {
+    background-color: white;
 }
 
 #flex_header-title .header-title:hover::before,
@@ -140,6 +132,11 @@ html {
     color: red;
 }
 
+#header.darkmode .header-icon:hover,
+#header.darkmode .header-icon:focus {
+    color: #BB86FC;
+}
+
 .header-title a {
     font-weight: bold;
 }
@@ -154,7 +151,7 @@ html {
 #flex_header-title .cart,
 #flex_header-title .icon,
 #flex_header-title .userbtn {
-    padding: 30px 10px 20px;
+    padding: 25px 7px 20px;
     display: inline-block;
 }
 
@@ -172,6 +169,10 @@ html {
     color: red;
 }
 
+#header.darkmode #flex_header-title .user li>.user-icon:hover {
+    color: #BB86FC;
+}
+
 #flex_header-title .user:hover,
 #flex_header-title .search:hover,
 #flex_header-title .cart:hover,
@@ -186,6 +187,10 @@ html {
     color: red;
 }
 
+#header.darkmode #flex_header-title .user i.active {
+    color: #BB86FC;
+}
+
 .header-icon.darkmode {
     color: black;
 }
@@ -198,7 +203,8 @@ html {
     color: red;
 }
 
-#header-product-dropdown {
+#header-product-dropdown,
+#header.darkmode #header-product-dropdown {
     display: none;
     position: absolute;
     width: 150%;
@@ -212,7 +218,8 @@ html {
     display: list-item;
 }
 
-#header-product-dropdown li {
+#header-product-dropdown li,
+#header.darkmode #header-product-dropdown li {
     padding: 8px 0;
     border-bottom: 1px solid white;
 }
@@ -221,17 +228,30 @@ html {
     border-bottom: 1px solid red;
 }
 
-#header-product-title #header-product-dropdown a {
+#header.darkmode #header-product-dropdown li:hover {
+    border-bottom: 1px solid #BB86FC;
+}
+
+#header #header-product-title #header-product-dropdown a  {
     color: white;
 }
 
-#header-product-dropdown ul a:hover {
-    color: #FF3366 !important;
-    transition: 0s;
+#header #header-product-title #header-product-dropdown ul a:hover {
+    color: #FF3366;
+    transition: .2s;
+}
+
+#header.darkmode #header-product-title #header-product-dropdown ul a:hover {
+    color: #BB86FC;
+    transition: .2s;
 }
 
 #header-product-dropdown ul a:hover li {
     background-color: white;
+}
+
+.user #btnlg {
+    background-color: transparent;
 }
 
 #header-search-btn {
@@ -347,7 +367,6 @@ html {
 
 #header-search-input:focus {
     background-color: white;
-
 }
 
 #header-inner-search-btn {
@@ -382,12 +401,29 @@ html {
     color: red;
 }
 
+#header.darkmode #header-cart i.active {
+    color: #BB86FC;
+}
+
 #hamburger-container {
     display: none;
 }
 
 #sidebar-container {
     display: none;
+}
+
+#darkmode {
+    background-color: transparent;
+    z-index: 15;
+    padding: 5px 10px 0 0;
+}
+
+#darkmode #darkmode-btn {
+    height: auto;
+    width: auto;
+    color: white;
+    cursor: pointer;
 }
 
 .hide {
@@ -404,7 +440,7 @@ html {
 #product-info-container {
     width: 100%;
     height: 100%;
-    z-index: 11;
+    z-index: 20;
     display: none;
     position: fixed;
     top: 0;
@@ -592,6 +628,116 @@ html {
     box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
 }
 
+#product-search-content {
+    width: 100%;
+    height: 100%;
+    z-index: 17;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: rgb(0, 0, 0, 0.2);
+    display: none; 
+    align-items: center;
+    justify-content: center;
+}
+
+#product-search{
+    padding: 20px 20px 20px 20px;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 75%;
+    height: 70%;
+    background-color: white;
+    
+}
+.product-search-text{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+#search{
+    width: 80%;
+    height: 80%;
+    border-radius: 10px 0px 0px 10px;
+}
+#button-search{
+    height: 80%;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 0px 10px 10px 0px;
+    color: white;
+    background-color: #000000;
+}
+.xmark{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#product-search-result{
+    margin-top: 10px;
+    width: 100%;
+    height: 80%;
+    display: flex;
+}
+
+.pro_result{
+    width: 20%;
+    height: 80%;
+}
+.image_result{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+}
+.image_result img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pro_result{
+    border: 1px solid black;
+    font-size: 14px;
+    margin-left: 5%;
+}
+.pro_result:hover{
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+}
+
+#Numpage{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Numpage ul li{
+    display: inline-block;
+    padding: 10px 10px 10px 10px;
+    margin-left: 2px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+#filter{
+    top: 0;
+    margin-left: 20px;
+    position: relative;
+}
+#filter_choose{
+    display: none;
+    background-color: white;
+    width: 100px;
+    position: absolute;
+    top: 20px;
+}
 
 /* ------------------------- Footer ------------------------------ */
 #footer {
@@ -604,17 +750,15 @@ html {
     padding: 40px 0 0;
     color: #CCCCCC;
     font-family: sans-serif;
+    ;
+}
+
+#footer.darkmode {
+    background-color: #2D333B;
 }
 
 #footer a {
     color: #CCCCCC;
-}
-
-#footer.darkmode a,
-#footer.darkmode p,
-#footer.darkmode h3,
-#footer.darkmode i {
-    color: black;
 }
 
 #top-footer {
@@ -690,16 +834,8 @@ html {
     background-color: #DDDDDD;
 }
 
-#footer.darkmode #top-footer-email {
-    background-color: #DDDDDD;
-}
-
 #top-footer-email:focus {
     background-color: white;
-}
-
-#footer.darkmode #top-footer-email:focus {
-    background-color: #EEEEEE;
 }
 
 #top-footer-email-btn {
@@ -734,9 +870,9 @@ html {
     border: solid white;
 }
 
-#footer.darkmode #bottom-footer .bottom-footer-icon {
+/* #footer.darkmode #bottom-footer .bottom-footer-icon {
     border: solid black;
-}
+} */
 
 #bottom-footer .bottom-footer-icon:hover {
     color: white;
@@ -848,6 +984,104 @@ html {
         color: red;
     }
 
+    #product-search{
+        padding: 20px 20px 20px 20px;
+        margin-right: 3px;
+        margin-left: 3px;
+        margin-right: 3px;
+        width: 75%;
+        height: 70%;
+        background-color: white;
+        
+    }
+    .product-search-text{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    #search{
+        width: 80%;
+        height: 80%;
+        border-radius: 10px 0px 0px 10px;
+    }
+    #button-search{
+        height: 80%;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+        border-radius: 0px 10px 10px 0px;
+        color: white;
+        background-color: #000000;
+    }
+    .xmark{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    #product-search-result{
+        margin-top: 10px;
+        width: 100%;
+        height: 280px;
+        display: flex;
+    }
+    
+    .pro_result{
+        width: 300px;
+        height: 250px;
+    }
+    .image_result{
+        width: 100%;
+        height: 80%;
+        object-fit: contain;
+    }
+    .image_result img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .pro_result{
+        border: 1px solid black;
+        font-size: 14px;
+        margin-left: 5%;
+    }
+    .pro_result:hover{
+        box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+    }
+    
+    #Numpage{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #Numpage ul li{
+        display: inline-block;
+        padding: 10px 10px 10px 10px;
+        margin-left: 2px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+    #filter{
+        top: 0;
+        margin-left: 20px;
+        position: relative;
+    }
+    #filter_choose{
+        display: none;
+        background-color: white;
+        width: 100px;
+        position: absolute;
+        top: 20px;
+    }
+
     /* -------------------------- Sidebar --------------------- */
     #sidebar-container {
         width: 100%;
@@ -883,6 +1117,16 @@ html {
 
     #turnoff-container {
         padding: 20px 15px 40px;
+    }
+
+    #sidebar-darkmode {
+        padding: 7px 0;
+        float: left;
+    }
+
+    #sidebar-darkmode-btn {
+        color: white;
+        cursor: pointer;
     }
 
     #turnoff-btn {

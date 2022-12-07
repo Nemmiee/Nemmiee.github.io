@@ -16,6 +16,11 @@ body {
     clear: both;
     height: auto;
     z-index: 1;
+    
+}
+
+.shop-page-title-container.darkmode {
+    background-color: #2D333B;
 }
 
 .shop-page-title-inner {
@@ -26,17 +31,32 @@ body {
     width: 100%;
     padding-bottom: 10px;
     color: black;
+    
+}
+
+.shop-page-title-container.darkmode .page-title {
+    color: #BB86FC;
 }
 
 .breadcrumb {
     font-size: large;
     color: #666666;
     font-weight: 600;
+    
+}
+
+.shop-page-title-container.darkmode .breadcrumb {
+    color: #BBBBBB;
 }
 
 .breadcrumb a {
     color: black;
     font-size: large;
+    
+}
+
+.shop-page-title-container.darkmode .breadcrumb a {
+    color: white;
 }
 
 .divider {
@@ -48,6 +68,7 @@ element.style {
     background-color: white;
     color: white;
 }
+
 /* ----------------------- Content ------------------------ */
 #main {
     font-family: sans-serif;
@@ -61,18 +82,17 @@ element.style {
 /* Menu */
 #menu-container {
     z-index: 10;
-    display: block; 
+    display: block;
     clear: both;
     width: 100%;
     padding: 5px 0 15px;
     background-color: white;
+    
 }
 
-/* #menu-container.sticky {
-    position: sticky;
-    top: 0;
-    box-shadow: 0 1px 1px rgb(0, 0, 0, 0.2);
-} */
+#menu-container.darkmode {
+    background-color: #333333;
+}
 
 #menu-items.fixed1 {
     z-index: 3;
@@ -80,19 +100,24 @@ element.style {
     position: fixed;
     top: 0px;
     padding-bottom: 10px;
-    box-shadow: 0 3px 5px rgb(0, 0, 0, 0.4);    
+    box-shadow: 0 3px 5px rgb(0, 0, 0, 0.4);
     background-color: white;
 }
 
 #menu-items.fixed {
     z-index: 3;
     box-shadow: 0 3px 5px rgb(0, 0, 0, 0.4);
-    padding-bottom: 10px;   
+    padding-bottom: 10px;
     width: 100%;
     background-color: white;
     text-align: center;
     position: fixed;
     top: 80px;
+}
+
+#menu-container.darkmode #menu-items.fixed,
+#menu-container.darkmode #menu-items.fixed1 {
+    background-color:black;
 }
 
 #nav_left-menu {
@@ -109,12 +134,20 @@ element.style {
     color: rgb(53, 53, 53);
 }
 
+#menu-container.darkmode .shop-sidebar-title {
+    color: white;
+}
+
 .small_divider {
     margin-top: 10px;
     height: 3px;
     width: 150px;
     background-color: #FF3366;
     border-radius: 10px;
+}
+
+#menu-container.darkmode .small_divider {
+    background-color: #BB86FC;
 }
 
 #menu-items {
@@ -130,11 +163,23 @@ element.style {
     color: black;
 }
 
-#menu-items a:hover,
-#menu-items a:hover .menu-value  {
+#menu-container.darkmode #menu-items a {
+    color: white;
+}
+
+#menu-container #menu-items a:hover,
+#menu-container #menu-items a:hover .menu-value,
+#menu-container #menu-items .menu-value.active {
     transition: .3s;
     border-bottom: 3px solid #FF3366;
-    color: red;
+    color: #FF3366;
+}
+
+#menu-container.darkmode #menu-items a:hover,
+#menu-container.darkmode #menu-items a:hover .menu-value,
+#menu-container.darkmode #menu-items .menu-value.active {
+    color: white;
+    border-bottom: 3px solid #BB86FC;
 }
 
 .menu-value {
@@ -147,17 +192,17 @@ element.style {
     text-align: left;
 }
 
-#menu-items .menu-value.active {
-    border-bottom: 3px solid #FF3366;
-    color: red;
-}
-
 /* ----------------------- Content ------------------------ */
-.content-container {
+.maincontent {
     width: 100%;
     padding: 20px 20px 10px;
     height: auto;
     background: white;
+    
+}
+
+#maincontent.darkmode {
+    background-color: #333333;
 }
 
 #products {
@@ -168,21 +213,35 @@ element.style {
     font-family: serif;
 }
 
-.card { 
+#maincontent #products .card {
     background-color: white;
     max-width: 25%;
     flex-grow: 1;
     flex-basis: 20%;
     margin-bottom: 20px;
     cursor: pointer;
-    transition: 0.3s;
     border-radius: 5px;
     height: auto;
+    
+}
+
+#maincontent.darkmode #products .card {
+    background-color: #333333;
 }
 
 .card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     z-index: 2;
+    transition: 0.3s;
+}
+
+#maincontent.darkmode #products .card:hover {
+    box-shadow: 0 5px 15px rgba(255, 255, 255, .5);
+    transition: 0.3s;
+}
+
+#maincontent.darkmode #products .card:hover .image-container {
+    opacity: .9;
 }
 
 .image-container {
@@ -202,7 +261,6 @@ element.style {
     display: block;
     margin-bottom: 10px;
     padding: 10px 10px;
-    color: #444444;
 }
 
 .container h4 {
@@ -211,6 +269,11 @@ element.style {
     height: 40px;
     font-size: 18px;
     overflow-x: hidden;
+}
+
+#maincontent.darkmode #products .card h4,
+#maincontent.darkmode #products .card h5 {
+    color: #ADBAB9;
 }
 
 .container h5 {
@@ -241,13 +304,24 @@ element.style {
     color: white;
     background-color: #FF3366;
     border-radius: 0 0 5px 5px;
+    
 }
 
+#maincontent.darkmode #products .card .addToCart-container .addToCart-btn {
+    background-color: #CDD9E5;
+    border-right: 3px solid #22272E;
+    border-left: 3px solid #22272E;
+}
 
 #products .addToCart-btn:hover {
     transition: .2s;
     background-color: white;
     color: #FF3366;
+}
+
+#maincontent.darkmode #products .card .addToCart-container .addToCart-btn:hover {
+    color: #BB86FC;
+    background-color: white;
 }
 
 .hide {
@@ -269,6 +343,7 @@ element.style {
     align-items: center;
     width: 100%;
     height: auto;
+    
 }
 
 .page-number {
@@ -285,9 +360,24 @@ element.style {
     transform: scale(1) rotate(19deg) translateX(0px) translateY(0px) skewX(-10deg) skewY(-20deg);
 }
 
+#maincontent.darkmode #page {
+    background-color: #1D1D1D;
+}
+
+#maincontent.darkmode #page .page-number {
+    background-color: white;
+    color: black;
+}
+
 #page .page-number:hover,
 #page .page-number.active {
     background-color: #FF0000;
+    transition: .2s;
+}
+
+#maincontent.darkmode #page .page-number:hover,
+#maincontent.darkmode #page .page-number.active {
+    background-color: #BB86FC;
 }
 
 /* ------------------------ Responsive -------------------- */
@@ -317,8 +407,8 @@ element.style {
         font-size: 16px;
         line-height: 18px;
         height: 38px;
-    }                   
-    
+    }
+
     .container h5 {
         font-size: 14px;
     }
@@ -338,23 +428,23 @@ element.style {
         width: 100%;
     }
 
-    .card {
+    #maincontent #products .card {
         max-width: 50%;
         flex-flow: 1;
         flex-basis: 50%;
-    }     
+    }
 }
 
 /* Điện thoại di động ở chế độ dọc */
 @media only screen and (max-width: 576px) {
     .content-container {
-        padding: 0px 0 10px;
+        padding: 0;
     }
 
     #products .addToCart-container {
         height: 30px;
     }
-    
+
     #products .addToCart-container .addToCart-btn {
         height: 30px;
         font-size: 12px;
@@ -363,7 +453,7 @@ element.style {
 
 /* Máy tính bảng */
 @media only screen and ((min-width: 650px) and (max-width: 992px)) {
-    .card {
+    #maincontent #products .card {
         max-width: 33%;
         flex-flow: 1;
         flex-basis: 33%;
@@ -372,10 +462,9 @@ element.style {
 
 /* Máy tính để bàn */
 @media only screen and (min-width: 993px) {
-    .card {
+    #maincontent #products .card {
         max-width: 25%;
         flex-flow: 1;
         flex-basis: 25%;
     }
 }
-

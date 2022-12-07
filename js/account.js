@@ -135,7 +135,6 @@ function login(e) {
 }
 function logout() {
 	localStorage.removeItem('userlogin');
-	localStorage.removeItem('cart');
 	location.href = "../index.html";
 }
 function checklogin() {
@@ -251,29 +250,15 @@ function checklogin() {
 }
 
 function cutName(fullName) {
-	// Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
-	fullName = fullName.trim();
-	var x = fullName.lastIndexOf(' ');
-	var name = [];
-	// In hoa chữ cái đầu
-	name = fullName.substring(x + 1, x + 2).toUpperCase();
-	// In thường các chữ cái còn lại
-	for (var i = x + 2; i < fullName.length; ++i) {
-		name += fullName[i].toLowerCase();
-	}
-	return name;
+    // Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
+    fullName = fullName.trim();
+    var x = fullName.lastIndexOf(' ');
+    var name = [];
+    // In hoa chữ cái đầu
+    name = fullName.substring(x + 1, x + 2).toUpperCase();
+    // In thường các chữ cái còn lại
+    for (var i = x + 2; i < fullName.length; ++i) {
+        name += fullName[i].toLowerCase();
+    }
+    return name;
 }
-
-const viewPass = document.getElementById("viewPass");
-viewPass.addEventListener('click', function (e) {
-	e.preventDefault();
-	var password = document.getElementById("Passwordlogin");
-	if (password.type == 'password') {
-		password.type = 'text';
-		viewPass.innerHTML = '<i class="fa-solid fa-eye"></i>';
-	}
-	else {
-		password.type = 'password';
-		viewPass.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
-	}
-});

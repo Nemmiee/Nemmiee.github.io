@@ -19,11 +19,6 @@
 
 <body onload="showHeaderProductCategory(); checklogin(); showFooterMenuItems()">
 	<header>
-		<div id="darkmode">
-			<button id="darkmode-btn">
-				<i id="darkmode-i" class="fa-solid fa-circle-half-stroke fa-lg"></i>
-			</button>
-		</div>
 		<div id="header">
 			<div id="res-header-cart">
 				<a href="../File/cart.html">
@@ -53,17 +48,10 @@
 				</div>
 				<!-- Search -->
 				<div class=" search">
-					<div id="header-search">
-						<button id="header-search-btn" onclick="search_dropdown()">
+					<div id="header-search" onclick="opensearch()">
+						<button id="header-search-btn" >
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
-						<div class="header-dropdown">
-							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
-							<button id="header-inner-search-btn" onclick="search();">
-								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
-							</button>
-							<div id="result"></div>
-						</div>
 					</div>
 				</div>
 				<!-- Cart -->
@@ -71,6 +59,9 @@
 					<a href="../File/cart.html">
 						<i class="fa-solid fa-cart-shopping fa-lg header-icon"></i>
 					</a>
+				</div>
+				<div id="darkmode">
+					<i id="darkmode-btn" class="fa-solid fa-circle-half-stroke fa-lg" onclick="changeTheme()"></i>
 				</div>
 			</div>
 			<div id="hamburger-container">
@@ -101,42 +92,47 @@
 	<!-- Side bar -->
 	<div id="sidebar-container">
 		<div id="sidebar">
-			<div id="turnoff-container">
+			<div id="turnoff-container">			
+				<div id="sidebar-darkmode">
+					<i id="sidebar-darkmode-btn" class="fa-solid fa-circle-half-stroke fa-lg" onclick="changeTheme()"></i>
+				</div>
 				<button id="turnoff-btn">
 					<i class="fa-solid fa-xmark fa-2x"></i>
 				</button>
 			</div>
+			<div id="sidebar-logo">
+				<img src="/img/Logo/Faion_icon.png" alt="">
+			</div>
 			<div class="sidebar-search-container">
-				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." onkeyup="Find2();" onclick="OK();">
-				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg" onclick="search();"></i></button>
-				<div id="result2"></div>
+				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." value="">
+				<button id="sidebar-search-btn" onclick="search_product_sidebar();"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
 			</div>
 			<ul id="sidebar-list">
-				<a href="../index.html">
+				<a href="/index.html">
 					<li>
 						<i class="fa-solid fa-house fa-fw"></i>
 						<span class="sidebar-item">Trang chủ</span>
 					</li>
 				</a>
-				<a href="../File/products.html">
+				<a href="/File/products.html">
 					<li>
 						<i class="fa-solid fa-shirt fa-fw"></i>
 						<span class="sidebar-item">Sản phẩm</span>
 					</li>
 				</a>
-				<a href="../File/sizecheck.html">
+				<a href="/File/sizecheck.html">
 					<li>
 						<i class="fa-solid fa-ruler fa-fw"></i>
 						<span class="sidebar-item">Size guide</span>
 					</li>
 				</a>
-				<a href="../File/contact.html">
-					<li class="active">
+				<a href="/File/contact.html">
+					<li>
 						<i class="fa-solid fa-envelope fa-fw"></i>
 						<span class="sidebar-item">Liên hệ</span>
 					</li>
 				</a>
-				<a href="../Account/signin.html">
+				<a href="/Account/signin.html">
 					<li>
 						<i class="fa-solid fa-right-to-bracket fa-fw"></i>
 						<span class="sidebar-item">Đăng nhập</span>
@@ -209,6 +205,35 @@
 			</div>
 		</div>
 
+		<div id="product-search-content">
+			<div id="product-search">
+				<div class="product-search-text">
+					<input type="search" name="search-area" id="search" value="" placeholder="Tìm kiếm nè...." onkeyup="search_product();">
+					<div id="button-search" onclick="Search(0)">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</div>
+					<div id="filter" onclick="Show_choose()">
+						<i class="fa-solid fa-filter"></i>
+						<div id="filter_choose">
+							<ul>
+								<li onclick="cheap()">Rẻ Nhất</li>
+								<li onclick="expensive()">Cao nhất</li>
+								<li onclick="U500()"> <span><</span> 500.000đ</li>
+								<li onclick="H500()"><span>>=</span> 500.000đ</li>
+								<li onclick="ALL()">Tất cả</li>
+							</ul>
+						</div>
+					</div>
+					<div class="xmark" onclick="clock()">
+						<i class="fa-solid fa-xmark"></i>
+					</div>
+				</div>
+				<div id="product-search-result">
+				</div>
+				<div id="Numpage">
+				</div>
+			</div>
+		</div>
 		<!-- Product info -->
 		<div class="" id="product-info-container">
 			<div id="product-info">

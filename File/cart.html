@@ -19,13 +19,8 @@
 	<script src="/js/product_js.js"></script>
 </head>
 
-<body onload="showHeaderProductCategory(); checklogin(); showFooterMenuItems(); checkcart(); setbill()">
+<body onload="showHeaderProductCategory(); checklogin(); showFooterMenuItems(); checkcart();">
 	<header>
-		<div id="darkmode">
-			<button id="darkmode-btn">
-				<i id="darkmode-i" class="fa-solid fa-circle-half-stroke fa-lg"></i>
-			</button>
-		</div>
 		<div id="header">
 			<div id="res-header-cart">
 				<a href="../File/cart.html">
@@ -33,7 +28,8 @@
 				</a>
 			</div>
 			<div id="logo-container">
-				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png" alt="Logo"></a>
+				<a href="../index.html"><img id="logo-image" src="../img/Logo/Faion_remove_background.png"
+						alt="Logo"></a>
 			</div>
 			<div id="flex_header-title">
 				<div class="header-title"><a href="../index.html">TRANG CHỦ</a></div>
@@ -54,24 +50,20 @@
 				</div>
 				<!-- Search -->
 				<div class=" search">
-					<div id="header-search">
-						<button id="header-search-btn" onclick="search_dropdown()">
+					<div id="header-search" onclick="opensearch()">
+						<button id="header-search-btn" >
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
-						<div class="header-dropdown">
-							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
-							<button id="header-inner-search-btn" onclick="search();">
-								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
-							</button>
-							<div id="result"></div>
-						</div>
 					</div>
 				</div>
 				<!-- Cart -->
 				<div class="cart" id="header-cart">
-					<a href="../File/cart.html" >
+					<a href="../File/cart.html">
 						<i class="fa-solid fa-cart-shopping fa-lg header-icon active"></i>
 					</a>
+				</div>
+				<div id="darkmode">
+					<i id="darkmode-btn" class="fa-solid fa-circle-half-stroke fa-lg" onclick="changeTheme()"></i>
 				</div>
 			</div>
 			<div id="hamburger-container">
@@ -81,11 +73,14 @@
 			</div>
 		</div>
 	</header>
-	
+
 	<!-- Sidebar -->
 	<div id="sidebar-container">
 		<div id="sidebar">
-			<div id="turnoff-container">
+			<div id="turnoff-container">			
+				<div id="sidebar-darkmode">
+					<i id="sidebar-darkmode-btn" class="fa-solid fa-circle-half-stroke fa-lg" onclick="changeTheme()"></i>
+				</div>
 				<button id="turnoff-btn">
 					<i class="fa-solid fa-xmark fa-2x"></i>
 				</button>
@@ -94,9 +89,8 @@
 				<img src="/img/Logo/Faion_icon.png" alt="">
 			</div>
 			<div class="sidebar-search-container">
-				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." onkeyup="Find2();" onclick="OK();">
-				<button id="sidebar-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg" onclick="search();"></i></button>
-				<div id="result2"></div>
+				<input type="search" id="sidebar-search" placeholder="Tìm kiếm..." value="">
+				<button id="sidebar-search-btn" onclick="search_product_sidebar();"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
 			</div>
 			<ul id="sidebar-list">
 				<a href="/index.html">
@@ -132,9 +126,38 @@
 			</ul>
 		</div>
 	</div>
-	
+
 
 	<main id="content">
+		<div id="product-search-content">
+			<div id="product-search">
+				<div class="product-search-text">
+					<input type="search" name="search-area" id="search" value="" placeholder="Tìm kiếm nè...." onkeyup="search_product();">
+					<div id="button-search" onclick="Search(0)">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</div>
+					<div id="filter" onclick="Show_choose()">
+						<i class="fa-solid fa-filter"></i>
+						<div id="filter_choose">
+							<ul>
+								<li onclick="cheap()">Rẻ Nhất</li>
+								<li onclick="expensive()">Cao nhất</li>
+								<li onclick="U500()"> <span><</span> 500.000đ</li>
+								<li onclick="H500()"><span>>=</span> 500.000đ</li>
+								<li onclick="ALL()">Tất cả</li>
+							</ul>
+						</div>
+					</div>
+					<div class="xmark" onclick="clock()">
+						<i class="fa-solid fa-xmark"></i>
+					</div>
+				</div>
+				<div id="product-search-result">
+				</div>
+				<div id="Numpage">
+				</div>
+			</div>
+		</div>
 		<div id="product-info-container">
 			<div id="product-info">
 				<button type="button" id="close-product-info-btn" onclick="closeProductInfo()">
@@ -179,7 +202,7 @@
 		<div id="pcart">
 			<div id="sym">
 				<div class="profile_product symbol" id="check">
-					<input type="checkbox"  id="checkbox" value="" onclick="chooseall();" />
+					<input type="checkbox" id="checkbox" value="" onclick="chooseall();" />
 					<span>Tất cả</span>
 				</div>
 				<div class="price_product symbol">Giá</div>
@@ -201,7 +224,7 @@
 			<div class="buynow">
 				<button onclick="Buy(); checkwait();" class="button">MUA NGAY</button>
 			</div>
-		<!--waitting-->
+			<!--waitting-->
 		</div>
 		<div id="product_show"></div>
 		<div id="show_product"></div>

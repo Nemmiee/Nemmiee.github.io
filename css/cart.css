@@ -10,7 +10,7 @@ body {
 
 .element {
     background-color: white;
-    width: 72%;
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
     font-size: 20px;
@@ -371,7 +371,11 @@ body {
     height: 100px;
 }
 
-#notification {
+.info2:hover{
+    box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+#notification{
     width: 100%;
     text-align: center;
     margin-bottom: 30px;
