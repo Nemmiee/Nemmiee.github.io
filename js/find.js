@@ -12,11 +12,9 @@ function Show_choose() {
 
 function clock() {
     document.getElementById("product-search-content").style.display = "none";
-    console.log("clock");
 }
 function opensearch() {
     document.getElementById("product-search-content").style.display = "flex";
-    console.log("clock");
 }
 
 let result = [];

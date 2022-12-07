@@ -97,7 +97,8 @@
     border: solid black;
 }
 
-#mainContent-theme #signup-btn {
+#mainContent-theme.darkmode #signup-btn {
+    border: none;
     background-color: #FF3366;
 }
 
@@ -120,11 +121,11 @@
     color: black;
 }
 
-#mainContent-theme .sign-in-link a {
+#mainContent-theme.darkmode .sign-in-link a {
     color: white;
 }
 
-#mainContent-theme .sign-in-link a:hover {
+#mainContent-theme.darkmode .sign-in-link a:hover {
     color: red;
 }
 

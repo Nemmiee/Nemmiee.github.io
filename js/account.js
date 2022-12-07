@@ -262,3 +262,17 @@ function cutName(fullName) {
     }
     return name;
 }
+
+const viewPass = document.getElementById("viewPass");
+viewPass.addEventListener('click', function (e) {
+	e.preventDefault();
+	var password = document.getElementById("Passwordlogin");
+	if (password.type == 'password') {
+		password.type = 'text';
+		viewPass.innerHTML = '<i class="fa-solid fa-eye"></i>';
+	}
+	else {
+		password.type = 'password';
+		viewPass.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+	}
+});

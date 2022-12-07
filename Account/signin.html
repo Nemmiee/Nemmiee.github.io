@@ -46,17 +46,10 @@
 				</div>
 				<!-- Search -->
 				<div class=" search">
-					<div id="header-search">
-						<button id="header-search-btn" onclick="search_dropdown()">
+					<div id="header-search" onclick="opensearch()">
+						<button id="header-search-btn" >
 							<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
 						</button>
-						<div class="header-dropdown">
-							<input type="text" id="header-search-input" placeholder="Tìm kiếm..." onkeyup="Find();" onclick="OK();">
-							<button id="header-inner-search-btn" onclick="search();">
-								<i class="fa-solid fa-magnifying-glass fa-lg header-icon"></i>
-							</button>
-							<div id="result"></div>
-						</div>
 					</div>
 				</div>
 				<!-- Cart -->
@@ -122,7 +115,7 @@
 					</li>
 				</a>
 				<a href="/Account/signin.html">
-					<li>
+					<li class="active">
 						<i class="fa-solid fa-right-to-bracket fa-fw"></i>
 						<span class="sidebar-item">Đăng nhập</span>
 					</li>

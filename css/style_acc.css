@@ -149,6 +149,7 @@
 }  
 
 #mainContent-theme.darkmode #signup-btn {
+    border: none;
     background-color: #FF3366;
 }
 

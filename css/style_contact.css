@@ -10,7 +10,7 @@
     width: 100%;
     background: #EEEEEE;
     clear: both;
-    height: auto;
+    height: 100px;
     z-index: 1;
 }
 
@@ -59,7 +59,7 @@
 /* ------------------------- Main ------------------------- */
 #main {
     width: 100%;
-    height: auto;
+    height: 100%;
     font-family: sans-serif;
     position: relative;
     display: table;
@@ -73,9 +73,9 @@
     font-weight: normal;
 }
 
-#main #left-content-container {
+#left-content-container {
     width: 40%;
-    height: auto;
+    height: 100%;
     padding: 40px 20px;
     float: left;
 }
@@ -86,11 +86,17 @@
 
 #left-content-container h3 {
     padding-bottom: 20px;
-    font-size: 23px; 
+    font-size: 23px;
 }
 
 #main.darkmode #left-content-container h3 {
     color: #BB86FC;
+}
+
+#main.darkmode #left-content-container li, 
+#main.darkmode #left-content-container p,
+#main.darkmode #left-content-container li a {
+    color: #ADBAC7;
 }
 
 #left-content-container li {
@@ -98,13 +104,8 @@
     line-height: 25px;
 }
 
-#main.darkmode #left-content-container li, p,
-#main.darkmode #left-content-container li a {
-    color: #ADBAC7;
-}
-
 #creators li {
-    padding: 0 20px;
+    padding: 0px 20px;
 }
 
 #left-content-container .left-content-icon {
@@ -113,6 +114,7 @@
 
 #left-content-container a {
     color: black;
+    font-weight: bold;
 }
 
 #main #left-content-container li a:hover {
@@ -124,13 +126,13 @@
     line-height: 25px;
 }
 
-#main #right-content-container {
-    position: absolute;
-    right: 0;
+#right-content-container {
     width: 60%;
+    display: flex;
+    flex-flow: column;
     height: 100%;
     padding: 40px 20px 40px 30px;
-    float: right;
+    float: left;
 }
 
 #main.darkmode #right-content-container {
@@ -139,14 +141,18 @@
 }
 
 #contact-form {
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    height: auto;
+    background-color: transparent;
 }
 
 #contact-form .form-inner {
     width: 100%;
     height: auto;
+    background-color: transparent;
 }
 
 #contact-form .form-inner label {
@@ -161,7 +167,7 @@
     margin-bottom: 20px;
     border-radius: 10px;
     outline: none;
-    border: 1px solid #888888;    
+    border: 1px solid #888888;
     background-color: #EEEEEE;
 }
 
@@ -174,8 +180,10 @@
     max-width: 100%;
     width: 100%;
     padding: 15px;
+    border-radius: 10px 0 10px 10px;
     border-radius: 10px;
     margin-bottom: 20px;
+    overflow-y: scroll;
     background-color: #EEEEEE;
 }
 
@@ -190,7 +198,7 @@
     background-color: red;
     color: white;
     border-radius: 10px;
-    border: 1px solid;
+    border: none;
     font-size: larger;
 }
 
@@ -238,21 +246,9 @@
     #creators li {
         padding: 0 15px;
     }
-
-
 }
 
 @media only screen and (max-width: 768px) {
-    /* Left menu */
-    .left-menu-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    #shop-sidebar {
-        width: 90%;
-    }
 
     /* Content */
     #left-content-container {
@@ -264,47 +260,17 @@
     #right-content-container {
         width: 100%;
         display: block;
-        padding: 20px 20px 30px;
-    }
-
-    #contact-form .form-inner label {
-        font-size: 15px;
-    }
-
-    #contact-form .form-inner input {
-        padding: 12px;
-        margin-bottom: 17px;
-    }
-
-    #contact-content {
-        max-width: 100%;
-        width: 100%;
-        padding: 15px;
-        margin-bottom: 17px;
-    }
-
-    #contact-submit {
-        padding: 8px;
-        font-size: 15px;
     }
 }
 
 /* Điện thoại di động ở chế độ dọc */
-@media only screen and (max-width: 576px) {
-    
-}
+@media only screen and (max-width: 576px) {}
 
 /* Điện thoại di động ở chế độ ngang */
-@media only screen and ((min-width: 577px) and (max-width: 768px)) {
-    
-}
+@media only screen and ((min-width: 577px) and (max-width: 768px)) {}
 
 /* Máy tính bảng */
-@media only screen and ((min-width: 769px) and (max-width: 992px)) {
-    
-}
+@media only screen and ((min-width: 769px) and (max-width: 992px)) {}
 
 /* Máy tính để bàn */
-@media only screen and (min-width: 993px) {
-    
-}
+@media only screen and (min-width: 993px) {}
