@@ -236,7 +236,7 @@ element.style {
 }
 
 #maincontent.darkmode #products .card:hover {
-    box-shadow: 0 5px 15px rgba(255, 255, 255, .5);
+    box-shadow: 0 5px 15px rgba(48, 227, 202, 0.5);
     transition: 0.3s;
 }
 
@@ -308,7 +308,7 @@ element.style {
 }
 
 #maincontent.darkmode #products .card .addToCart-container .addToCart-btn {
-    background-color: #CDD9E5;
+    background-color: #08D9D6;
     border-right: 3px solid #22272E;
     border-left: 3px solid #22272E;
 }
@@ -320,8 +320,8 @@ element.style {
 }
 
 #maincontent.darkmode #products .card .addToCart-container .addToCart-btn:hover {
-    color: #BB86FC;
-    background-color: white;
+    color: #14FFEC;
+    background-color: black;
 }
 
 .hide {

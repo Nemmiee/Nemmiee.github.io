@@ -215,6 +215,10 @@ function Buy() {
     let code = 0;
     let total = 0;
     let date = new Date();
+    let d;
+    if (date.getDate() < 10 ){
+        d = String (date.getDate()).padStart(2, '0');
+    }
     if (localStorage.getItem('userlogin') === null) {
         if (confirm("vui lòng đăng nhập khi mua hàng.", 'warning') == true) {
             location.replace("../Account/signin.html");
@@ -228,7 +232,7 @@ function Buy() {
     for (var i = 0; i < goods.length; i++) {
         if (bill[i] === 1) {
             items += goods[i].g_productName + ' ' + goods[i].g_category + ' ' + goods[i].g_quantity + ' ' + goods[i].g_size + ' ' + goods[i].g_price + '; ';
-            var day = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+            var day = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + d;
             total += goods[i].g_price * goods[i].g_quantity;
         }
     }
@@ -258,10 +262,14 @@ function checkwait() {
     var l = 0;
     var user = JSON.parse(localStorage.getItem('userlogin'));
     //if (pwait.length != 0) {
-    let d = new Date();
     var i = 0;
     while (i < pwait.length) {
         if (user.email == pwait[i].costumer.email) {
+            let d = new Date();
+            let date
+            if (d.getDate() < 10 ){
+                date = String (d.getDate()).padStart(2, '0');
+            }
             l = 1;
             j = 0;
             c = '';
@@ -452,3 +460,56 @@ function chooseall() {
     }
 }
 
+// Data bill
+var arrayInfos = JSON.parse(localStorage.getItem("user"));
+var arrayHisOrder = [
+  {
+    codeID:  0,
+    costumer: arrayInfos[2],
+    product:  " Light Purple Cheese Shirt 2 M 250000; Rabbit Bag Brown Shirt 2 M 270000; ",
+    status:  "Chưa xử lý",
+    time :  "2022-12-07",
+    totalprice:  1040000
+  },
+  {
+    codeID:  1,
+    costumer: arrayInfos[1],
+    product:  " Light Purple Cheese Shirt 2 M 250000; Rabbit Bag Brown Shirt 2 M 270000; ",
+    status:  "Chưa xử lý",
+    time :  "2022-12-20",
+    totalprice:  1040000
+  },
+  {
+    codeID:  2,
+    costumer: arrayInfos[1],
+    product:  " Light Purple Cheese Shirt 2 M 250000; Rabbit Bag Brown Shirt 2 M 270000; ",
+    status:  "Chưa xử lý",
+    time :  "2022-12-11",
+    totalprice:  1040000
+  },
+  {
+    codeID:  3,
+    costumer: arrayInfos[2],
+    product:  " Light Purple Cheese Shirt 2 M 250000; Rabbit Bag Brown Shirt 2 M 270000; ",
+    status:  "Chưa xử lý",
+    time :  "2022-12-08",
+    totalprice:  1040000
+  },
+  {
+    codeID:  4,
+    costumer: arrayInfos[1],
+    product:  " Light Purple Cheese Shirt 2 M 250000; Rabbit Bag Brown Shirt 2 M 270000; ",
+    status:  "Chưa xử lý",
+    time :  "2022-12-13",
+    totalprice:  1040000
+  },
+  {
+    codeID:  5,
+    costumer: arrayInfos[2],
+    product:  " Light Purple Cheese Shirt 2 M 250000; Rabbit Bag Brown Shirt 2 M 270000; ",
+    status:  "Chưa xử lý",
+    time :  "2022-12-16",
+    totalprice:  1040000
+  },
+];
+localStorage.setItem('wait', JSON.stringify(arrayHisOrder));

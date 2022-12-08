@@ -21,6 +21,7 @@ let result = [];
 
 function search_product() {
     console.log("search_product");
+    var all = document.getElementById
     var productlist = JSON.parse(localStorage.getItem("product"));
     let content = document.getElementById("search").value;
     if(content=='' && dus!='') content=dus;

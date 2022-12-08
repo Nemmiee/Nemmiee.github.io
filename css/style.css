@@ -229,10 +229,10 @@ html {
 }
 
 #header.darkmode #header-product-dropdown li:hover {
-    border-bottom: 1px solid #BB86FC;
+    border-bottom: 1px solid #6A2C70;
 }
 
-#header #header-product-title #header-product-dropdown a  {
+#header #header-product-title #header-product-dropdown a {
     color: white;
 }
 
@@ -241,14 +241,18 @@ html {
     transition: .2s;
 }
 
-#header.darkmode #header-product-title #header-product-dropdown ul a:hover {
-    color: #BB86FC;
+/* #header.darkmode #header-product-title #header-product-dropdown ul a:hover {
+    color: #2D236D;
     transition: .2s;
-}
+} */
 
 #header-product-dropdown ul a:hover li {
     background-color: white;
 }
+
+/* #header.darkmode #header-product-dropdown ul a:hover li {
+    background-color: #873D96;
+} */
 
 .user #btnlg {
     background-color: transparent;
@@ -297,10 +301,10 @@ html {
     position: absolute;
     width: 100%;
     height: auto;
-    max-height: 240px ;
+    max-height: 240px;
     border-bottom: 1.5px solid black;
     border-right: 1.5px solid black;
-    border-left: 1.5px solid black; 
+    border-left: 1.5px solid black;
     display: none;
     margin-top: 75px;
     background-color: white;
@@ -317,12 +321,13 @@ html {
 }
 
 .contentresult {
-    border-bottom: 1px solid black; 
+    border-bottom: 1px solid black;
     width: 100%;
     height: 60px;
     display: flex;
     cursor: pointer;
 }
+
 .contentresult:hover {
     box-shadow: 0 2px 10px 1px rgb(0 0 0 / 50%);
 }
@@ -636,12 +641,12 @@ html {
     top: 0;
     right: 0;
     background: rgb(0, 0, 0, 0.2);
-    display: none; 
+    display: none;
     align-items: center;
     justify-content: center;
 }
 
-#product-search{
+#product-search {
     padding: 20px 20px 20px 20px;
     margin-right: 3px;
     margin-left: 3px;
@@ -649,9 +654,10 @@ html {
     width: 75%;
     height: 70%;
     background-color: white;
-    
+    border-radius: 10px;
 }
-.product-search-text{
+
+.product-search-text {
     width: 100%;
     height: 10%;
     display: flex;
@@ -659,12 +665,17 @@ html {
     justify-content: center;
     position: relative;
 }
-#search{
+
+#search {
+    padding: 10px;
     width: 80%;
     height: 80%;
     border-radius: 10px 0px 0px 10px;
+    border: solid black;
+    background-color: #EEEEEE;
 }
-#button-search{
+
+#button-search {
     height: 80%;
     width: 40px;
     display: flex;
@@ -674,44 +685,62 @@ html {
     border-radius: 0px 10px 10px 0px;
     color: white;
     background-color: #000000;
+    cursor: pointer;
 }
-.xmark{
+
+.xmark {
     position: absolute;
     right: 0;
     top: 0;
 }
-#product-search-result{
+
+.xmark i {
+    cursor: pointer;
+}
+
+#product-search-result {
     margin-top: 10px;
     width: 100%;
     height: 80%;
     display: flex;
 }
 
-.pro_result{
+.pro_result {
     width: 20%;
     height: 80%;
 }
-.image_result{
+
+.image_result {
     width: 100%;
-    height: 80%;
+    height: 70%;
     object-fit: contain;
 }
-.image_result img{
+
+.image_result img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.pro_result{
-    border: 1px solid black;
+.pro_result {
+    border: 2px solid rgba(133, 133, 133, 0.888);
     font-size: 14px;
-    margin-left: 5%;
+    margin: auto;
+    border-radius: 10px;
 }
-.pro_result:hover{
+
+.pro_result:hover {
+    cursor: pointer;
     box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
 }
 
-#Numpage{
+.product_resutl {
+    margin: 10px;
+    text-align: center;
+    line-height: 25px;
+}
+
+#Numpage {
     width: 100%;
     height: 10%;
     display: flex;
@@ -719,25 +748,60 @@ html {
     justify-content: center;
 }
 
-#Numpage ul li{
-    display: inline-block;
-    padding: 10px 10px 10px 10px;
-    margin-left: 2px;
-    border: 1px solid black;
-    border-radius: 50%;
+#Numpage ul {
+    display: flex;
 }
-#filter{
+
+#Numpage ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    border: 2px solid red;
+    color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#Numpage ul li:active {
+    background-color: red;
+    color: white;
+}
+
+#filter {
     top: 0;
     margin-left: 20px;
     position: relative;
 }
-#filter_choose{
-    display: none;
-    background-color: white;
-    width: 100px;
-    position: absolute;
-    top: 20px;
+
+#filter i {
+    cursor: pointer;
 }
+
+#filter_choose {
+    display: none;
+    background-color: black;
+    width: 125px;
+    position: absolute;
+    top: 35px;
+    right: -45px;
+    padding: 12px;
+    color: white;
+    border-radius: 10px;
+    line-height: 30px;
+}
+
+#filter_choose ul li {
+    cursor: pointer;
+}
+
+#filter_choose ul li:hover {
+    color: red;
+    transition: .2s;
+}
+
 
 /* ------------------------- Footer ------------------------------ */
 #footer {
@@ -984,7 +1048,7 @@ html {
         color: red;
     }
 
-    #product-search{
+    #product-search {
         padding: 20px 20px 20px 20px;
         margin-right: 3px;
         margin-left: 3px;
@@ -992,9 +1056,10 @@ html {
         width: 75%;
         height: 70%;
         background-color: white;
-        
+
     }
-    .product-search-text{
+
+    .product-search-text {
         width: 100%;
         height: 10%;
         display: flex;
@@ -1002,12 +1067,14 @@ html {
         justify-content: center;
         position: relative;
     }
-    #search{
+
+    #search {
         width: 80%;
         height: 80%;
         border-radius: 10px 0px 0px 10px;
     }
-    #button-search{
+
+    #button-search {
         height: 80%;
         width: 40px;
         display: flex;
@@ -1018,63 +1085,70 @@ html {
         color: white;
         background-color: #000000;
     }
-    .xmark{
+
+    .xmark {
         position: absolute;
         right: 0;
         top: 0;
     }
-    #product-search-result{
+
+    #product-search-result {
         margin-top: 10px;
         width: 100%;
         height: 280px;
         display: flex;
     }
-    
-    .pro_result{
+
+    .pro_result {
         width: 300px;
         height: 250px;
     }
-    .image_result{
+
+    .image_result {
         width: 100%;
         height: 80%;
         object-fit: contain;
     }
-    .image_result img{
+
+    .image_result img {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
-    
-    .pro_result{
+
+    .pro_result {
         border: 1px solid black;
         font-size: 14px;
         margin-left: 5%;
     }
-    .pro_result:hover{
+
+    .pro_result:hover {
         box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
     }
-    
-    #Numpage{
+
+    #Numpage {
         width: 100%;
         height: 10%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    
-    #Numpage ul li{
+
+    #Numpage ul li {
         display: inline-block;
         padding: 10px 10px 10px 10px;
         margin-left: 2px;
         border: 1px solid black;
         border-radius: 50%;
     }
-    #filter{
+
+    #filter {
         top: 0;
         margin-left: 20px;
         position: relative;
     }
-    #filter_choose{
+
+    #filter_choose {
         display: none;
         background-color: white;
         width: 100px;

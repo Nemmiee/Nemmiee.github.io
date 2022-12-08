@@ -20,6 +20,7 @@ turnOffSideBar.addEventListener("click", function () {
 })
 /* Nút X tắt header 3 gạch */
 
+
 // Products
 function showProductList(vitri) {
 	var productList = JSON.parse(localStorage.getItem('product'));
@@ -28,7 +29,7 @@ function showProductList(vitri) {
 	for (var i = vitri; i < productList.length; i++) {
 		s += '<tr>' +
 			'<td>' + productList[i].productId + '</td>' +
-			'<td><img src="../' + productList[i].image + '"></td>' +
+			'<td><img src="' + productList[i].image + '"></td>' +
 			'<td>' + productList[i].productName + '</td>' +
 			'<td>' + productList[i].category.toUpperCase() + '</td>' +
 			'<td>' + productList[i].price + ' đ' + '</td>' +
@@ -59,13 +60,11 @@ function setPagination() {
 
 function hidePagination() {
 	const pag = document.querySelector('.pagination')
-	console.log(pag);
 	pag.classList.add('hide')
 }
 
 function showPagination() {
 	const pag = document.querySelector('.pagination')
-	console.log(pag);
 	pag.classList.remove('hide')
 }
 
@@ -84,7 +83,7 @@ function searchproduct() {
 				if (productList[i].productName.toLowerCase().search(name) >= 0) {
 					s += '<tr>' +
 						'<td>' + productList[i].productId + '</td>' +
-						'<td><img src="../' + productList[i].image + '"></td>' +
+						'<td><img src="' + productList[i].image + '"></td>' +
 						'<td>' + productList[i].productName + '</td>' +
 						'<td>' + productList[i].category.toUpperCase() + '</td>' +
 						'<td>' + productList[i].price + ' đ' + '</td>' +
@@ -104,7 +103,7 @@ function searchproduct() {
 			if (productList[i].productName.toLowerCase().search(name) >= 0 && productList[i].category.toLowerCase() == category) {
 				s += '<tr>' +
 					'<td>' + productList[i].productId + '</td>' +
-					'<td><img src="../' + productList[i].image + '"></td>' +
+					'<td><img src="'+ productList[i].image +'"></td>' +
 					'<td>' + productList[i].productName + '</td>' +
 					'<td>' + productList[i].category.toUpperCase() + '</td>' +
 					'<td>' + productList[i].price + ' đ' + '</td>' +
@@ -140,7 +139,7 @@ function showchangeproductbox(productid) {
 	var productList = JSON.parse(localStorage.getItem('product'));
 	for (var i = 0; i < productList.length; i++) {
 		if (productList[i].productId == productid) {
-			document.getElementById('imgbefore').src = "../" + productList[i].image;
+			document.getElementById('imgbefore').src = productList[i].image;
 			document.getElementById('name').value = productList[i].productName;
 			document.getElementById('price').value = productList[i].price;
 			document.getElementById('save').setAttribute('onClick', 'changeproduct(' + productList[i].productId + ')');
@@ -157,7 +156,7 @@ function changeproduct(productid) {
 			productList[i].image = document.getElementById('imgbefore').src;
 			productList[i].productName = document.getElementById('name').value;
 			productList[i].price = document.getElementById('price').value;
-			vitri = (Math.floor(i / 10)) * 10;
+			vitri = (Math.floor(i / 10) * 10);
 		}
 	}
 	localStorage.setItem('product', JSON.stringify(productList));
@@ -172,20 +171,24 @@ function changeimg(input) {
 	reader.readAsDataURL(input.files[0]);
 }
 
+var arrImg = [];
 function changeimgadd(event) {
 	var selectedFile = event.target.files[0];
 	var reader = new FileReader();
 
 	var imgtag = document.getElementById("imgadd");
+	console.log (selectedFile);
 	imgtag.title = selectedFile.name;
 
 	reader.onload = function (event) {
 		imgtag.src = event.target.result;
+		if (arrImg.includes(reader.result) == false) {
+			arrImg.unshift(reader.result);
+		  }
 	};
-
 	reader.readAsDataURL(selectedFile);
-
 }
+
 function showaddbox() {
 	document.getElementById('modal2').style.display = 'block';
 }
@@ -193,10 +196,14 @@ function showaddbox() {
 function addProduct() {
 	document.getElementById('modal2').style.display = 'none';
 	var productList = JSON.parse(localStorage.getItem('product'));
-	var productid = productList[productList.length - 1].productId + 1;
+	for (let i = 1; i < productList.length; i++){
+		var productid = productList[productList.length - 1].productId + i;
+	}
 	var productname = document.getElementById('productname');
 	var brand = document.getElementById('brand');
 	var price = document.getElementById('productprice');
+	var img = arrImg[0];
+	
 
 	if (!brand.value || !productname.value || !price.value) {
 		alert('Bạn chưa nhập đủ thông tin sản phẩm', 'warning');
@@ -206,8 +213,8 @@ function addProduct() {
 		alert('Giá không hợp lệ', 'warning');
 		return false;
 	}
-	var producttemp = { productId: productid, category: brand.value, image: '/img/products/no-image.jpg', productName: productname.value, price: price.value };
-	productList.unshift(producttemp);
+	var producttemp = { productId: productid, category: brand.value, image: img, productName: productname.value, price: price.value };
+	productList.unshift (producttemp);
 	localStorage.setItem('product', JSON.stringify(productList));
 	showProductList(0);
 	alert("Thêm sản phẩm thành công");
@@ -217,7 +224,10 @@ function closebox() {
 	document.getElementById('modal1').style.display = 'none';
 	document.getElementById('modal2').style.display = 'none';
 }
-
+function closeaddbox (){
+	document.getElementById('modal2').style.display = 'none';
+	
+}
 // User
 function showUserList() {
 	if (localStorage.getItem('user') === null) {
@@ -233,6 +243,7 @@ function showUserList() {
 			'<td>' + userArray[i].address + '</td>' +
 			'<td>' + userArray[i].phoneNum + '</td>' +
 			'<td>' +
+			'<button class="change" onClick="showchangeuserbox(\'' + userArray[i].email + '\')">Sửa</div>'+
 			'<button class="delete" onClick="deleteUser(\'' + userArray[i].email + '\')">&times;</button>' +
 			'</td>' +
 			'</tr>';
@@ -253,6 +264,7 @@ function searchUser() {
 				'<td>' + userArray[i].address + '</td>' +
 				'<td>' + userArray[i].phoneNum + '</td>' +
 				'<td>' +
+				'<button class="change" onClick="showchangeuserbox(\'' + userArray[i].email + '\')">Sửa</div>'+
 				'<button class="delete" onClick="deleteUser(\'' + userArray[i].email + '\')">&times;</button>' +
 				'</td>' +
 				'</tr>';
@@ -260,6 +272,47 @@ function searchUser() {
 	}
 	document.getElementById('userlist').innerHTML = tr;
 }
+function closechangebox (){
+	document.getElementById('modal1').style.display = 'none';
+	
+} 
+function showchangeuserbox(email) {
+	document.getElementById('modal1').style.display = 'block';
+	var userArray = JSON.parse(localStorage.getItem('user'));
+	for (var i = 0; i < userArray.length; i++) {
+		if (userArray[i].email === email) {
+			console.log(userArray[i].email);
+			document.getElementById('address').value = userArray[i].address;
+			document.getElementById('fullName').value = userArray[i].fullname;
+			document.getElementById('phonenum').value = userArray[i].phoneNum;
+			document.getElementById('password').value = userArray[i].password;
+			document.getElementById('save').setAttribute('onClick', 'changeuser('+ i +')');
+		}
+	}
+}
+
+function changeuser(index) {
+	document.getElementById('modal1').style.display = 'none';
+	var userArray = JSON.parse(localStorage.getItem('user'));
+	for (var i = 0; i < userArray.length; i++){
+		if (i === index){
+
+		userArray[i] = {
+			
+			address : document.querySelector('#address').value,
+			email: userArray[i].email,
+			fullname : document.querySelector('#fullName').value,
+			password : document.querySelector('#password').value,	
+			phoneNum : document.querySelector('#phonenum').value,
+			
+			}
+			vitri = (Math.floor(i / 10)) * 10;
+		}
+		localStorage.setItem("user", JSON.stringify(userArray));
+	}
+	showUserList(vitri);
+}
+
 function deleteUser(btndelete) {
 	var userArray = JSON.parse(localStorage.getItem('user'));
 	var vitri;
@@ -321,7 +374,7 @@ function infobill(id) {
 				'<h4>Địa chỉ:</h4>' +
 				'<p>' + billList[i].costumer.address + '</p>' +
 				'<h4>Số điện thoại liên lạc:</h4>' +
-				'<p>' + billList[i].costumer.phonenum + '</p>' +
+				'<p>' + billList[i].costumer.phoneNum + '</p>' +
 				'<h4>Tổng giá tiền:</h4>' +
 				'<p>' + billList[i].totalprice + ' đ' + '</p>';
 			if (billList[i].status == "Chưa xử lý") {
@@ -370,9 +423,11 @@ function searchBill(){
 	var name =document.getElementById('fullName').value.toLowerCase();
 	var dateControl = document.querySelector('input[type="date"]').value;
 	console.log(dateControl);
+	
 	var billListTemp = [];
 	for (var i = 0; i < billList.length; i++) {
-		if(status==billList[i].status && billList[i].costumer.fullname.toLowerCase().search(name) >= 0 && billList[i].time == dateControl) {
+		console.log(billList[i].time);
+		if(status == billList[i].status && billList[i].costumer.fullname.toLowerCase().search(name) >= 0 && (billList[i].time == dateControl)) {
 			billListTemp.push(billList[i]);
 		}
 	}

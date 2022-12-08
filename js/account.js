@@ -8,7 +8,13 @@ var e;
 function createAdmin() {
 	if (localStorage.getItem('user') === null) {
 		var userArray = [];
-		var user = { email: 'admin@gmail.com', password: 'admin1234', address: '273 An Dương Vương, Phường 3, Quận 5', phonenum: '0123456789', fullname: 'Nguyễn Minh Quang', };
+		var user = { 
+		email: 'admin@gmail.com',
+		password: 'admin1234',
+		address: '273 An Dương Vương, Phường 3, Quận 5',
+		phonenum: '0123456789',
+		fullname: 'Nguyễn Minh Quang',
+		};
 		userArray.push(user);
 		localStorage.setItem('user', JSON.stringify(userArray));
 	}
@@ -20,78 +26,96 @@ function showLogin() {
 function createUser(e) {
 	e.preventDefault();
 	var fullname = document.getElementById('fullname');
-	var email = document.getElementById('Email');
-	var password = document.getElementById('Password');
-	var address = document.getElementById('Address');
-	var phonenum = document.getElementById('Phonenum');
-	var flag = true;
-	if (!fullname.value) {
-		document.getElementById('fullname').style.border = "2px solid red";
-		document.getElementById('fullname').placeholder = "Vui lòng nhập họ tên";
-		flag = false;
+	var email = document.getElementById('email');
+	var password = document.getElementById('password');
+	var address = document.getElementById('address');
+	var phonenum = document.getElementById('phonenum');
+	const isValidemail = email => {
+		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		return re.test(String(email).toLowerCase());
 	}
-	if (!email.value) {
-		document.getElementById('Email').style.border = "2px solid red";
-		document.getElementById('Email').placeholder = "Vui lòng nhập email của bạn";
-		flag = false;
+	const setError= (element, message) => {
+		const inputControl = element.parentElement;
+		const errorDisplay = inputControl.querySelector('.error');
+		
+		errorDisplay.innerText = message;
+		inputControl.classList.add('error');
+		inputControl.classList.remove('success');
 	}
-	if (!address.value) {
-		document.getElementById('Address').style.border = "2px solid red";
-		document.getElementById('Address').placeholder = "Vui lòng nhập địa chỉ của bạn";
-		flag = false;
+	const setSuccess = element => {
+		const inputControl = element.parentElement;
+		const errorDisplay = inputControl.querySelector('.error');
+
+		errorDisplay.innerText = '';
+		inputControl.classList.add('success');
+		inputControl.classList.remove('error');
 	}
-	if (!phonenum.value) {
-		document.getElementById('Phonenum').style.border = "2px solid red";
-		document.getElementById('Phonenum').placeholder = "Vui lòng nhập SĐT của bạn";
-		flag = false;
+	// Check fullname
+	if (fullname.value === '') {
+		setError(fullname, 'Vui lòng nhập họ tên');
+	}else{
+		setSuccess(fullname);
+	}
+
+	// Check email
+	if (email.value === '') {
+		setError(email, 'Vui lòng nhập email');
+    } else if (!isValidemail(email.value)) {
+        setError(email, 'Vui lòng nhập email hợp lệ');
+    } else {
+        setSuccess(email);
+	}
+
+	// Check address
+	if (address.value === '') {
+		setError(address, 'Vui lòng nhập địa chỉ');
+	}else{
+		setSuccess(address);
+	}
+
+	// Check Phone 
+	if (phonenum.value === '') {
+		setError(phonenum, 'Vui lòng nhập số điện thoại');
 	} else {
 		if (isNaN(Number(phonenum.value))) {
-			document.getElementById('Phonenum').style.display = "2px solid red";
-			alert("Số điện thoại không hợp lệ");
+			setError(phonenum, 'Số điện thoại không hợp lệ');
 			flag = false;
 		} else {
 			if (Number(phonenum.value) < 100000000 || Number(phonenum.value) > 999999999) {
-				document.getElementById('Phonenum').style.border = "2px solid red";
-				alert("Số điện thoại không đúng");
-				flag = false;
-			} else {
-				document.getElementById('phonenum').style.border = "none";
+				setError(phonenum, 'Số điện thoại không đúng ');
+			}else{
+				setSuccess(phonenum);
 			}
 		}
 	}
-	if (!password.value) {
-		document.getElementById('Password').style.border = "2px solid red";
-		document.getElementById('Password').placeholder = "Vui lòng nhập password của bạn";
-		flag = false;
-	} else {
-		if (password.value.length < 8) {
-			document.getElementById('Password').style.border = "2px solid red";
-			document.getElementById('Password').placeholder = "Mật khẩu của bạn phải dài hơn 8 ký tự";
-			flag = false;
-		} else {
-			document.getElementById('password').style.border = "none";
-		}
-	}
-	if (flag == false) {
-		return false;
-	}
+	
+	// Check password
+    if(password.value === '') {
+        setError(password, 'Vui lòng nhập mật khẩu');
+    } else if (password.value.length < 8 ) {
+        setError(password, 'Mật khẩu dài ít nhất 8 kí tự.')
+    } else {
+        setSuccess(password);
+    }
+
 	createAdmin();
 	let user = { email: email.value, password: password.value, address: address.value, fullname: fullname.value, phoneNum: phonenum.value };
 	var userArray = JSON.parse(localStorage.getItem('user'));
 	for (var i = 0; i < userArray.length; i++) {
 		if (user.email == userArray[i].email) {
-			document.getElementById('Email').style.border = "2px solid red";
-			alert("Email này đã có người sử dụng");
+			setError(email, 'Email đã có người sử dụng');
 			email.focus();
 			return false;
 		} else {
-			document.getElementById('email').style.border = "none";
+			setSuccess(email);
 		}
 	}
-	userArray.push(user);
-	localStorage.setItem('user', JSON.stringify(userArray));
-	alert('Bạn đã đăng ký thành công!', 'success');
-	showLogin();
+	if (!(fullname.value === '')  &&  !(address.value === '') && (Number(phonenum.value) > 100000000 && Number(phonenum.value) < 999999999 )){
+		userArray.push(user);
+		localStorage.setItem('user', JSON.stringify(userArray));
+		alert('Bạn đã đăng ký thành công!', 'success');
+		showLogin();
+	}
 }
 
 function login(e) {
@@ -250,17 +274,17 @@ function checklogin() {
 }
 
 function cutName(fullName) {
-    // Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
-    fullName = fullName.trim();
-    var x = fullName.lastIndexOf(' ');
-    var name = [];
-    // In hoa chữ cái đầu
-    name = fullName.substring(x + 1, x + 2).toUpperCase();
-    // In thường các chữ cái còn lại
-    for (var i = x + 2; i < fullName.length; ++i) {
-        name += fullName[i].toLowerCase();
-    }
-    return name;
+	// Loại bỏ khoảng trắng thừa ở trước và sau chuỗi
+	fullName = fullName.trim();
+	var x = fullName.lastIndexOf(' ');
+	var name = [];
+	// In hoa chữ cái đầu
+	name = fullName.substring(x + 1, x + 2).toUpperCase();
+	// In thường các chữ cái còn lại
+	for (var i = x + 2; i < fullName.length; ++i) {
+		name += fullName[i].toLowerCase();
+	}
+	return name;
 }
 
 const viewPass = document.getElementById("viewPass");
@@ -275,4 +299,4 @@ viewPass.addEventListener('click', function (e) {
 		password.type = 'password';
 		viewPass.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
 	}
-});
+}); 

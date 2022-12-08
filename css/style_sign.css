@@ -59,30 +59,40 @@
     background-color: white;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
     opacity: 1;
+    outline: 0;
 }
 
-#name input,
-#address input,
-#email input,
-#password input,
-#phonenum input {
+.input-control input {
     font-size: 15px;
     padding: 0 20px;
     height: 45px;
     width: 100%;
     border-radius: 5px;
-    outline: none;
-    border: none;
+    border: 2px solid #bababa;
     background-color: gainsboro;
-    opacity: .8;
-    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.input-control.success input{
+    border-color: #09c372;
+}
+
+.input-control.error input{
+    border-color: #ff3860;
+}
+
+.input-control .error {
+    margin: 5px 0;
+    color: #ff3860;
+    font-size: 16px;
+    height: 25px;
 }
 
 #signup-btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 18px;
 }
 
 #signup-btn {

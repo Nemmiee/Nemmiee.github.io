@@ -95,10 +95,36 @@
 					<div class="title">
 						<h1>DANH SÁCH KHÁCH HÀNG</h1>
 					</div>
+					
 					<table id="userlist">
 					</table>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div  id="modal1" class="modal">
+		<div id="changeproduct">
+			<button class="close" onclick="closechangebox()">&times;</button>
+			<h1>CHỈNH SỬA NGƯỜI DÙNG</h1>
+			<form>
+				<div class="input-control">
+					<label for="name">Họ và tên:</label>
+					<input type="text" placeholder="Họ và Tên" id="fullName" value="">
+				</div>
+				<div class="input-control">
+					<label for="address">Địa chỉ:</label>
+					<input type="text" placeholder="Địa chỉ" id="address"  value="">
+				</div>
+				<div class="input-control">
+					<label for="phone">Số điện thoại:</label>
+					<input type="text" placeholder="Số điện thoại" id="phonenum"  value="">
+				</div>
+				<div class="input-control">
+					<label for="password">Mật khẩu:</label>
+					<input type="text" placeholder="Mật khẩu" id="password"  value="">
+				</div>
+				<button id="save">Lưu chỉnh sửa</button>
+			</form>
 		</div>
 	</div>
 </div>
