@@ -26,14 +26,16 @@ function showLogin() {
 function createUser(e) {
 	e.preventDefault();
 	var fullname = document.getElementById('fullname');
-	var email = document.getElementById('email');
 	var password = document.getElementById('password');
 	var address = document.getElementById('address');
 	var phonenum = document.getElementById('phonenum');
-	const isValidemail = email => {
-		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+	var email = document.getElementById('email');
+
+	const isValidEmail = email => {
+		const re =   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 		return re.test(String(email).toLowerCase());
 	}
+
 	const setError= (element, message) => {
 		const inputControl = element.parentElement;
 		const errorDisplay = inputControl.querySelector('.error');
@@ -58,11 +60,13 @@ function createUser(e) {
 	}
 
 	// Check email
+
 	if (email.value === '') {
 		setError(email, 'Vui lòng nhập email');
-    } else if (!isValidemail(email.value)) {
-        setError(email, 'Vui lòng nhập email hợp lệ');
-    } else {
+    } else if (!(isValidEmail(email.value))) {
+		console.log((isValidEmail(email.value)));
+		setError(email, 'Vui lòng nhập đúng email (example: abc@gmail.com)');
+    }else {
         setSuccess(email);
 	}
 
@@ -83,8 +87,6 @@ function createUser(e) {
 		} else {
 			if (Number(phonenum.value) < 100000000 || Number(phonenum.value) > 999999999) {
 				setError(phonenum, 'Số điện thoại không đúng ');
-			}else{
-				setSuccess(phonenum);
 			}
 		}
 	}
@@ -105,9 +107,6 @@ function createUser(e) {
 		if (user.email == userArray[i].email) {
 			setError(email, 'Email đã có người sử dụng');
 			email.focus();
-			return false;
-		} else {
-			setSuccess(email);
 		}
 	}
 	if (!(fullname.value === '')  &&  !(address.value === '') && (Number(phonenum.value) > 100000000 && Number(phonenum.value) < 999999999 )){
@@ -288,15 +287,20 @@ function cutName(fullName) {
 }
 
 const viewPass = document.getElementById("viewPass");
-viewPass.addEventListener('click', function (e) {
-	e.preventDefault();
-	var password = document.getElementById("Passwordlogin");
-	if (password.type == 'password') {
-		password.type = 'text';
-		viewPass.innerHTML = '<i class="fa-solid fa-eye"></i>';
-	}
-	else {
-		password.type = 'password';
-		viewPass.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
-	}
-}); 
+var pos = window.location.pathname.lastIndexOf('/');
+var path = window.location.pathname.substring(pos + 1);
+path = path.split(".")[0];
+if (path === "signin") {
+	viewPass.addEventListener('click', function (e) {
+		e.preventDefault();
+		var password = document.getElementById("Passwordlogin");
+		if (password.type == 'password') {
+			password.type = 'text';
+			viewPass.innerHTML = '<i class="fa-solid fa-eye"></i>';
+		}
+		else {
+			password.type = 'password';
+			viewPass.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+		}
+	}); 	
+}
